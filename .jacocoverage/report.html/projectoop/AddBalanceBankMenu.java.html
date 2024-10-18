@@ -226,12 +226,12 @@ public class AddBalanceBankMenu extends javax.swing.JFrame {
 <span class="nc" id="L226">    }//GEN-LAST:event_depoTextField_AddBalanceActionPerformed</span>
 
     private void continueButton_AddBalanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueButton_AddBalanceMouseClicked
-<span class="pc bpc" id="L229" title="2 of 4 branches missed.">        if(BankNumberTextField_AddBalance.getText().isEmpty() || depoTextField_AddBalance.getText().isEmpty()){</span>
-<span class="nc" id="L230">            JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="pc bpc" id="L231" title="1 of 2 branches missed.">        } else if (!Validation.isValidBalance(depoTextField_AddBalance.getText())){</span>
-<span class="nc" id="L232">            JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="pc bpc" id="L233" title="1 of 2 branches missed.">        } else if (!Validation.isValidBalance(BankNumberTextField_AddBalance.getText())){</span>
-<span class="nc" id="L234">            JOptionPane.showMessageDialog(this, &quot;Invalid bank number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="pc bpc" id="L229" title="1 of 4 branches missed.">        if(BankNumberTextField_AddBalance.getText().isEmpty() || depoTextField_AddBalance.getText().isEmpty()){</span>
+<span class="fc" id="L230">            JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">        } else if (!Validation.isValidBalance(depoTextField_AddBalance.getText())){</span>
+<span class="fc" id="L232">            JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">        } else if (!Validation.isValidBalance(BankNumberTextField_AddBalance.getText())){</span>
+<span class="fc" id="L234">            JOptionPane.showMessageDialog(this, &quot;Invalid bank number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
         
         } else {
 <span class="fc" id="L237">            GetBalance();</span>

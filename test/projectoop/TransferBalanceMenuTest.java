@@ -43,7 +43,7 @@ public class TransferBalanceMenuTest {
     @Test
     public void testSaveTransaction() throws Exception {
         // Setup test data
-        transferBalanceMenu.idUser = 1; // assuming this is a valid sender ID
+        transferBalanceMenu.idUser = 13; // assuming this is a valid sender ID
         transferBalanceMenu.RecepientIdAccount = 2; // assuming this is a valid recipient ID
         transferBalanceMenu.transferNominal_Transfer.setText("100"); // Test amount
 
@@ -71,7 +71,10 @@ public class TransferBalanceMenuTest {
         double oldRecepientBalance = transferBalanceMenu.OldRecepientBalance;
 
         // Call the transfer function
-        invokeMethod("continueButton_TransferMouseClicked", null);
+                // Use reflection to access the private method
+        Method method = TransferBalanceMenu.class.getDeclaredMethod("continueButton_TransferMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(transferBalanceMenu, (Object) null); // Pass null as the event
 
         // Verify balances after transfer
         assertEquals("Sender balance should be reduced by 50.", oldSenderBalance - 50, transferBalanceMenu.OldSenderBalance, 0.001);

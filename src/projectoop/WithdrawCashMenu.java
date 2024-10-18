@@ -40,7 +40,7 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private void GetBalance(){
+    public void GetBalance(){
     String Query = "select * from account where id_account="+idUser;
             try{
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test","root","");
@@ -57,7 +57,7 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
             }
     }
     
-            private void backMenu(){
+            public void backMenu(){
            String Query = "select * from account where id_account=" + idUser;
 
         try {
@@ -89,7 +89,7 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
         }
     }
             
-            private void SaveTransaction(){
+            public void SaveTransaction(){
         String QueryWDCash = "insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)";
     try { 
              Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test","root","");
@@ -176,6 +176,11 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
                 continueButton_WithdrawMouseClicked(evt);
             }
         });
+        continueButton_Withdraw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continueButton_WithdrawActionPerformed(evt);
+            }
+        });
         jPanel1.add(continueButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 259, 185, 45));
 
         withdrawBalance_Withdraw.addActionListener(new java.awt.event.ActionListener() {
@@ -236,6 +241,10 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
         new AddMethodMenu(idUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButton_WithdrawMouseClicked
+
+    private void continueButton_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton_WithdrawActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_continueButton_WithdrawActionPerformed
 
     /**
      * @param args the command line arguments

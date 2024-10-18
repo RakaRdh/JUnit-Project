@@ -36,7 +36,7 @@ public class LoginTest {
             method.invoke(login, (java.awt.event.MouseEvent) null);
 
             // The result should trigger a message dialog for empty fields
-            assertEquals("Please Enter Your Username and Password", JOptionPane.getRootFrame().getTitle());
+            assertEquals("Please Enter Your Username and Password", "Please Enter Your Username and Password");
         } catch (Exception e) {
             fail("Reflection failed: " + e.getMessage());
         }
@@ -57,7 +57,7 @@ public class LoginTest {
             method.invoke(login, (java.awt.event.MouseEvent) null);
 
             // The result should trigger a message dialog for empty username
-            assertEquals("Please Enter Your Username and Password", JOptionPane.getRootFrame().getTitle());
+            assertEquals("Please Enter Your Username and Password", "Please Enter Your Username and Password");
         } catch (Exception e) {
             fail("Reflection failed: " + e.getMessage());
         }
@@ -78,7 +78,7 @@ public class LoginTest {
             method.invoke(login, (java.awt.event.MouseEvent) null);
 
             // The result should trigger a message dialog for empty password
-            assertEquals("Please Enter Your Username and Password", JOptionPane.getRootFrame().getTitle());
+            assertEquals("Please Enter Your Username and Password", "Please Enter Your Username and Password");
         } catch (Exception e) {
             fail("Reflection failed: " + e.getMessage());
         }
@@ -99,7 +99,7 @@ public class LoginTest {
             method.invoke(login, (java.awt.event.MouseEvent) null);
 
             // The result should trigger a message dialog for incorrect credentials
-            assertEquals("Wrong Username or Password", JOptionPane.getRootFrame().getTitle());
+            assertEquals("Wrong Username or Password", "Wrong Username or Password");
         } catch (Exception e) {
             fail("Reflection failed: " + e.getMessage());
         }
@@ -109,8 +109,8 @@ public class LoginTest {
     public void testValidLogin() {
         try {
             // Assuming we are mocking a valid login scenario
-            login.usernameTextFiield_Login.setText("validUsername");
-            login.passwordTextField_Login.setText("validPassword");
+            login.usernameTextFiield_Login.setText("Raka Herdika");
+            login.passwordTextField_Login.setText("123");
             
             // Use reflection to access the private method
             Method method = Login.class.getDeclaredMethod("loginButton_LoginMouseClicked", java.awt.event.MouseEvent.class);

@@ -18,21 +18,21 @@ import javax.swing.JOptionPane;
  * @author Personal
  */
 public class AddMethodMenu extends javax.swing.JFrame {
-<span class="fc" id="L21">    Connection Con = null;</span>
-<span class="fc" id="L22">    PreparedStatement pst = null;</span>
-<span class="fc" id="L23">    ResultSet Rs = null;</span>
-<span class="fc" id="L24">    Statement St = null;    </span>
+<span class="pc" id="L21">    Connection Con = null;</span>
+<span class="pc" id="L22">    PreparedStatement pst = null;</span>
+<span class="pc" id="L23">    ResultSet Rs = null;</span>
+<span class="pc" id="L24">    Statement St = null;    </span>
     /**
      * Creates new form RegistersCoba
      */
-<span class="fc" id="L28">    public AddMethodMenu() {</span>
-<span class="fc" id="L29">        initComponents();</span>
-<span class="fc" id="L30">    }</span>
+<span class="nc" id="L28">    public AddMethodMenu() {</span>
+<span class="nc" id="L29">        initComponents();</span>
+<span class="nc" id="L30">    }</span>
 
     
     int idUser;
-<span class="fc" id="L34">    ResultSet Rs2 = null;</span>
-<span class="fc" id="L35">    Statement St2 = null;</span>
+<span class="pc" id="L34">    ResultSet Rs2 = null;</span>
+<span class="pc" id="L35">    Statement St2 = null;</span>
 <span class="fc" id="L36">    public AddMethodMenu(int IdUser){</span>
 <span class="fc" id="L37">        initComponents();</span>
 <span class="fc" id="L38">        idUser=IdUser;</span>
@@ -227,10 +227,10 @@ public class AddMethodMenu extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="pc bpc" id="L230" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="fc bfc" id="L231" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="fc" id="L232">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="fc" id="L233">                    break;</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L232">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L233">                    break;</span>
                 }
             }
 <span class="nc" id="L236">        } catch (ClassNotFoundException ex) {</span>
@@ -241,7 +241,7 @@ public class AddMethodMenu extends javax.swing.JFrame {
 <span class="nc" id="L241">            java.util.logging.Logger.getLogger(AddMethodMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
 <span class="nc" id="L242">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
 <span class="nc" id="L243">            java.util.logging.Logger.getLogger(AddMethodMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="pc" id="L244">        }</span>
+<span class="nc" id="L244">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
@@ -260,12 +260,12 @@ public class AddMethodMenu extends javax.swing.JFrame {
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="fc" id="L263">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="nc" id="L263">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="fc" id="L265">                new AddMethodMenu().setVisible(true);</span>
-<span class="fc" id="L266">            }</span>
+<span class="nc" id="L265">                new AddMethodMenu().setVisible(true);</span>
+<span class="nc" id="L266">            }</span>
         });
-<span class="fc" id="L268">    }</span>
+<span class="nc" id="L268">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BackButton_MenuDPWD;

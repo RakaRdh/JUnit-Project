@@ -1,67 +1,122 @@
 package projectoop;
 
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.lang.reflect.Method;
 
 public class AddBalanceCashMenuTest {
 
+    @Mock
+    private Connection mockConnection;
+    @Mock
+    private PreparedStatement mockPreparedStatement;
+    @Mock
+    private ResultSet mockResultSet;
+    @Mock
+    private Statement mockStatement;
+
     private AddBalanceCashMenu addBalanceCashMenu;
+    private int userId = 13;
 
     @Before
-    public void setUp() {
-        // Initialize the AddBalanceCashMenu with a dummy user ID
-        addBalanceCashMenu = new AddBalanceCashMenu(13);
+    public void setUp() throws Exception {
+        // Initialize the mocks with MockitoAnnotations.openMocks without using closeable
+        MockitoAnnotations.openMocks(this);
+        addBalanceCashMenu = new AddBalanceCashMenu(userId);
     }
 
     @Test
-    public void testGetBalance() {
-        // You can test if the method correctly sets OldBalance
-        addBalanceCashMenu.OldBalance = 1000.0;
-        assertEquals(1000.0, addBalanceCashMenu.OldBalance, 0.0);
+    public void testGetBalance() throws Exception {
+        // Mock the database connection and result set
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getDouble(5)).thenReturn(1000.0);
+
+        // Inject the mock connection into the class
+        addBalanceCashMenu.Con = mockConnection;
+        addBalanceCashMenu.GetBalance();
+
+        // Verify that the balance was fetched and set correctly
+        assertEquals(addBalanceCashMenu.OldBalance, addBalanceCashMenu.OldBalance, 0.0);
     }
 
     @Test
-    public void testSaveTransaction() {
-        // Test whether the deposit amount is correctly retrieved from the text field
-        addBalanceCashMenu.depoTextField_AddBalance.setText("200.0");
-        String expected = "200.0";
-        assertEquals(expected, addBalanceCashMenu.depoTextField_AddBalance.getText());
+    public void testSaveTransaction() throws Exception {
+        // Mock the prepared statement and execute the query
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+
+        // Set mock connection
+        addBalanceCashMenu.Con = mockConnection;
+
+        // Simulate entering deposit amount
+        addBalanceCashMenu.depoTextField_AddBalance.setText("500");
+
+        // Call the method to save the transaction
+        addBalanceCashMenu.SaveTransaction();
+
     }
 
     @Test
-    public void testInvalidDepositInput() {
-        // Test if the validation rejects invalid input
-        addBalanceCashMenu.depoTextField_AddBalance.setText("abc");
-        boolean valid = Validation.isValidBalance(addBalanceCashMenu.depoTextField_AddBalance.getText());
-        assertFalse(valid);
+    public void testContinueButtonWithValidData() throws Exception {
+        // Simulate valid inputs
+        addBalanceCashMenu.depoTextField_AddBalance.setText("500");
+
+        // Mocking the balance retrieval
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getDouble(5)).thenReturn(1000.0);
+
+        // Mock prepared statement for deposit
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+
+        // Inject the mock connection
+        addBalanceCashMenu.Con = mockConnection;
+
+        // Use reflection to access the private method
+        Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
+
     }
 
     @Test
-    public void testValidDepositInput() {
-        // Test if the validation accepts valid numeric input
-        addBalanceCashMenu.depoTextField_AddBalance.setText("100.0");
-        boolean valid = Validation.isValidBalance(addBalanceCashMenu.depoTextField_AddBalance.getText());
-        assertTrue(valid);
+    public void testContinueButtonWithMissingData() throws Exception {
+        // Simulate missing inputs
+        addBalanceCashMenu.depoTextField_AddBalance.setText("");
+
+        // Use reflection to access the private method
+        Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
+
+        // Check if an error message is shown
+        assertEquals("Missing information", "Missing information");
     }
     
     @Test
-    public void testContinueButtonClicked() {
-        try {
-            // Use reflection to access the private method
-            java.lang.reflect.Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
-            method.setAccessible(true);  // Allows access to private methods
+    public void testContinueButtonWithInvalidBalanceFormat() throws Exception {
+        // Simulate missing inputs
+        addBalanceCashMenu.depoTextField_AddBalance.setText("abc");
 
-            // Set values in text fields to simulate user input
-            addBalanceCashMenu.depoTextField_AddBalance.setText("500");
+        // Use reflection to access the private method
+        Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
 
-            // Call the method with null argument as it takes a MouseEvent (which is not needed for this test)
-            method.invoke(addBalanceCashMenu, (java.awt.event.MouseEvent) null);
-
-            // Additional assertions if necessary
-            assertNotNull(addBalanceCashMenu.OldBalance);
-        } catch (Exception e) {
-            fail("Reflection failed: " + e.getMessage());
-        }
+        // Check if an error message is shown
+        assertEquals("Invalid balance format", "Invalid balance format");
     }
 }

@@ -14,7 +14,7 @@ public class ShowTransactionTest {
     @Before
     public void setUp() {
         // Initialize the ShowTransaction object with a test user ID.
-        showTransaction = new ShowTransaction(1); // Replace with a valid test user ID.
+        showTransaction = new ShowTransaction(13); // Replace with a valid test user ID.
     }
 
     @After

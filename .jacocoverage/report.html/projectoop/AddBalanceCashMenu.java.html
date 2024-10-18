@@ -43,7 +43,7 @@ public class AddBalanceCashMenu extends javax.swing.JFrame {
 <span class="fc" id="L43">        setLocationRelativeTo(null);</span>
 <span class="fc" id="L44">    }</span>
     
-    private void GetBalance(){
+    public void GetBalance(){
 <span class="fc" id="L47">    String Query = &quot;select * from account where id_account=&quot;+idUser;</span>
             try{
 <span class="fc" id="L49">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
@@ -92,7 +92,7 @@ public class AddBalanceCashMenu extends javax.swing.JFrame {
 <span class="fc" id="L92">        }</span>
 <span class="fc" id="L93">    }</span>
     
-    private void SaveTransaction(){
+    public void SaveTransaction(){
 <span class="fc" id="L96">        String QueryDepoCash = &quot;insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)&quot;;</span>
     try { 
 <span class="fc" id="L98">             Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
@@ -211,10 +211,10 @@ public class AddBalanceCashMenu extends javax.swing.JFrame {
 <span class="nc" id="L211">    }//GEN-LAST:event_depoTextField_AddBalanceActionPerformed</span>
 
     private void continueButton_AddBalanceCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueButton_AddBalanceCashMouseClicked
-<span class="pc bpc" id="L214" title="1 of 2 branches missed.">        if(depoTextField_AddBalance.getText().isEmpty()){</span>
-<span class="nc" id="L215">            JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="pc bpc" id="L216" title="1 of 2 branches missed.">        } else if (!Validation.isValidBalance(depoTextField_AddBalance.getText())){</span>
-<span class="nc" id="L217">            JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">        if(depoTextField_AddBalance.getText().isEmpty()){</span>
+<span class="fc" id="L215">            JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">        } else if (!Validation.isValidBalance(depoTextField_AddBalance.getText())){</span>
+<span class="fc" id="L217">            JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
         } else {
 <span class="fc" id="L219">            GetBalance();</span>
             try{

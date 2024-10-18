@@ -217,22 +217,22 @@ public class Login extends javax.swing.JFrame {
 <span class="fc" id="L217">            Rs = St.executeQuery(Query);</span>
             
             // Move the cursor to the first row and check if there are results
-<span class="pc bpc" id="L220" title="1 of 2 branches missed.">            if(Rs.next()) {</span>
-<span class="nc" id="L221">                int accountId = Rs.getInt(1); // Get account id from the first result</span>
-<span class="nc" id="L222">                System.out.println(accountId);</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">            if(Rs.next()) {</span>
+<span class="fc" id="L221">                int accountId = Rs.getInt(1); // Get account id from the first result</span>
+<span class="fc" id="L222">                System.out.println(accountId);</span>
                 // Now, query the account details based on the fetched accountId
-<span class="nc" id="L224">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + accountId;</span>
-<span class="nc" id="L225">                St2 = Con.createStatement();</span>
-<span class="nc" id="L226">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L224">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + accountId;</span>
+<span class="fc" id="L225">                St2 = Con.createStatement();</span>
+<span class="fc" id="L226">                Rs2 = St2.executeQuery(Query2);</span>
                 
-<span class="nc bnc" id="L228" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L228" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L230">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L231">                    this.dispose();                 </span>
+<span class="fc" id="L230">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L231">                    this.dispose();                 </span>
                 } else {
 <span class="nc" id="L233">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
-<span class="nc" id="L235">            } else {</span>
+<span class="fc" id="L235">            } else {</span>
 <span class="fc" id="L236">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
             }
 

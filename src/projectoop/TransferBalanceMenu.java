@@ -197,6 +197,11 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
                 continueButton_TransferMouseClicked(evt);
             }
         });
+        continueButton_Transfer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continueButton_TransferActionPerformed(evt);
+            }
+        });
         jPanel1.add(continueButton_Transfer, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 185, 45));
 
         phoneNumberTextField_Transfer.addActionListener(new java.awt.event.ActionListener() {
@@ -340,6 +345,10 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_backButton_TransferMouseClicked
+
+    private void continueButton_TransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton_TransferActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_continueButton_TransferActionPerformed
 
         private boolean checkPhoneNumberExistence(String phoneNumber) {
     try {

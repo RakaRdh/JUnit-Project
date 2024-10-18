@@ -5,81 +5,84 @@
  */
 package projectoop;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
+// Test class for Account
 public class AccountTest {
+
     private Account account;
 
     @Before
     public void setUp() {
-        account = new Account("JohnDoe", "Standard", "john.doe@example.com", "1234567890", 1000.0, "password123");
+        // Set up an account instance before each test
+        account = new Account("Raka Herdika", "Premium", "raka@example.com", "081212653542", 17500, "123");
     }
 
     @Test
     public void testGetUsername() {
-        assertEquals("JohnDoe", account.getUsername());
+        assertEquals("Raka Herdika", account.getUsername());
     }
 
     @Test
     public void testSetUsername() {
-        account.setUsername("JaneDoe");
-        assertEquals("JaneDoe", account.getUsername());
+        account.setUsername("RakaRdh");
+        assertEquals("RakaRdh", account.getUsername());
     }
 
     @Test
     public void testGetEmail() {
-        assertEquals("john.doe@example.com", account.getEmail());
+        assertEquals("raka@example.com", account.getEmail());
     }
 
     @Test
     public void testSetEmail() {
-        account.setEmail("jane.doe@example.com");
-        assertEquals("jane.doe@example.com", account.getEmail());
-    }
-
-    @Test
-    public void testGetPhoneNumber() {
-        assertEquals("1234567890", account.getPhoneNumber());
-    }
-
-    @Test
-    public void testSetPhoneNumber() {
-        account.setPhoneNumber("0987654321");
-        assertEquals("0987654321", account.getPhoneNumber());
+        account.setEmail("newemail@example.com");
+        assertEquals("newemail@example.com", account.getEmail());
     }
 
     @Test
     public void testGetBalance() {
-        assertEquals(1000.0, account.getBalance(), 0.0);
+        assertEquals(17500, account.getBalance(), 0);
     }
 
     @Test
     public void testSetBalance() {
-        account.setBalance(1500.0);
-        assertEquals(1500.0, account.getBalance(), 0.0);
+        account.setBalance(20000);
+        assertEquals(20000, account.getBalance(), 0);
+    }
+
+    @Test
+    public void testGetPhoneNumber() {
+        assertEquals("081212653542", account.getPhoneNumber());
+    }
+
+    @Test
+    public void testSetPhoneNumber() {
+        account.setPhoneNumber("082145000123");
+        assertEquals("082145000123", account.getPhoneNumber());
     }
 
     @Test
     public void testGetPassword() {
-        assertEquals("password123", account.getPassword());
+        assertEquals("123", account.getPassword());
     }
 
     @Test
     public void testSetPassword() {
-        account.setPassword("newpassword123");
-        assertEquals("newpassword123", account.getPassword());
+        account.setPassword("newpassword");
+        assertEquals("newpassword", account.getPassword());
     }
 
     @Test
     public void testGetType() {
-        assertEquals("Standard", account.getType());
+        assertEquals("Premium", account.getType());
     }
 
     @Test
     public void testSetType() {
-        account.setType("Premium");
-        assertEquals("Premium", account.getType());
+        account.setType("Regular");
+        assertEquals("Regular", account.getType());
     }
 }

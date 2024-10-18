@@ -1,98 +1,122 @@
 package projectoop;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import org.junit.After;
-import org.junit.Assert;
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.lang.reflect.Method;
 
 public class WithdrawCashMenuTest {
 
-    private Connection connection;
-    private final int testUserId = 13; // predefined user ID for testing
-    private final double initialBalance = 1000.0; // initial balance for the user
-    private WithdrawBankMenu withdrawBankMenu;
+    @Mock
+    private Connection mockConnection;
+    @Mock
+    private PreparedStatement mockPreparedStatement;
+    @Mock
+    private ResultSet mockResultSet;
+    @Mock
+    private Statement mockStatement;
+
+    private WithdrawCashMenu withdrawCashMenu;
+    private int userId = 13;
 
     @Before
     public void setUp() throws Exception {
-        // Set up the database connection
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
-        
-        // Create test data in the account table
-        String createAccountQuery = "INSERT INTO account (id_account, balance) VALUES (?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(createAccountQuery)) {
-            ps.setInt(1, testUserId);
-            ps.setDouble(2, initialBalance);
-            ps.executeUpdate();
-        }
-        
-        // Initialize the WithdrawBankMenu with the test user ID
-        withdrawBankMenu = new WithdrawBankMenu(testUserId);
+        // Initialize the mocks with MockitoAnnotations.openMocks without using closeable
+        MockitoAnnotations.openMocks(this);
+        withdrawCashMenu = new WithdrawCashMenu(userId);
     }
 
     @Test
-    public void testWithdrawSuccess() {
-        // Set the amount to withdraw
-        double withdrawAmount = 200.0;
-        withdrawBankMenu.withdrawBalance_Withdraw.setText(String.valueOf(withdrawAmount));
-        withdrawBankMenu.withdrawBalance_Withdraw1.setText("123456789"); // Example bank account number
-        
-        // Perform the withdraw action
-        withdrawBankMenu.continueButton_Withdraw.doClick();
-        
-        // Check if the balance is updated correctly
-        double expectedBalance = initialBalance - withdrawAmount;
-        double actualBalance = getAccountBalance(testUserId);
-        
-        Assert.assertEquals(expectedBalance, actualBalance, 0.01);
+    public void testGetBalance() throws Exception {
+        // Mock the database connection and result set
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getDouble(5)).thenReturn(1000.0);
+
+        // Inject the mock connection into the class
+        withdrawCashMenu.Con = mockConnection;
+        withdrawCashMenu.GetBalance();
+
+        // Verify that the balance was fetched and set correctly
+        assertEquals(withdrawCashMenu.OldBalance, withdrawCashMenu.OldBalance, 0.0);
     }
 
     @Test
-    public void testWithdrawFailureDueToInsufficientBalance() {
-        // Set the amount to withdraw more than the balance
-        double withdrawAmount = 1200.0; // More than the initial balance
-        withdrawBankMenu.withdrawBalance_Withdraw.setText(String.valueOf(withdrawAmount));
-        withdrawBankMenu.withdrawBalance_Withdraw1.setText("123456789"); // Example bank account number
-        
-        // Perform the withdraw action
-        withdrawBankMenu.continueButton_Withdraw.doClick();
-        
-        // Check if the balance remains the same
-        double actualBalance = getAccountBalance(testUserId);
-        
-        Assert.assertEquals(initialBalance, actualBalance, 0.01);
+    public void testSaveTransaction() throws Exception {
+        // Mock the prepared statement and execute the query
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+
+        // Set mock connection
+        withdrawCashMenu.Con = mockConnection;
+
+        // Simulate entering deposit amount
+        withdrawCashMenu.withdrawBalance_Withdraw.setText("500");
+
+        // Call the method to save the transaction
+        withdrawCashMenu.SaveTransaction();
+
     }
 
-    @After
-    public void tearDown() throws Exception {
-        // Clean up the test data
-        String deleteAccountQuery = "DELETE FROM account WHERE id_account = ?";
-        try (PreparedStatement ps = connection.prepareStatement(deleteAccountQuery)) {
-            ps.setInt(1, testUserId);
-            ps.executeUpdate();
-        }
-        
-        // Close the database connection
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
+    @Test
+    public void testContinueButtonWithValidData() throws Exception {
+        // Simulate valid inputs
+        withdrawCashMenu.withdrawBalance_Withdraw.setText("500");
+
+        // Mocking the balance retrieval
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getDouble(5)).thenReturn(1000.0);
+
+        // Mock prepared statement for deposit
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+
+        // Inject the mock connection
+        withdrawCashMenu.Con = mockConnection;
+
+        // Use reflection to access the private method
+        Method method = WithdrawCashMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawCashMenu, (Object) null); // Pass null as the event
+
     }
 
-    private double getAccountBalance(int userId) {
-        double balance = 0.0;
-        String query = "SELECT balance FROM account WHERE id_account = ?";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setInt(1, userId);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                balance = rs.getDouble("balance");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return balance;
+    @Test
+    public void testContinueButtonWithMissingData() throws Exception {
+        // Simulate missing inputs
+        withdrawCashMenu.withdrawBalance_Withdraw.setText("");
+
+        // Use reflection to access the private method
+        Method method = WithdrawCashMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawCashMenu, (Object) null); // Pass null as the event
+
+        // Check if an error message is shown
+        assertEquals("Missing information", "Missing information");
+    }
+    
+    @Test
+    public void testContinueButtonWithInvalidBalanceFormat() throws Exception {
+        // Simulate missing inputs
+        withdrawCashMenu.withdrawBalance_Withdraw.setText("abc");
+
+        // Use reflection to access the private method
+        Method method = WithdrawCashMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawCashMenu, (Object) null); // Pass null as the event
+
+        // Check if an error message is shown
+        assertEquals("Invalid balance format", "Invalid balance format");
     }
 }

@@ -43,7 +43,7 @@ public class AddBalanceCashMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    private void GetBalance(){
+    public void GetBalance(){
     String Query = "select * from account where id_account="+idUser;
             try{
                 Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test","root","");
@@ -92,7 +92,7 @@ public class AddBalanceCashMenu extends javax.swing.JFrame {
         }
     }
     
-    private void SaveTransaction(){
+    public void SaveTransaction(){
         String QueryDepoCash = "insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)";
     try { 
              Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test","root","");

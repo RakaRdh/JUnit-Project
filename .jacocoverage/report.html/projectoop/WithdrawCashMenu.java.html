@@ -40,69 +40,69 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
 <span class="fc" id="L40">        setLocationRelativeTo(null);</span>
 <span class="fc" id="L41">    }</span>
     
-    private void GetBalance(){
-<span class="nc" id="L44">    String Query = &quot;select * from account where id_account=&quot;+idUser;</span>
+    public void GetBalance(){
+<span class="fc" id="L44">    String Query = &quot;select * from account where id_account=&quot;+idUser;</span>
             try{
-<span class="nc" id="L46">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
-<span class="nc" id="L47">                St = Con.createStatement();</span>
-<span class="nc" id="L48">                Rs = St.executeQuery(Query);</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">                if(Rs.next()){</span>
-<span class="nc" id="L50">                    OldBalance = Rs.getDouble(5);</span>
+<span class="fc" id="L46">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
+<span class="fc" id="L47">                St = Con.createStatement();</span>
+<span class="fc" id="L48">                Rs = St.executeQuery(Query);</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                if(Rs.next()){</span>
+<span class="fc" id="L50">                    OldBalance = Rs.getDouble(5);</span>
                 } else {
                     //JOptionPane.showMessageDialog(this, &quot;Wrong Account Number Or Password&quot;);
                 }
         
 <span class="nc" id="L55">            }catch(Exception e){</span>
 <span class="nc" id="L56">                JOptionPane.showMessageDialog(this, e);</span>
-<span class="nc" id="L57">            }</span>
-<span class="nc" id="L58">    }</span>
+<span class="fc" id="L57">            }</span>
+<span class="fc" id="L58">    }</span>
     
-            private void backMenu(){
-<span class="nc" id="L61">           String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+            public void backMenu(){
+<span class="fc" id="L61">           String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
 
         try {
-<span class="nc" id="L64">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L65">            St = Con.createStatement();</span>
-<span class="nc" id="L66">            Rs = St.executeQuery(Query);</span>
+<span class="fc" id="L64">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L65">            St = Con.createStatement();</span>
+<span class="fc" id="L66">            Rs = St.executeQuery(Query);</span>
 
             // Move the cursor to the first row and check if there are results
-<span class="nc bnc" id="L69" title="All 2 branches missed.">            if (Rs.next()) {</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
 
-<span class="nc" id="L71">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
-<span class="nc" id="L72">                St2 = Con.createStatement();</span>
-<span class="nc" id="L73">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L71">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L72">                St2 = Con.createStatement();</span>
+<span class="fc" id="L73">                Rs2 = St2.executeQuery(Query2);</span>
 
-<span class="nc bnc" id="L75" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L77">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L78">                    this.dispose();</span>
+<span class="fc" id="L77">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L78">                    this.dispose();</span>
                 } else {
 <span class="nc" id="L80">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
-<span class="nc" id="L82">            } else {</span>
+<span class="fc" id="L82">            } else {</span>
 <span class="nc" id="L83">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
             }
 
 <span class="nc" id="L86">        } catch (Exception e) {</span>
 <span class="nc" id="L87">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L88">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L89">        }</span>
-<span class="nc" id="L90">    }</span>
+<span class="fc" id="L89">        }</span>
+<span class="fc" id="L90">    }</span>
             
-            private void SaveTransaction(){
-<span class="nc" id="L93">        String QueryWDCash = &quot;insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)&quot;;</span>
+            public void SaveTransaction(){
+<span class="fc" id="L93">        String QueryWDCash = &quot;insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)&quot;;</span>
     try { 
-<span class="nc" id="L95">             Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
-<span class="nc" id="L96">             PreparedStatement His = Con.prepareStatement(QueryWDCash);</span>
-<span class="nc" id="L97">             His.setString(1, null);</span>
-<span class="nc" id="L98">             His.setInt(2, idUser);</span>
-<span class="nc" id="L99">             His.setString(3, &quot;Withdraw - Cash&quot;);</span>
-<span class="nc" id="L100">             His.setString(4, withdrawBalance_Withdraw.getText());   </span>
-<span class="nc" id="L101">             int row = His.executeUpdate();</span>
+<span class="fc" id="L95">             Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
+<span class="fc" id="L96">             PreparedStatement His = Con.prepareStatement(QueryWDCash);</span>
+<span class="fc" id="L97">             His.setString(1, null);</span>
+<span class="fc" id="L98">             His.setInt(2, idUser);</span>
+<span class="fc" id="L99">             His.setString(3, &quot;Withdraw - Cash&quot;);</span>
+<span class="fc" id="L100">             His.setString(4, withdrawBalance_Withdraw.getText());   </span>
+<span class="fc" id="L101">             int row = His.executeUpdate();</span>
 <span class="nc" id="L102">         } catch (Exception e) {</span>
 <span class="nc" id="L103">             JOptionPane.showMessageDialog(this, e.getMessage());</span>
-<span class="nc" id="L104">         }</span>
-<span class="nc" id="L105">    }</span>
+<span class="fc" id="L104">         }</span>
+<span class="fc" id="L105">    }</span>
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -176,66 +176,75 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
 <span class="nc" id="L176">                continueButton_WithdrawMouseClicked(evt);</span>
 <span class="nc" id="L177">            }</span>
         });
-<span class="fc" id="L179">        jPanel1.add(continueButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 259, 185, 45));</span>
-
-<span class="fc" id="L181">        withdrawBalance_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L179">        continueButton_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L183">                withdrawBalance_WithdrawActionPerformed(evt);</span>
-<span class="nc" id="L184">            }</span>
+<span class="nc" id="L181">                continueButton_WithdrawActionPerformed(evt);</span>
+<span class="nc" id="L182">            }</span>
         });
-<span class="fc" id="L186">        jPanel1.add(withdrawBalance_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 211, 425, 30));</span>
+<span class="fc" id="L184">        jPanel1.add(continueButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 259, 185, 45));</span>
 
-<span class="fc" id="L188">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy.png&quot;))); // NOI18N</span>
-<span class="fc" id="L189">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));</span>
+<span class="fc" id="L186">        withdrawBalance_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L188">                withdrawBalance_WithdrawActionPerformed(evt);</span>
+<span class="nc" id="L189">            }</span>
+        });
+<span class="fc" id="L191">        jPanel1.add(withdrawBalance_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 211, 425, 30));</span>
 
-<span class="fc" id="L191">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
-<span class="fc" id="L192">        getContentPane().setLayout(layout);</span>
-<span class="fc" id="L193">        layout.setHorizontalGroup(</span>
-<span class="fc" id="L194">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L195">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L193">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy.png&quot;))); // NOI18N</span>
+<span class="fc" id="L194">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));</span>
+
+<span class="fc" id="L196">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="fc" id="L197">        getContentPane().setLayout(layout);</span>
+<span class="fc" id="L198">        layout.setHorizontalGroup(</span>
+<span class="fc" id="L199">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L200">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
-<span class="fc" id="L197">        layout.setVerticalGroup(</span>
-<span class="fc" id="L198">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L199">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L202">        layout.setVerticalGroup(</span>
+<span class="fc" id="L203">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L204">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
 
-<span class="fc" id="L202">        pack();</span>
-<span class="fc" id="L203">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+<span class="fc" id="L207">        pack();</span>
+<span class="fc" id="L208">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
 
     private void withdrawBalance_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawBalance_WithdrawActionPerformed
         // TODO add your handling code here:
-<span class="nc" id="L207">    }//GEN-LAST:event_withdrawBalance_WithdrawActionPerformed</span>
+<span class="nc" id="L212">    }//GEN-LAST:event_withdrawBalance_WithdrawActionPerformed</span>
 
     private void continueButton_WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueButton_WithdrawMouseClicked
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        if(withdrawBalance_Withdraw.getText().isEmpty()){</span>
-<span class="nc" id="L211">        JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc bnc" id="L212" title="All 2 branches missed.">    } else if (!Validation.isValidBalance(withdrawBalance_Withdraw.getText())){</span>
-<span class="nc" id="L213">        JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">        if(withdrawBalance_Withdraw.getText().isEmpty()){</span>
+<span class="fc" id="L216">        JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L217" title="All 2 branches covered.">    } else if (!Validation.isValidBalance(withdrawBalance_Withdraw.getText())){</span>
+<span class="fc" id="L218">        JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
     } else {
-<span class="nc" id="L215">            GetBalance();</span>
+<span class="fc" id="L220">            GetBalance();</span>
             try{
-<span class="nc" id="L217">                String Query = &quot;Update account set balance=? where id_account=?&quot;;</span>
-<span class="nc" id="L218">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
-<span class="nc" id="L219">                PreparedStatement ps = Con.prepareStatement(Query);</span>
-<span class="nc" id="L220">                ps.setDouble(1, OldBalance-Double.valueOf(withdrawBalance_Withdraw.getText()));</span>
-<span class="nc" id="L221">                ps.setInt(2, idUser);</span>
-<span class="nc bnc" id="L222" title="All 2 branches missed.">                if(ps.executeUpdate()==1){</span>
-<span class="nc" id="L223">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Succesful&quot;);</span>
-<span class="nc" id="L224">                    SaveTransaction();</span>
-<span class="nc" id="L225">                    backMenu();</span>
+<span class="fc" id="L222">                String Query = &quot;Update account set balance=? where id_account=?&quot;;</span>
+<span class="fc" id="L223">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
+<span class="fc" id="L224">                PreparedStatement ps = Con.prepareStatement(Query);</span>
+<span class="fc" id="L225">                ps.setDouble(1, OldBalance-Double.valueOf(withdrawBalance_Withdraw.getText()));</span>
+<span class="fc" id="L226">                ps.setInt(2, idUser);</span>
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">                if(ps.executeUpdate()==1){</span>
+<span class="fc" id="L228">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Succesful&quot;);</span>
+<span class="fc" id="L229">                    SaveTransaction();</span>
+<span class="fc" id="L230">                    backMenu();</span>
                 } else {
-<span class="nc" id="L227">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Failed&quot;);</span>
+<span class="nc" id="L232">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Failed&quot;);</span>
                 }
-<span class="nc" id="L229">            }catch(Exception e){</span>
-<span class="nc" id="L230">                JOptionPane.showMessageDialog(this, e);</span>
-<span class="nc" id="L231">            }</span>
+<span class="nc" id="L234">            }catch(Exception e){</span>
+<span class="nc" id="L235">                JOptionPane.showMessageDialog(this, e);</span>
+<span class="fc" id="L236">            }</span>
         }
-<span class="nc" id="L233">    }//GEN-LAST:event_continueButton_WithdrawMouseClicked</span>
+<span class="fc" id="L238">    }//GEN-LAST:event_continueButton_WithdrawMouseClicked</span>
 
     private void backButton_WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButton_WithdrawMouseClicked
-<span class="nc" id="L236">        new AddMethodMenu(idUser).setVisible(true);</span>
-<span class="nc" id="L237">        this.dispose();</span>
-<span class="nc" id="L238">    }//GEN-LAST:event_backButton_WithdrawMouseClicked</span>
+<span class="nc" id="L241">        new AddMethodMenu(idUser).setVisible(true);</span>
+<span class="nc" id="L242">        this.dispose();</span>
+<span class="nc" id="L243">    }//GEN-LAST:event_backButton_WithdrawMouseClicked</span>
+
+    private void continueButton_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton_WithdrawActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L247">    }//GEN-LAST:event_continueButton_WithdrawActionPerformed</span>
 
     /**
      * @param args the command line arguments
@@ -247,21 +256,21 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L250" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L251" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L252">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L253">                    break;</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L261">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L262">                    break;</span>
                 }
             }
-<span class="nc" id="L256">        } catch (ClassNotFoundException ex) {</span>
-<span class="nc" id="L257">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L258">        } catch (InstantiationException ex) {</span>
-<span class="nc" id="L259">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L260">        } catch (IllegalAccessException ex) {</span>
-<span class="nc" id="L261">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L262">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
-<span class="nc" id="L263">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L264">        }</span>
+<span class="nc" id="L265">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L266">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L267">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L268">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L269">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L270">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L271">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L272">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L273">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
@@ -272,12 +281,12 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L275">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="nc" id="L284">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L277">                new WithdrawCashMenu().setVisible(true);</span>
-<span class="nc" id="L278">            }</span>
+<span class="nc" id="L286">                new WithdrawCashMenu().setVisible(true);</span>
+<span class="nc" id="L287">            }</span>
         });
-<span class="nc" id="L280">    }</span>
+<span class="nc" id="L289">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backButton_Withdraw;

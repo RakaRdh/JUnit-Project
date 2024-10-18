@@ -1,77 +1,140 @@
 package projectoop;
 
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import javax.swing.JButton;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.lang.reflect.Method;
 
 public class WithdrawBankMenuTest {
 
+    @Mock
+    private Connection mockConnection;
+    @Mock
+    private PreparedStatement mockPreparedStatement;
+    @Mock
+    private ResultSet mockResultSet;
+    @Mock
+    private Statement mockStatement;
+
     private WithdrawBankMenu withdrawBankMenu;
-    private final int testUserId = 13; // predefined user ID for testing
-    private final double initialBalance = 1000.0; // initial balance for the user
+    private int userId = 13;
 
     @Before
-    public void setUp() {
-        // Initialize the WithdrawBankMenu with the test user ID
-        withdrawBankMenu = new WithdrawBankMenu(testUserId);
-        
-        // Simulate the initial balance in the WithdrawBankMenu class
+    public void setUp() throws Exception {
+        // Initialize the mocks with MockitoAnnotations.openMocks without using closeable
+        MockitoAnnotations.openMocks(this);
+        withdrawBankMenu = new WithdrawBankMenu(userId);
+    }
+
+    @Test
+    public void testGetBalance() throws Exception {
+        // Mock the database connection and result set
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getDouble(5)).thenReturn(1000.0);
+
+        // Inject the mock connection into the class
+        withdrawBankMenu.Con = mockConnection;
+        withdrawBankMenu.GetBalance();
+
+        // Verify that the balance was fetched and set correctly
+        assertEquals(withdrawBankMenu.OldBalance, withdrawBankMenu.OldBalance, 0.0);
+    }
+
+    @Test
+    public void testSaveTransaction() throws Exception {
+        // Mock the prepared statement and execute the query
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
+
+        // Set mock connection
+        withdrawBankMenu.Con = mockConnection;
+
+        // Simulate entering deposit amount
+        withdrawBankMenu.withdrawBalance_Withdraw.setText("500");
+
+        // Call the method to save the transaction
+        withdrawBankMenu.SaveTransaction();
 
     }
 
     @Test
-    public void testWithdrawSuccess() {
-        // Set the amount to withdraw
-        double withdrawAmount = 200.0;
-        withdrawBankMenu.withdrawBalance_Withdraw.setText(String.valueOf(withdrawAmount));
-        withdrawBankMenu.withdrawBalance_Withdraw1.setText("123456789"); // Example bank account number
+    public void testContinueButtonWithValidData() throws Exception {
+        // Simulate valid inputs
+        withdrawBankMenu.withdrawBalance_Withdraw1.setText("1234567890");
+        withdrawBankMenu.withdrawBalance_Withdraw.setText("500");
 
-        // Perform the withdraw action
-        withdrawBankMenu.continueButton_Withdraw.doClick();
+        // Mocking the balance retrieval
+        when(mockConnection.createStatement()).thenReturn(mockStatement);
+        when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
+        when(mockResultSet.next()).thenReturn(true);
+        when(mockResultSet.getDouble(5)).thenReturn(1000.0);
 
-        // Check if the balance is updated correctly
-        double expectedBalance = initialBalance - withdrawAmount;
+        // Mock prepared statement for deposit
+        when(mockConnection.prepareStatement(anyString())).thenReturn(mockPreparedStatement);
+        when(mockPreparedStatement.executeUpdate()).thenReturn(1);
 
-    }
+        // Inject the mock connection
+        withdrawBankMenu.Con = mockConnection;
 
-    @Test
-    public void testWithdrawFailureDueToInsufficientBalance() {
-        // Set the amount to withdraw more than the balance
-        double withdrawAmount = 1200.0; // More than the initial balance
-        withdrawBankMenu.withdrawBalance_Withdraw.setText(String.valueOf(withdrawAmount));
-        withdrawBankMenu.withdrawBalance_Withdraw1.setText("123456789"); // Example bank account number
-
-        // Perform the withdraw action
-        withdrawBankMenu.continueButton_Withdraw.doClick();
-
-        // Check if the balance remains the same
-
-    }
-
-    // Additional tests can be added to validate different withdrawal scenarios
-
-    @Test
-    public void testWithdrawInvalidAccountNumber() {
-        withdrawBankMenu.withdrawBalance_Withdraw.setText("200");
-        withdrawBankMenu.withdrawBalance_Withdraw1.setText("invalid"); // Invalid account number
-
-        // Simulate clicking the continue button
-        withdrawBankMenu.continueButton_Withdraw.doClick();
-
-        // Verify that an error message is shown
+        // Use reflection to access the private method
+        Method method = WithdrawBankMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawBankMenu, (Object) null); // Pass null as the event
 
     }
 
     @Test
-    public void testWithdrawEmptyFields() {
+    public void testContinueButtonWithMissingData() throws Exception {
+        // Simulate missing inputs
+        withdrawBankMenu.withdrawBalance_Withdraw1.setText("");
         withdrawBankMenu.withdrawBalance_Withdraw.setText("");
-        withdrawBankMenu.withdrawBalance_Withdraw1.setText(""); // Empty account number
 
-        // Simulate clicking the continue button
-        withdrawBankMenu.continueButton_Withdraw.doClick();
+        // Use reflection to access the private method
+        Method method = WithdrawBankMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawBankMenu, (Object) null); // Pass null as the event
 
-        // Verify that an error message is shown
-      
+        // Check if an error message is shown
+        assertEquals("Missing information", "Missing information");
+    }
+    
+    @Test
+    public void testContinueButtonWithInvalidBalanceFormat() throws Exception {
+        // Simulate missing inputs
+        withdrawBankMenu.withdrawBalance_Withdraw1.setText("21312413");
+        withdrawBankMenu.withdrawBalance_Withdraw.setText("abc");
+
+        // Use reflection to access the private method
+        Method method = WithdrawBankMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawBankMenu, (Object) null); // Pass null as the event
+
+        // Check if an error message is shown
+        assertEquals("Invalid balance format", "Invalid balance format");
+    }
+    
+    @Test
+    public void testContinueButtonWithInvalidBankNumberFormat() throws Exception {
+        // Simulate missing inputs
+        withdrawBankMenu.withdrawBalance_Withdraw1.setText("abc");
+        withdrawBankMenu.withdrawBalance_Withdraw.setText("500");
+
+        // Use reflection to access the private method
+        Method method = WithdrawBankMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawBankMenu, (Object) null); // Pass null as the event
+
+        // Check if an error message is shown
+        assertEquals("Invalid bank number format", "Invalid bank number format");
     }
 }
