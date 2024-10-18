@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Validation.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProjectOOP_GUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">projectoop</a> &gt; <span class="el_source">Validation.java</span></div><h1>Validation.java</h1><pre class="source lang-java linenums">package projectoop;
+
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+<span class="nc" id="L7">public class Validation {</span>
+    static boolean isUniqueUsername(String username, List&lt;Account&gt; accountList) {
+<span class="fc bfc" id="L9" title="All 2 branches covered.">        for (Account account : accountList) {</span>
+<span class="fc bfc" id="L10" title="All 2 branches covered.">            if (account.getUsername().equals(username)) {</span>
+<span class="fc" id="L11">                return false;</span>
+            }
+<span class="fc" id="L13">        }</span>
+<span class="fc" id="L14">        return true;</span>
+    }
+     
+    static boolean isUniquePhoneNumber(String phoneNumber, List&lt;Account&gt; accountList) {
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        for (Account account : accountList) {</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">            if (account.getPhoneNumber().equals(phoneNumber)) {</span>
+<span class="fc" id="L20">                return false;</span>
+            }
+<span class="fc" id="L22">        }</span>
+<span class="fc" id="L23">        return true;</span>
+    }
+
+    public static boolean isValidBalance(String balance) {
+<span class="fc" id="L27">        String balanceRegex = &quot;^[1-9]\\d*(\\.\\d+)?$&quot;;</span>
+<span class="fc" id="L28">        return balance.matches(balanceRegex);</span>
+    }
+
+    public static boolean isValidNik(String nik) {
+<span class="fc" id="L32">        String nikRegex = &quot;^\\d{16}$&quot;;</span>
+<span class="fc" id="L33">        return nik.matches(nikRegex);</span>
+    }
+    
+    //Polymerphism
+    public static String isValidNik(Scanner scanner){
+        String nik;
+<span class="nc" id="L39">        boolean valid = false;</span>
+        do {
+<span class="nc" id="L41">            System.out.print(&quot;Enter your NIK: &quot;);</span>
+<span class="nc" id="L42">            nik = scanner.nextLine();</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">            if (isValidNik(nik)) {</span>
+<span class="nc" id="L44">                valid = true;</span>
+            } else {
+<span class="nc" id="L46">                System.out.println(&quot;Invalid NIK format.&quot;);</span>
+            }
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        } while (!valid);</span>
+<span class="nc" id="L49">        return nik;        </span>
+    }
+    
+    public static boolean isValidEmail(String email) {
+<span class="fc" id="L53">        String emailRegex = &quot;^\\S+@\\S+\\.\\S+$&quot;;</span>
+<span class="fc" id="L54">        Pattern pattern = Pattern.compile(emailRegex);</span>
+<span class="fc" id="L55">        Matcher matcher = pattern.matcher(email);</span>
+<span class="fc" id="L56">        return matcher.matches();</span>
+    }
+
+     //Polymerphism
+    public static String isValidEmail(Scanner scanner) {
+        String email;
+<span class="nc" id="L62">        boolean valid = false;</span>
+        do {
+<span class="nc" id="L64">            System.out.print(&quot;Enter Email: &quot;);</span>
+<span class="nc" id="L65">            email = scanner.nextLine();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (isValidEmail(email)) {</span>
+                // Validate domain
+<span class="nc bnc" id="L68" title="All 2 branches missed.">                if (isValidEmail(email)) {</span>
+<span class="nc" id="L69">                    valid = true;</span>
+                } else {
+<span class="nc" id="L71">                    System.out.println(&quot;Invalid email domain.&quot;);</span>
+                }
+            } else {
+<span class="nc" id="L74">                System.out.println(&quot;Invalid email format.&quot;);</span>
+            }
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        } while (!valid);</span>
+<span class="nc" id="L77">        return email;</span>
+    }
+    
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+<span class="fc" id="L81">        String phoneRegex = &quot;^08\\d{8,12}$&quot;;</span>
+<span class="fc" id="L82">        return phoneNumber.matches(phoneRegex);</span>
+    }
+
+    //Polymerphism
+    public static String isValidPhoneNumber(Scanner scanner) {
+        String phoneNumber;
+<span class="nc" id="L88">        boolean valid = false;</span>
+        do {
+<span class="nc" id="L90">            System.out.print(&quot;Enter Phone Number: &quot;);</span>
+<span class="nc" id="L91">            phoneNumber = scanner.nextLine();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (isValidPhoneNumber(phoneNumber)) {</span>
+<span class="nc" id="L93">                valid = true;</span>
+            } else {
+<span class="nc" id="L95">                System.out.println(&quot;Invalid phone number format.&quot;);</span>
+            }
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        } while (!valid);</span>
+<span class="nc" id="L98">        return phoneNumber;</span>
+    }
+    
+    public static boolean isValidPassword(String password) {
+<span class="fc" id="L102">        String passwordRegex = &quot;^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$&quot;;</span>
+<span class="fc" id="L103">        return password.matches(passwordRegex);</span>
+    }
+    
+    //Polymerphism
+    public static String isValidPassword(Scanner scanner) {
+        String password;
+<span class="nc" id="L109">        boolean valid = false;</span>
+        do {
+<span class="nc" id="L111">            System.out.println(&quot;Enter Password (at least 8 characters, including lowercase, uppercase, and number):&quot;);</span>
+<span class="nc" id="L112">            password = scanner.nextLine();</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (isValidPassword(password)) {</span>
+<span class="nc" id="L114">                valid = true;</span>
+            } else {
+<span class="nc" id="L116">                System.out.println(&quot;Invalid password format.&quot;);</span>
+            }
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        } while (!valid);</span>
+<span class="nc" id="L119">        return password;</span>
+    }
+    
+    static boolean isValidConfirmation(String input) {
+<span class="fc bfc" id="L123" title="All 4 branches covered.">        return input.equalsIgnoreCase(&quot;yes&quot;) || input.equalsIgnoreCase(&quot;no&quot;);</span>
+    }
+
+    //Polymerphism
+    static boolean isValidConfirmation(Scanner scanner, String message) {
+        String input;
+<span class="nc" id="L129">        boolean valid = false;</span>
+        do {
+<span class="nc" id="L131">            System.out.print(message + &quot; (yes/no): &quot;);</span>
+<span class="nc" id="L132">            input = scanner.nextLine();</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (isValidConfirmation(input)) {</span>
+<span class="nc" id="L134">                valid = true;</span>
+            } else {
+<span class="nc" id="L136">                System.out.println(&quot;Please enter either 'yes' or 'no'.&quot;);</span>
+            }
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        } while (!valid);</span>
+<span class="nc" id="L139">        return input.equalsIgnoreCase(&quot;yes&quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

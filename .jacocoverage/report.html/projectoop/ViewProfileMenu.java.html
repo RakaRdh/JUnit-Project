@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ViewProfileMenu.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProjectOOP_GUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">projectoop</a> &gt; <span class="el_source">ViewProfileMenu.java</span></div><h1>ViewProfileMenu.java</h1><pre class="source lang-java linenums">package projectoop;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
+/**
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates and open the template
+ * in the editor.
+ */
+/**
+ *
+ * @author Personal
+ */
+public class ViewProfileMenu extends javax.swing.JFrame {
+
+<span class="pc" id="L21">    Connection Con = null;</span>
+<span class="pc" id="L22">    PreparedStatement pst = null;</span>
+<span class="pc" id="L23">    ResultSet Rs = null;</span>
+<span class="pc" id="L24">    Statement St = null;</span>
+<span class="pc" id="L25">    ResultSet Rs2 = null;</span>
+<span class="pc" id="L26">    Statement St2 = null;</span>
+
+    /**
+     * Creates new form RegistersCoba
+     */
+<span class="nc" id="L31">    public ViewProfileMenu() {</span>
+<span class="nc" id="L32">        initComponents();</span>
+<span class="nc" id="L33">    }</span>
+
+    String PhoneNumber;
+    String uName;
+    String Type;
+    String eMail;
+    int idUser;
+
+<span class="fc" id="L41">    public ViewProfileMenu(int Id_User) {</span>
+<span class="fc" id="L42">        initComponents();</span>
+<span class="fc" id="L43">        idUser = Id_User;</span>
+<span class="fc" id="L44">        GetData();</span>
+<span class="fc" id="L45">        usernameLabel_ViewProfile.setText(uName);</span>
+<span class="fc" id="L46">        emailLabel_ViewProfile.setText(eMail);</span>
+<span class="fc" id="L47">        typeLabel_ViewProfile.setText(Type);</span>
+<span class="fc" id="L48">        pnLabel_ViewProfile.setText(PhoneNumber);</span>
+<span class="fc" id="L49">        setLocationRelativeTo(null);</span>
+<span class="fc" id="L50">    }</span>
+
+    private void GetData() {
+<span class="fc" id="L53">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+        try {
+<span class="fc" id="L55">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L56">            St = Con.createStatement();</span>
+<span class="fc" id="L57">            Rs = St.executeQuery(Query);</span>
+
+            // Move the cursor to the first row and check if there are results
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
+<span class="fc" id="L61">                uName = Rs.getString(3);</span>
+<span class="fc" id="L62">                int tipe_akun = Rs.getInt(2);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">                if (tipe_akun == 1) {</span>
+<span class="nc" id="L64">                    Type = &quot;Reguler&quot;;</span>
+                } else {
+<span class="fc" id="L66">                    Type = &quot;Premium&quot;;</span>
+                }
+<span class="fc" id="L68">                System.out.println(uName);</span>
+                // Now, query the account details based on the fetched accountId
+<span class="fc" id="L70">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L71">                St2 = Con.createStatement();</span>
+<span class="fc" id="L72">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="fc" id="L74">                    eMail = Rs2.getString(3);</span>
+<span class="fc" id="L75">                    PhoneNumber = Rs2.getString(4);</span>
+                } else {
+<span class="nc" id="L77">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+                }
+<span class="fc" id="L79">            } else {</span>
+<span class="nc" id="L80">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
+            }
+
+<span class="nc" id="L83">        } catch (Exception e) {</span>
+<span class="nc" id="L84">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
+<span class="nc" id="L85">            System.out.println(e.getMessage());</span>
+<span class="fc" id="L86">        }</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    // &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+<span class="fc" id="L98">        jLayeredPane1 = new javax.swing.JLayeredPane();</span>
+<span class="fc" id="L99">        jPanel1 = new javax.swing.JPanel();</span>
+<span class="fc" id="L100">        jPanel2 = new javax.swing.JPanel();</span>
+<span class="fc" id="L101">        jLabel2 = new javax.swing.JLabel();</span>
+<span class="fc" id="L102">        jLabel7 = new javax.swing.JLabel();</span>
+<span class="fc" id="L103">        jLabel3 = new javax.swing.JLabel();</span>
+<span class="fc" id="L104">        jLabel5 = new javax.swing.JLabel();</span>
+<span class="fc" id="L105">        backButton_ViewProfile = new javax.swing.JButton();</span>
+<span class="fc" id="L106">        jLabel4 = new javax.swing.JLabel();</span>
+<span class="fc" id="L107">        jLabel6 = new javax.swing.JLabel();</span>
+<span class="fc" id="L108">        usernameLabel_ViewProfile = new javax.swing.JLabel();</span>
+<span class="fc" id="L109">        emailLabel_ViewProfile = new javax.swing.JLabel();</span>
+<span class="fc" id="L110">        typeLabel_ViewProfile = new javax.swing.JLabel();</span>
+<span class="fc" id="L111">        pnLabel_ViewProfile = new javax.swing.JLabel();</span>
+<span class="fc" id="L112">        jLabel1 = new javax.swing.JLabel();</span>
+
+<span class="fc" id="L114">        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);</span>
+<span class="fc" id="L115">        jLayeredPane1.setLayout(jLayeredPane1Layout);</span>
+<span class="fc" id="L116">        jLayeredPane1Layout.setHorizontalGroup(</span>
+<span class="fc" id="L117">            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L118">            .addGap(0, 100, Short.MAX_VALUE)</span>
+        );
+<span class="fc" id="L120">        jLayeredPane1Layout.setVerticalGroup(</span>
+<span class="fc" id="L121">            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L122">            .addGap(0, 100, Short.MAX_VALUE)</span>
+        );
+
+<span class="fc" id="L125">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+
+<span class="fc" id="L127">        jPanel1.setBackground(new java.awt.Color(0, 102, 153));</span>
+<span class="fc" id="L128">        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
+
+<span class="fc" id="L130">        jPanel2.setBackground(new java.awt.Color(252, 252, 252));</span>
+<span class="fc" id="L131">        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
+
+<span class="fc" id="L133">        jLabel2.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L134">        jLabel2.setForeground(new java.awt.Color(0, 102, 153));</span>
+<span class="fc" id="L135">        jLabel2.setText(&quot;Account Detail&quot;);</span>
+<span class="fc" id="L136">        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 24));</span>
+
+<span class="fc" id="L138">        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 4 copy.png&quot;))); // NOI18N</span>
+<span class="fc" id="L139">        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));</span>
+
+<span class="fc" id="L141">        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 85));</span>
+
+<span class="fc" id="L143">        jLabel3.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L144">        jLabel3.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L145">        jLabel3.setText(&quot;Username         &quot;);</span>
+<span class="fc" id="L146">        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 131, -1, -1));</span>
+
+<span class="fc" id="L148">        jLabel5.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L149">        jLabel5.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L150">        jLabel5.setText(&quot;Type&quot;);</span>
+<span class="fc" id="L151">        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 221, -1, -1));</span>
+
+<span class="fc" id="L153">        backButton_ViewProfile.setBackground(new java.awt.Color(0, 204, 255));</span>
+<span class="fc" id="L154">        backButton_ViewProfile.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 13)); // NOI18N</span>
+<span class="fc" id="L155">        backButton_ViewProfile.setText(&quot;Back&quot;);</span>
+<span class="fc" id="L156">        backButton_ViewProfile.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));</span>
+<span class="fc" id="L157">        backButton_ViewProfile.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L159">                backButton_ViewProfileMouseClicked(evt);</span>
+<span class="nc" id="L160">            }</span>
+        });
+<span class="fc" id="L162">        backButton_ViewProfile.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L164">                backButton_ViewProfileActionPerformed(evt);</span>
+<span class="nc" id="L165">            }</span>
+        });
+<span class="fc" id="L167">        jPanel1.add(backButton_ViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 527, 185, 45));</span>
+
+<span class="fc" id="L169">        jLabel4.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L170">        jLabel4.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L171">        jLabel4.setText(&quot;Email&quot;);</span>
+<span class="fc" id="L172">        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 311, -1, -1));</span>
+
+<span class="fc" id="L174">        jLabel6.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L175">        jLabel6.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L176">        jLabel6.setText(&quot;Phone Number&quot;);</span>
+<span class="fc" id="L177">        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 401, -1, -1));</span>
+
+<span class="fc" id="L179">        usernameLabel_ViewProfile.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 28)); // NOI18N</span>
+<span class="fc" id="L180">        usernameLabel_ViewProfile.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L181">        usernameLabel_ViewProfile.setText(&quot;\&quot;Username\&quot;&quot;);</span>
+<span class="fc" id="L182">        jPanel1.add(usernameLabel_ViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 168, 423, -1));</span>
+
+<span class="fc" id="L184">        emailLabel_ViewProfile.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 28)); // NOI18N</span>
+<span class="fc" id="L185">        emailLabel_ViewProfile.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L186">        emailLabel_ViewProfile.setText(&quot;\&quot;Email\&quot;&quot;);</span>
+<span class="fc" id="L187">        jPanel1.add(emailLabel_ViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 348, 423, -1));</span>
+
+<span class="fc" id="L189">        typeLabel_ViewProfile.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 28)); // NOI18N</span>
+<span class="fc" id="L190">        typeLabel_ViewProfile.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L191">        typeLabel_ViewProfile.setText(&quot;\&quot;Type\&quot;&quot;);</span>
+<span class="fc" id="L192">        jPanel1.add(typeLabel_ViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 258, 423, -1));</span>
+
+<span class="fc" id="L194">        pnLabel_ViewProfile.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 28)); // NOI18N</span>
+<span class="fc" id="L195">        pnLabel_ViewProfile.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L196">        pnLabel_ViewProfile.setText(&quot;\&quot;PhoneNumber\&quot;&quot;);</span>
+<span class="fc" id="L197">        jPanel1.add(pnLabel_ViewProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 438, 423, -1));</span>
+
+<span class="fc" id="L199">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy 2.png&quot;))); // NOI18N</span>
+<span class="fc" id="L200">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 710));</span>
+
+<span class="fc" id="L202">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="fc" id="L203">        getContentPane().setLayout(layout);</span>
+<span class="fc" id="L204">        layout.setHorizontalGroup(</span>
+<span class="fc" id="L205">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L206">            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+        );
+<span class="fc" id="L208">        layout.setVerticalGroup(</span>
+<span class="fc" id="L209">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L210">            .addGroup(layout.createSequentialGroup()</span>
+<span class="fc" id="L211">                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)</span>
+<span class="fc" id="L212">                .addGap(0, 0, Short.MAX_VALUE))</span>
+        );
+
+<span class="fc" id="L215">        pack();</span>
+<span class="fc" id="L216">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+
+    private void backButton_ViewProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton_ViewProfileActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L220">    }//GEN-LAST:event_backButton_ViewProfileActionPerformed</span>
+
+    private void backButton_ViewProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButton_ViewProfileMouseClicked
+<span class="nc" id="L223">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+
+        try {
+<span class="nc" id="L226">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="nc" id="L227">            St = Con.createStatement();</span>
+<span class="nc" id="L228">            Rs = St.executeQuery(Query);</span>
+
+            // Move the cursor to the first row and check if there are results
+<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (Rs.next()) {</span>
+
+<span class="nc" id="L233">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="nc" id="L234">                St2 = Con.createStatement();</span>
+<span class="nc" id="L235">                Rs2 = St2.executeQuery(Query2);</span>
+
+<span class="nc bnc" id="L237" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+                    // Now, launch the main menu with the relevant data
+<span class="nc" id="L239">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="nc" id="L240">                    this.dispose();</span>
+                } else {
+<span class="nc" id="L242">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+                }
+<span class="nc" id="L244">            } else {</span>
+<span class="nc" id="L245">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
+            }
+
+<span class="nc" id="L248">        } catch (Exception e) {</span>
+<span class="nc" id="L249">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
+<span class="nc" id="L250">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L251">        }</span>
+<span class="nc" id="L252">    }//GEN-LAST:event_backButton_ViewProfileMouseClicked</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //&lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot; Look and feel setting code (optional) &quot;&gt;
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L266">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L267">                    break;</span>
+                }
+            }
+<span class="nc" id="L270">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L271">            java.util.logging.Logger.getLogger(ViewProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L272">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L273">            java.util.logging.Logger.getLogger(ViewProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L274">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L275">            java.util.logging.Logger.getLogger(ViewProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L276">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L277">            java.util.logging.Logger.getLogger(ViewProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L278">        }</span>
+        //&lt;/editor-fold&gt;
+        //&lt;/editor-fold&gt;
+        //&lt;/editor-fold&gt;
+        //&lt;/editor-fold&gt;
+
+        /* Create and display the form */
+<span class="nc" id="L285">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+            public void run() {
+<span class="nc" id="L287">                new ViewProfileMenu().setVisible(true);</span>
+<span class="nc" id="L288">            }</span>
+        });
+<span class="nc" id="L290">    }</span>
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton backButton_ViewProfile;
+    public javax.swing.JLabel emailLabel_ViewProfile;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabel7;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    public javax.swing.JLabel pnLabel_ViewProfile;
+    public javax.swing.JLabel typeLabel_ViewProfile;
+    public javax.swing.JLabel usernameLabel_ViewProfile;
+    // End of variables declaration//GEN-END:variables
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

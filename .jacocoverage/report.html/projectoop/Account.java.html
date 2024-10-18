@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Account.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProjectOOP_GUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">projectoop</a> &gt; <span class="el_source">Account.java</span></div><h1>Account.java</h1><pre class="source lang-java linenums">package projectoop;
+
+//Encapsulation
+public class Account {
+    String username;
+    private String email;
+    private double balance;
+    private String phoneNumber;
+    private String password;
+    private String type;
+
+    //Constructor
+<span class="fc" id="L13">    public Account(String username, String type, String email, String phoneNumber, double balance, String password) {</span>
+<span class="fc" id="L14">        this.username = username;</span>
+<span class="fc" id="L15">        this.type = type;</span>
+<span class="fc" id="L16">        this.email = email;</span>
+<span class="fc" id="L17">        this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L18">        this.balance = balance;</span>
+<span class="fc" id="L19">        this.password = password;</span>
+<span class="fc" id="L20">    }</span>
+
+<span class="fc" id="L22">    Account(String user1, String string) {</span>
+<span class="fc" id="L23">        this.username = user1;</span>
+<span class="fc" id="L24">        this.phoneNumber = string;</span>
+<span class="fc" id="L25">    }</span>
+    
+//Deklrasi Encapsulation Getter Setter        
+        public String getType() {
+<span class="fc" id="L29">            return type;</span>
+        }
+
+        public void setType(String tipe) {
+<span class="fc" id="L33">            this.type = tipe;</span>
+<span class="fc" id="L34">        }</span>
+
+        public String getUsername() {
+<span class="fc" id="L37">            return username;</span>
+        }
+
+        public void setUsername(String username) {
+<span class="fc" id="L41">            this.username = username;</span>
+<span class="fc" id="L42">        }</span>
+
+        public String getEmail() {
+<span class="fc" id="L45">            return email;</span>
+        }
+
+        public void setEmail(String email) {
+<span class="fc" id="L49">            this.email = email;</span>
+<span class="fc" id="L50">        }</span>
+
+        public double getBalance() {
+<span class="fc" id="L53">            return balance;</span>
+        }
+
+        public void setBalance(double balance) {
+<span class="fc" id="L57">            this.balance = balance;</span>
+<span class="fc" id="L58">        }</span>
+
+        public String getPhoneNumber() {
+<span class="fc" id="L61">            return phoneNumber;</span>
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+<span class="fc" id="L65">            this.phoneNumber = phoneNumber;</span>
+<span class="fc" id="L66">        }</span>
+
+        public String getPassword() {
+<span class="fc" id="L69">            return password;</span>
+        }
+
+        public void setPassword(String password) {
+<span class="fc" id="L73">            this.password = password;</span>
+<span class="fc" id="L74">        }        </span>
+  }
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

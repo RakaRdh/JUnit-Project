@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PremiumAccount.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;ProjectOOP_GUI&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">projectoop</a> &gt; <span class="el_source">PremiumAccount.java</span></div><h1>PremiumAccount.java</h1><pre class="source lang-java linenums">package projectoop;
+
+//Inheritance
+public class PremiumAccount extends Account {
+    private String nik;
+
+    public PremiumAccount(String username, String type, String email, String phoneNumber, String nik, double balance, String password) {
+<span class="nc" id="L8">        super(username, &quot;Premium&quot;, email, phoneNumber, balance, password);</span>
+<span class="nc" id="L9">        this.nik = nik;</span>
+<span class="nc" id="L10">    }</span>
+
+    public String getNik() {
+<span class="nc" id="L13">        return nik;</span>
+    }
+
+    public void setNik(String nik) {
+<span class="nc" id="L17">        this.nik = nik;</span>
+<span class="nc" id="L18">    }</span>
+    
+    //Polymorphism
+    public void transfer(Account recipient, double amount) {
+<span class="nc" id="L22">        double prevBal = getBalance();</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        if (getBalance() &gt;= amount) {</span>
+<span class="nc" id="L24">            setBalance(getBalance() - amount);</span>
+<span class="nc" id="L25">            recipient.setBalance(recipient.getBalance() + amount);</span>
+<span class="nc" id="L26">            System.out.println(&quot;Transfer successful.&quot;);</span>
+<span class="nc" id="L27">            System.out.println(&quot;Previous Balance : &quot; + prevBal);</span>
+<span class="nc" id="L28">            System.out.println(&quot;After Balance : &quot; + getBalance());</span>
+        } else {
+<span class="nc" id="L30">            System.out.println(&quot;Insufficient balance.&quot;);</span>
+        }
+<span class="nc" id="L32">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
