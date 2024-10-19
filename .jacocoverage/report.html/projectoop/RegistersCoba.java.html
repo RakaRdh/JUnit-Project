@@ -153,8 +153,8 @@ public class RegistersCoba extends javax.swing.JFrame {
         });
 <span class="fc" id="L154">        registerButton_Register1.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L156">                registerButton_Register1ActionPerformed(evt);</span>
-<span class="fc" id="L157">            }</span>
+<span class="nc" id="L156">                registerButton_Register1ActionPerformed(evt);</span>
+<span class="nc" id="L157">            }</span>
         });
 <span class="fc" id="L159">        jPanel1.add(registerButton_Register1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 200, 45));</span>
 
@@ -181,13 +181,13 @@ public class RegistersCoba extends javax.swing.JFrame {
 <span class="fc" id="L181">    Statement St = null;</span>
     int id_account;
 
-    private void ClearTXT() {
-<span class="nc" id="L185">        usernameTextField_Register.setText(&quot;&quot;);</span>
-<span class="nc" id="L186">        pnTextField_Register.setText(&quot;&quot;);</span>
-<span class="nc" id="L187">        passwordTextField_Register.setText(&quot;&quot;);</span>
-<span class="nc" id="L188">        emailTextField_Register.setText(&quot;&quot;);</span>
-<span class="nc" id="L189">        cpTextField_Register.setText(&quot;&quot;);</span>
-<span class="nc" id="L190">    }</span>
+    public void ClearTXT() {
+<span class="fc" id="L185">        usernameTextField_Register.setText(&quot;&quot;);</span>
+<span class="fc" id="L186">        pnTextField_Register.setText(&quot;&quot;);</span>
+<span class="fc" id="L187">        passwordTextField_Register.setText(&quot;&quot;);</span>
+<span class="fc" id="L188">        emailTextField_Register.setText(&quot;&quot;);</span>
+<span class="fc" id="L189">        cpTextField_Register.setText(&quot;&quot;);</span>
+<span class="fc" id="L190">    }</span>
 
     private void usernameTextField_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextField_RegisterActionPerformed
         // TODO add your handling code here:
@@ -202,62 +202,62 @@ public class RegistersCoba extends javax.swing.JFrame {
 <span class="nc" id="L202">    }//GEN-LAST:event_emailTextField_RegisterActionPerformed</span>
 
     private void backButton_RegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButton_RegisterMouseClicked
-<span class="nc" id="L205">        new Login().setVisible(true);</span>
-<span class="nc" id="L206">        this.dispose();</span>
-<span class="nc" id="L207">    }//GEN-LAST:event_backButton_RegisterMouseClicked</span>
+<span class="fc" id="L205">        new Login().setVisible(true);</span>
+<span class="fc" id="L206">        this.dispose();</span>
+<span class="fc" id="L207">    }//GEN-LAST:event_backButton_RegisterMouseClicked</span>
 
     private void registerButton_Register1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButton_Register1MouseClicked
-<span class="nc bnc" id="L210" title="All 10 branches missed.">        if (usernameTextField_Register.getText().isEmpty() || pnTextField_Register.getText().isEmpty() || passwordTextField_Register.getText().isEmpty() || cpTextField_Register.getText().isEmpty() || emailTextField_Register.getText().isEmpty()) {</span>
-<span class="nc" id="L211">            JOptionPane.showMessageDialog(this, &quot;Missing Information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc" id="L212">            return; // Stop further execution</span>
+<span class="pc bpc" id="L210" title="4 of 10 branches missed.">        if (usernameTextField_Register.getText().isEmpty() || pnTextField_Register.getText().isEmpty() || passwordTextField_Register.getText().isEmpty() || cpTextField_Register.getText().isEmpty() || emailTextField_Register.getText().isEmpty()) {</span>
+<span class="fc" id="L211">            JOptionPane.showMessageDialog(this, &quot;Missing Information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc" id="L212">            return; // Stop further execution</span>
         }
 
-<span class="nc" id="L215">        String username = usernameTextField_Register.getText();</span>
-<span class="nc" id="L216">        String email = emailTextField_Register.getText();</span>
-<span class="nc" id="L217">        String phoneNumber = pnTextField_Register.getText();</span>
-<span class="nc" id="L218">        String password = passwordTextField_Register.getText();</span>
-<span class="nc" id="L219">        String confirmPassword = cpTextField_Register.getText();</span>
+<span class="fc" id="L215">        String username = usernameTextField_Register.getText();</span>
+<span class="fc" id="L216">        String email = emailTextField_Register.getText();</span>
+<span class="fc" id="L217">        String phoneNumber = pnTextField_Register.getText();</span>
+<span class="fc" id="L218">        String password = passwordTextField_Register.getText();</span>
+<span class="fc" id="L219">        String confirmPassword = cpTextField_Register.getText();</span>
 
         // Validation checks
-<span class="nc bnc" id="L222" title="All 2 branches missed.">        if (!Validation.isValidEmail(email)) {</span>
-<span class="nc" id="L223">            JOptionPane.showMessageDialog(this, &quot;Invalid email format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc" id="L224">            return;</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        if (!Validation.isValidEmail(email)) {</span>
+<span class="fc" id="L223">            JOptionPane.showMessageDialog(this, &quot;Invalid email format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc" id="L224">            return;</span>
         }
-<span class="nc bnc" id="L226" title="All 2 branches missed.">        if (!Validation.isValidPhoneNumber(phoneNumber)) {</span>
-<span class="nc" id="L227">            JOptionPane.showMessageDialog(this, &quot;Invalid phone number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc" id="L228">            return;</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">        if (!Validation.isValidPhoneNumber(phoneNumber)) {</span>
+<span class="fc" id="L227">            JOptionPane.showMessageDialog(this, &quot;Invalid phone number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc" id="L228">            return;</span>
         }
-<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (!Validation.isValidPassword(password)) {</span>
-<span class="nc" id="L231">            JOptionPane.showMessageDialog(this, &quot;Invalid password format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc" id="L232">            return;</span>
+<span class="fc bfc" id="L230" title="All 2 branches covered.">        if (!Validation.isValidPassword(password)) {</span>
+<span class="fc" id="L231">            JOptionPane.showMessageDialog(this, &quot;Invalid password format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc" id="L232">            return;</span>
         }
-<span class="nc bnc" id="L234" title="All 2 branches missed.">        if (!password.equals(confirmPassword)) {</span>
-<span class="nc" id="L235">            JOptionPane.showMessageDialog(this, &quot;Passwords do not match&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc" id="L236">            return;</span>
+<span class="fc bfc" id="L234" title="All 2 branches covered.">        if (!password.equals(confirmPassword)) {</span>
+<span class="fc" id="L235">            JOptionPane.showMessageDialog(this, &quot;Passwords do not match&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc" id="L236">            return;</span>
         }
 
         // Check if user, email, or phone number already exists
-<span class="nc" id="L240">        String query = &quot;SELECT * FROM account a JOIN accountdetails ad ON a.id_account = ad.id_account WHERE a.username = ? OR ad.phonenumber = ? OR ad.email = ?&quot;;</span>
-<span class="nc" id="L241">        try (Connection con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L242">                PreparedStatement checkStmt = con.prepareStatement(query)) {</span>
-<span class="nc" id="L243">            checkStmt.setString(1, username);</span>
-<span class="nc" id="L244">            checkStmt.setString(2, phoneNumber);</span>
-<span class="nc" id="L245">            checkStmt.setString(3, email);</span>
+<span class="fc" id="L240">        String query = &quot;SELECT * FROM account a JOIN accountdetails ad ON a.id_account = ad.id_account WHERE a.username = ? OR ad.phonenumber = ? OR ad.email = ?&quot;;</span>
+<span class="pc" id="L241">        try (Connection con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L242">                PreparedStatement checkStmt = con.prepareStatement(query)) {</span>
+<span class="fc" id="L243">            checkStmt.setString(1, username);</span>
+<span class="fc" id="L244">            checkStmt.setString(2, phoneNumber);</span>
+<span class="fc" id="L245">            checkStmt.setString(3, email);</span>
 
-<span class="nc" id="L247">            try (ResultSet rs = checkStmt.executeQuery()) {</span>
-<span class="nc bnc" id="L248" title="All 2 branches missed.">                if (rs.next()) {</span>
-<span class="nc" id="L249">                    JOptionPane.showMessageDialog(this, &quot;Username, phone number, or email already exists&quot;, &quot;Message&quot;, JOptionPane.ERROR_MESSAGE);</span>
-<span class="nc" id="L250">                    return;</span>
+<span class="pc" id="L247">            try (ResultSet rs = checkStmt.executeQuery()) {</span>
+<span class="pc bpc" id="L248" title="1 of 2 branches missed.">                if (rs.next()) {</span>
+<span class="fc" id="L249">                    JOptionPane.showMessageDialog(this, &quot;Username, phone number, or email already exists&quot;, &quot;Message&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="fc" id="L250">                    return;</span>
                 }
-<span class="nc bnc" id="L252" title="All 12 branches missed.">            }</span>
-<span class="nc bnc" id="L253" title="All 24 branches missed.">        } catch (SQLException e) {</span>
+<span class="pc bpc" id="L252" title="10 of 12 branches missed.">            }</span>
+<span class="pc bpc" id="L253" title="20 of 24 branches missed.">        } catch (SQLException e) {</span>
 <span class="nc" id="L254">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L255">            return;</span>
 <span class="nc" id="L256">        }</span>
 
         // Insert new user into the database
-<span class="nc" id="L259">        String insertAccountSQL = &quot;INSERT INTO account (id_account, role_id, username, password, balance) VALUES (?, ?, ?, ?, ?)&quot;;</span>
-<span class="nc" id="L260">        String insertDetailsSQL = &quot;INSERT INTO accountdetails (id_account, email, phonenumber, someOtherField) VALUES (?, ?, ?, ?)&quot;;</span>
+<span class="nc" id="L259">        String insertAccountSQL = &quot;INSERT INTO account (id_account, id_type, username, password, balance) VALUES (?, ?, ?, ?, ?)&quot;;</span>
+<span class="nc" id="L260">        String insertDetailsSQL = &quot;INSERT INTO accountdetails (id_account, email, phonenumber, NIK) VALUES (?, ?, ?, ?)&quot;;</span>
 
 <span class="nc" id="L262">        try (Connection con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
 <span class="nc" id="L263">                PreparedStatement addStmt = con.prepareStatement(insertAccountSQL, Statement.RETURN_GENERATED_KEYS);</span>
@@ -302,7 +302,7 @@ public class RegistersCoba extends javax.swing.JFrame {
 
     private void registerButton_Register1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButton_Register1ActionPerformed
         // TODO add your handling code here:
-<span class="fc" id="L305">    }//GEN-LAST:event_registerButton_Register1ActionPerformed</span>
+<span class="nc" id="L305">    }//GEN-LAST:event_registerButton_Register1ActionPerformed</span>
 
     /**
      * @param args the command line arguments

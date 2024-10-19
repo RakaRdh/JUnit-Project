@@ -181,7 +181,7 @@ public class RegistersCoba extends javax.swing.JFrame {
     Statement St = null;
     int id_account;
 
-    private void ClearTXT() {
+    public void ClearTXT() {
         usernameTextField_Register.setText("");
         pnTextField_Register.setText("");
         passwordTextField_Register.setText("");
@@ -256,8 +256,8 @@ public class RegistersCoba extends javax.swing.JFrame {
         }
 
         // Insert new user into the database
-        String insertAccountSQL = "INSERT INTO account (id_account, role_id, username, password, balance) VALUES (?, ?, ?, ?, ?)";
-        String insertDetailsSQL = "INSERT INTO accountdetails (id_account, email, phonenumber, someOtherField) VALUES (?, ?, ?, ?)";
+        String insertAccountSQL = "INSERT INTO account (id_account, id_type, username, password, balance) VALUES (?, ?, ?, ?, ?)";
+        String insertDetailsSQL = "INSERT INTO accountdetails (id_account, email, phonenumber, NIK) VALUES (?, ?, ?, ?)";
 
         try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
                 PreparedStatement addStmt = con.prepareStatement(insertAccountSQL, Statement.RETURN_GENERATED_KEYS);

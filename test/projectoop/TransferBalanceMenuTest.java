@@ -19,7 +19,7 @@ public class TransferBalanceMenuTest {
     @Before
     public void setUp() throws Exception {
         // Initialize TransferBalanceMenu with a test user ID
-        transferBalanceMenu = new TransferBalanceMenu(13); // assuming 1 is a valid user ID
+        transferBalanceMenu = new TransferBalanceMenu(13); // assuming 13 is a valid user ID
         // Establish a connection to the test database
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
     }
@@ -34,7 +34,7 @@ public class TransferBalanceMenuTest {
     @Test
     public void testGetRecepientBalance() throws Exception {
         // Set a valid phone number in the text field
-        transferBalanceMenu.phoneNumberTextField_Transfer.setText("1"); // replace with a valid phone number
+        transferBalanceMenu.phoneNumberTextField_Transfer.setText("081243518275"); // replace with a valid phone number
         invokeMethod("GetRecepientBalance");
         // Validate the recipient's balance
         assertNotEquals("Recipient balance should be greater than zero.", 0, transferBalanceMenu.OldRecepientBalance);
@@ -44,7 +44,7 @@ public class TransferBalanceMenuTest {
     public void testSaveTransaction() throws Exception {
         // Setup test data
         transferBalanceMenu.idUser = 13; // assuming this is a valid sender ID
-        transferBalanceMenu.RecepientIdAccount = 2; // assuming this is a valid recipient ID
+        transferBalanceMenu.RecepientIdAccount = 21; // assuming this is a valid recipient ID
         transferBalanceMenu.transferNominal_Transfer.setText("100"); // Test amount
 
         invokeMethod("SaveTransaction");
@@ -60,26 +60,38 @@ public class TransferBalanceMenuTest {
         }
     }
 
+    
+//    NI MASALAHNYA ADA DISINI NIH... DIA GAMAU NANGKEP VALUE LAMA DARI SENDER AMA RECIPIENT.. JADI DIA NGEBACANYA TUH YANG UDAH KEUPDATE DI DB
+//    JADI KAN SI VARIABLE OldSenderBalance DI LINE 78 TUJUANNYA BUAT NYIMPEN VALUE LAMA DARI SENDER BALANCE.. MISALNYA 25000
+//    TAPI DIA MALAH LANGSUNG NGEBACA SALDO YAND UDAH DIKURANGIN WICIS 24550 (KARENA DIKURANGIN 50 DOANG)
+    
     @Test
-    public void testTransferBalance() throws Exception {
-        // Assuming valid inputs for testing
-        transferBalanceMenu.phoneNumberTextField_Transfer.setText("recipient_phone_number"); // replace with valid number
-        transferBalanceMenu.transferNominal_Transfer.setText("50"); // Test amount
+public void testTransferBalance() throws Exception {
+    // Assuming valid inputs for testing
+    transferBalanceMenu.phoneNumberTextField_Transfer.setText("081243518275"); // replace with valid number
+    transferBalanceMenu.transferNominal_Transfer.setText("50"); // Test amount
 
-        // Store old balances
-        double oldSenderBalance = transferBalanceMenu.OldSenderBalance;
-        double oldRecepientBalance = transferBalanceMenu.OldRecepientBalance;
+    // Explicitly fetch the sender and recipient balances before storing old values
+    invokeMethod("GetSenderBalance");  // Fetch sender's balance from DB
+    invokeMethod("GetRecepientBalance");  // Fetch recipient's balance from DB
 
-        // Call the transfer function
-                // Use reflection to access the private method
-        Method method = TransferBalanceMenu.class.getDeclaredMethod("continueButton_TransferMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(transferBalanceMenu, (Object) null); // Pass null as the event
+    // Store old balances (capture the values before the transfer occurs)
+    double oldSenderBalance = transferBalanceMenu.OldSenderBalance;
+    double oldRecepientBalance = transferBalanceMenu.OldRecepientBalance;
+    
+    // Log to confirm the correct values before the transfer
+    System.out.println("Old Sender Balance: " + oldSenderBalance);
+    System.out.println("Old Recipient Balance: " + oldRecepientBalance);
 
-        // Verify balances after transfer
-        assertEquals("Sender balance should be reduced by 50.", oldSenderBalance - 50, transferBalanceMenu.OldSenderBalance, 0.001);
-        assertEquals("Recipient balance should be increased by 50.", oldRecepientBalance + 50, transferBalanceMenu.OldRecepientBalance, 0.001);
-    }
+    // Call the transfer function using reflection
+    Method method = TransferBalanceMenu.class.getDeclaredMethod("continueButton_TransferMouseClicked", java.awt.event.MouseEvent.class);
+    method.setAccessible(true);
+    method.invoke(transferBalanceMenu, (Object) null); // Pass null as the event
+
+    // Verify balances after transfer
+    assertEquals("Sender balance should be reduced by 50.", oldSenderBalance - 50, transferBalanceMenu.OldSenderBalance, 0.001);
+    assertEquals("Recipient balance should be increased by 50.", oldRecepientBalance + 50, transferBalanceMenu.OldRecepientBalance, 0.001);
+}
 
     private void invokeMethod(String methodName, Object... args) throws Exception {
         // Get the method with the specified name and parameter types

@@ -20,9 +20,9 @@ public class ViewProfileMenuTest {
     public void testGetDataSuccess() {
         // Check if the labels are set correctly after data retrieval
         Assert.assertEquals("RakaRdh", viewProfileMenu.usernameLabel_ViewProfile.getText());
-        Assert.assertEquals("123", viewProfileMenu.emailLabel_ViewProfile.getText());
+        Assert.assertEquals("rakardh@gmail.com", viewProfileMenu.emailLabel_ViewProfile.getText());
         Assert.assertEquals("Premium", viewProfileMenu.typeLabel_ViewProfile.getText());
-        Assert.assertEquals("123", viewProfileMenu.pnLabel_ViewProfile.getText());
+        Assert.assertEquals("081212678879", viewProfileMenu.pnLabel_ViewProfile.getText());
     }
 
     @Test
@@ -65,10 +65,10 @@ public class ViewProfileMenuTest {
                 Type = "N/A";
             } else {
                 // Mock data
-                uName = "testUser";
-                eMail = "test@example.com";
-                PhoneNumber = "123456789";
-                Type = "Reguler";
+                uName = "RakaRdh";
+                eMail = "rakardh@gmail.com";
+                PhoneNumber = "081212678879";
+                Type = "Premium";
             }
 
             // Set label texts

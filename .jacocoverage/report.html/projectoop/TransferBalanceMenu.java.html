@@ -73,19 +73,19 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 <span class="fc" id="L73">            St = Con.createStatement();</span>
 <span class="fc" id="L74">            Rs = St.executeQuery(Query);</span>
 <span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
-<span class="nc" id="L76">                RecepientIdAccount = Rs.getInt(2);</span>
-<span class="nc" id="L77">                System.out.println(&quot;Id Penerima &quot; + RecepientIdAccount);</span>
-<span class="nc" id="L78">                String Query2 = &quot;select * from account where id_account=&quot; + RecepientIdAccount;</span>
-<span class="nc" id="L79">                St3 = Con.createStatement();</span>
-<span class="nc" id="L80">                Rs3 = St3.executeQuery(Query2);</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">                if (Rs3.next()) {</span>
-<span class="nc" id="L82">                    OldRecepientBalance = Rs3.getDouble(5);</span>
-<span class="nc" id="L83">                    System.out.println(&quot;saldo Lama Penerima &quot; + OldRecepientBalance);</span>
+<span class="fc" id="L76">                RecepientIdAccount = Rs.getInt(2);</span>
+<span class="fc" id="L77">                System.out.println(&quot;Id Penerima &quot; + RecepientIdAccount);</span>
+<span class="fc" id="L78">                String Query2 = &quot;select * from account where id_account=&quot; + RecepientIdAccount;</span>
+<span class="fc" id="L79">                St3 = Con.createStatement();</span>
+<span class="fc" id="L80">                Rs3 = St3.executeQuery(Query2);</span>
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">                if (Rs3.next()) {</span>
+<span class="fc" id="L82">                    OldRecepientBalance = Rs3.getDouble(5);</span>
+<span class="fc" id="L83">                    System.out.println(&quot;saldo Lama Penerima &quot; + OldRecepientBalance);</span>
                 } else {
 <span class="nc" id="L85">                    System.out.println(&quot;Error&quot;);</span>
                 }
-<span class="nc" id="L87">            } else {</span>
-<span class="fc" id="L88">                JOptionPane.showMessageDialog(this, &quot;Wrong Account Number Or Password&quot;);</span>
+<span class="fc" id="L87">            } else {</span>
+<span class="nc" id="L88">                JOptionPane.showMessageDialog(this, &quot;Wrong Account Number Or Password&quot;);</span>
             }
 
 <span class="nc" id="L91">        } catch (Exception e) {</span>
@@ -115,10 +115,10 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 <span class="fc" id="L115">             His.setInt(2, RecepientIdAccount);</span>
 <span class="fc" id="L116">             His.setString(3, &quot;Recieve&quot;);</span>
 <span class="fc" id="L117">             His.setString(4, transferNominal_Transfer.getText());   </span>
-<span class="nc" id="L118">             int row = His.executeUpdate();</span>
-<span class="fc" id="L119">         } catch (Exception e) {</span>
-<span class="fc" id="L120">             JOptionPane.showMessageDialog(this, e.getMessage());</span>
-<span class="nc" id="L121">         }</span>
+<span class="fc" id="L118">             int row = His.executeUpdate();</span>
+<span class="nc" id="L119">         } catch (Exception e) {</span>
+<span class="nc" id="L120">             JOptionPane.showMessageDialog(this, e.getMessage());</span>
+<span class="fc" id="L121">         }</span>
 <span class="fc" id="L122">    }    </span>
     
 
@@ -253,63 +253,63 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 <span class="pc bpc" id="L253" title="2 of 4 branches missed.">        if(phoneNumberTextField_Transfer.getText().isEmpty() || transferNominal_Transfer.getText().isEmpty()){</span>
 <span class="nc" id="L254">            JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
 <span class="pc bpc" id="L255" title="1 of 2 branches missed.">        } else if (!Validation.isValidPhoneNumber(phoneNumberTextField_Transfer.getText())){</span>
-<span class="fc" id="L256">            JOptionPane.showMessageDialog(this, &quot;Invalid phone number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc bnc" id="L257" title="All 2 branches missed.">        } else if (!Validation.isValidBalance(transferNominal_Transfer.getText())){</span>
+<span class="nc" id="L256">            JOptionPane.showMessageDialog(this, &quot;Invalid phone number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="pc bpc" id="L257" title="1 of 2 branches missed.">        } else if (!Validation.isValidBalance(transferNominal_Transfer.getText())){</span>
 <span class="nc" id="L258">            JOptionPane.showMessageDialog(this, &quot;Invalid nominal format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
         } else {
-<span class="nc" id="L260">            GetSenderBalance();</span>
-<span class="nc" id="L261">            GetRecepientBalance();</span>
-<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (RecepientIdAccount == idUser) {</span>
+<span class="fc" id="L260">            GetSenderBalance();</span>
+<span class="fc" id="L261">            GetRecepientBalance();</span>
+<span class="pc bpc" id="L262" title="1 of 2 branches missed.">            if (RecepientIdAccount == idUser) {</span>
 <span class="nc" id="L263">                JOptionPane.showMessageDialog(this, &quot;You Cant Transfer to Yourself Bruh&quot;);</span>
             } else {
                 try {
-<span class="nc" id="L266">                    String QueryTF = &quot;Update account set balance=? where id_account=?&quot;;</span>
-<span class="nc" id="L267">                    Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L268">                    St = Con.createStatement();</span>
-<span class="nc" id="L269">                    PreparedStatement rc = Con.prepareStatement(QueryTF);</span>
-<span class="nc" id="L270">                    PreparedStatement sd = Con.prepareStatement(QueryTF);</span>
-<span class="nc" id="L271">                    rc.setDouble(1, OldRecepientBalance + Double.valueOf(transferNominal_Transfer.getText()));</span>
-<span class="nc" id="L272">                    System.out.println(transferNominal_Transfer.getText());</span>
-<span class="nc" id="L273">                    rc.setInt(2, RecepientIdAccount);</span>
-<span class="nc" id="L274">                    sd.setDouble(1, OldSenderBalance - Double.valueOf(transferNominal_Transfer.getText()));</span>
-<span class="nc" id="L275">                    sd.setInt(2, idUser);</span>
-<span class="nc bnc" id="L276" title="All 4 branches missed.">                    if (rc.executeUpdate() == 1 &amp;&amp; sd.executeUpdate() == 1) {</span>
-<span class="nc" id="L277">                        JOptionPane.showMessageDialog(this, &quot;Transfer Succesful&quot;);</span>
-<span class="nc" id="L278">                        SaveTransaction();</span>
-<span class="nc" id="L279">                        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+<span class="fc" id="L266">                    String QueryTF = &quot;Update account set balance=? where id_account=?&quot;;</span>
+<span class="fc" id="L267">                    Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L268">                    St = Con.createStatement();</span>
+<span class="fc" id="L269">                    PreparedStatement rc = Con.prepareStatement(QueryTF);</span>
+<span class="fc" id="L270">                    PreparedStatement sd = Con.prepareStatement(QueryTF);</span>
+<span class="fc" id="L271">                    rc.setDouble(1, OldRecepientBalance + Double.valueOf(transferNominal_Transfer.getText()));</span>
+<span class="fc" id="L272">                    System.out.println(transferNominal_Transfer.getText());</span>
+<span class="fc" id="L273">                    rc.setInt(2, RecepientIdAccount);</span>
+<span class="fc" id="L274">                    sd.setDouble(1, OldSenderBalance - Double.valueOf(transferNominal_Transfer.getText()));</span>
+<span class="fc" id="L275">                    sd.setInt(2, idUser);</span>
+<span class="pc bpc" id="L276" title="2 of 4 branches missed.">                    if (rc.executeUpdate() == 1 &amp;&amp; sd.executeUpdate() == 1) {</span>
+<span class="fc" id="L277">                        JOptionPane.showMessageDialog(this, &quot;Transfer Succesful&quot;);</span>
+<span class="fc" id="L278">                        SaveTransaction();</span>
+<span class="fc" id="L279">                        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
                         try {
-<span class="nc" id="L281">                            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L282">                            St = Con.createStatement();</span>
-<span class="nc" id="L283">                            Rs = St.executeQuery(Query);</span>
+<span class="fc" id="L281">                            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L282">                            St = Con.createStatement();</span>
+<span class="fc" id="L283">                            Rs = St.executeQuery(Query);</span>
 
                             // Move the cursor to the first row and check if there are results
-<span class="nc bnc" id="L286" title="All 2 branches missed.">                            if (Rs.next()) {</span>
+<span class="pc bpc" id="L286" title="1 of 2 branches missed.">                            if (Rs.next()) {</span>
 
-<span class="nc" id="L288">                                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
-<span class="nc" id="L289">                                St2 = Con.createStatement();</span>
-<span class="nc" id="L290">                                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L288">                                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L289">                                St2 = Con.createStatement();</span>
+<span class="fc" id="L290">                                Rs2 = St2.executeQuery(Query2);</span>
 
-<span class="nc bnc" id="L292" title="All 2 branches missed.">                                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L292" title="1 of 2 branches missed.">                                if (Rs2.next()) {</span>
                                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L294">                                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L295">                                    this.dispose();</span>
+<span class="fc" id="L294">                                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L295">                                    this.dispose();</span>
                                 } else {
 <span class="nc" id="L297">                                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                                 }
-<span class="nc" id="L299">                            } else {</span>
+<span class="fc" id="L299">                            } else {</span>
 <span class="nc" id="L300">                                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
                             }
 
 <span class="nc" id="L303">                        } catch (Exception e) {</span>
 <span class="nc" id="L304">                            JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L305">                            System.out.println(e.getMessage());</span>
-<span class="nc" id="L306">                        }</span>
-<span class="nc" id="L307">                    } else {</span>
+<span class="fc" id="L306">                        }</span>
+<span class="fc" id="L307">                    } else {</span>
 <span class="nc" id="L308">                        JOptionPane.showMessageDialog(this, &quot;Transfer Failed&quot;);</span>
                     }
 <span class="nc" id="L310">                } catch (Exception e) {</span>
 <span class="nc" id="L311">                    JOptionPane.showMessageDialog(this, e);</span>
-<span class="nc" id="L312">                }</span>
+<span class="fc" id="L312">                }</span>
             }
         }
 <span class="fc" id="L315">    }//GEN-LAST:event_continueButton_TransferMouseClicked</span>
