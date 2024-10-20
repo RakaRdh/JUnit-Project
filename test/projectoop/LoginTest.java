@@ -19,6 +19,7 @@ public class LoginTest {
     public void setUp() {
         // Initialize the Login object
         login = new Login();
+        
     }
 
     @Test

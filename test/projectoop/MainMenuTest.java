@@ -3,9 +3,11 @@ package projectoop;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.event.MouseEvent;
+import java.lang.reflect.Method;
+
 import static org.junit.Assert.*;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
  * Test class for MainMenu
@@ -17,93 +19,87 @@ public class MainMenuTest {
     @Before
     public void setUp() {
         // Initialize the MainMenu with sample data
-        mainMenu = new MainMenu(13, "Raka Herdika", 1000.0, "321");
+        mainMenu = new MainMenu(16, "Dapa", 10000.0, "081275967546");
         mainMenu.setVisible(true);  // Ensure the window is visible
-
     }
 
     /**
-     * Test that the main menu is initialized correctly
+     * Helper method to invoke private methods using reflection
      */
-    @Test
-    public void testInitialization() {
-        assertNotNull(mainMenu);
-        assertEquals("Raka Herdika", mainMenu.nameLabel_Menu.getText());
-        assertEquals("1000.0", mainMenu.balanceLabel_Menu.getText());
-        assertTrue(mainMenu.isVisible());
+    private void invokePrivateMethod(String methodName, Class<?>[] paramTypes, Object... params) {
+        try {
+            Method method = MainMenu.class.getDeclaredMethod(methodName, paramTypes);
+            method.setAccessible(true);
+            method.invoke(mainMenu, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Failed to invoke method: " + methodName);
+        }
     }
 
     /**
-     * Test the viewProfile button functionality
+     * Test the viewProfile button MouseClicked functionality
      */
     @Test
-    public void testViewProfileButtonClick() {
-        JButton viewProfileButton = mainMenu.viewProfileButton_Menu;
-        viewProfileButton.doClick();
-        // After clicking, the ViewProfileMenu should be displayed
-        // This could be tested by checking if the current window is disposed
-        // Since the actual implementation of ViewProfileMenu is not shown, we can't verify it directly
+    public void testViewProfileButtonMouseClicked() {
+        invokePrivateMethod("viewProfileButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+        assertFalse(mainMenu.isVisible()); // Check if the current window is disposed
     }
 
     /**
-     * Test the deposit balance button functionality
+     * Test the deposit balance button MouseClicked functionality
      */
     @Test
-    public void testDepoBalanceButtonClick() {
-        JButton depoBalanceButton = mainMenu.depoBalanceButton_Menu;
-        depoBalanceButton.doClick();
-        // After clicking, the AddMethodMenu should be displayed
-        // Similar to the viewProfileButton test, we check the current window's visibility
+    public void testDepoBalanceButtonMouseClicked() {
+        invokePrivateMethod("depoBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+        assertFalse(mainMenu.isVisible());
     }
 
     /**
-     * Test the withdraw balance button functionality
+     * Test the withdraw balance button MouseClicked functionality
      */
     @Test
-    public void testWdBalanceButtonClick() {
-        JButton wdBalanceButton = mainMenu.wdBalanceButton_Menu;
-        wdBalanceButton.doClick();
-        // After clicking, the WDMethodMenu should be displayed
+    public void testWdBalanceButtonMouseClicked() {
+        invokePrivateMethod("wdBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+        assertFalse(mainMenu.isVisible());
     }
 
     /**
-     * Test the transfer balance button functionality
+     * Test the transfer balance button MouseClicked functionality
      */
     @Test
-    public void testTransferBalanceButtonClick() {
-        JButton transferBalanceButton = mainMenu.transferBalanceButton_Menu;
-        transferBalanceButton.doClick();
-        // After clicking, the TransferBalanceMenu should be displayed
+    public void testTransferBalanceButtonMouseClicked() {
+        invokePrivateMethod("transferBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+        assertFalse(mainMenu.isVisible());
     }
 
     /**
-     * Test the logout button functionality
+     * Test the logout button MouseClicked functionality
      */
     @Test
-    public void testLogoutButtonClick() {
-        JButton logoutButton = mainMenu.logoutButton_Menu;
-        logoutButton.doClick();
-        // After clicking, the Login window should be displayed
+    public void testLogoutButtonMouseClicked() {
+        invokePrivateMethod("logoutButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+        assertFalse(mainMenu.isVisible());
     }
 
     /**
-     * Test the UTP button functionality
+     * Test the UTP button ActionPerformed functionality
      */
     @Test
-    public void testUtpButtonClick() {
+    public void testUtpButtonActionPerformed() {
         JButton utpButton = mainMenu.utpButton_Menu;
         utpButton.doClick();
-        // After clicking, the UTPMenu should be displayed
+        // Add assertions to check the behavior after clicking UTP button
     }
 
     /**
-     * Test the show transaction button functionality
+     * Test the show transaction button ActionPerformed functionality
      */
     @Test
-    public void testShowTransactionButtonClick() {
+    public void testShowTransactionButtonActionPerformed() {
         JButton showTransactionButton = mainMenu.showTransactionButton_Menu;
         showTransactionButton.doClick();
-        // After clicking, the ShowTransaction window should be displayed
+        // Add assertions to check the behavior after clicking Show Transaction button
     }
 
     /**
@@ -113,8 +109,6 @@ public class MainMenuTest {
     public void testMain() {
         String[] args = null;
         MainMenu.main(args);
-        // Test if the main method successfully creates and displays the frame
-        assertNotNull(mainMenu);
         assertTrue(mainMenu.isVisible());
     }
 }

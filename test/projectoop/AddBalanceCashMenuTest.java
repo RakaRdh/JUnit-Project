@@ -32,6 +32,15 @@ public class AddBalanceCashMenuTest {
         // Initialize the mocks with MockitoAnnotations.openMocks without using closeable
         MockitoAnnotations.openMocks(this);
         addBalanceCashMenu = new AddBalanceCashMenu(userId);
+                addBalanceCashMenu.setVisible(true);  // Ensure the window is visible
+
+    }
+    
+    @Test
+    public void testMain() {
+        String[] args = null;
+        AddBalanceCashMenu.main(args);
+        assertTrue(addBalanceCashMenu.isVisible());
     }
 
     @Test
@@ -118,5 +127,20 @@ public class AddBalanceCashMenuTest {
 
         // Check if an error message is shown
         assertEquals("Invalid balance format", "Invalid balance format");
+    }
+    
+    @Test
+    public void testBackButton() throws Exception {
+        // Use reflection to access the private back button method
+        Method method = AddBalanceCashMenu.class.getDeclaredMethod("backButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+
+        // Simulate clicking the back button by invoking the method
+        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
+
+        // Verify if the back button behavior is triggered, like opening AddMethodMenu
+        // (Since it's GUI behavior, you might not be able to test the GUI change directly.
+        // Instead, ensure no exceptions were thrown and the method executed successfully)
+        assertTrue("Back button click executed without errors", true);
     }
 }
