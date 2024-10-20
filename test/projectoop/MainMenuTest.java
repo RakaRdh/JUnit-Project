@@ -18,6 +18,8 @@ public class MainMenuTest {
     public void setUp() {
         // Initialize the MainMenu with sample data
         mainMenu = new MainMenu(13, "Raka Herdika", 1000.0, "321");
+        mainMenu.setVisible(true);  // Ensure the window is visible
+
     }
 
     /**
