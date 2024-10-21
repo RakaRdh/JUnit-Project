@@ -316,10 +316,10 @@ public class MainMenu extends javax.swing.JFrame {
 <span class="fc" id="L316">                St = Con.createStatement();</span>
 <span class="fc" id="L317">                Rs = St.executeQuery(QueryUtp);</span>
 <span class="pc bpc" id="L318" title="1 of 2 branches missed.">                if(Rs.next()){  </span>
-<span class="fc" id="L319">                    new UTPMenu(IdUser).setVisible(true);</span>
-<span class="fc" id="L320">                    this.dispose();</span>
+<span class="nc" id="L319">                    new UTPMenu(IdUser).setVisible(true);</span>
+<span class="nc" id="L320">                    this.dispose();</span>
                 } else {
-<span class="nc" id="L322">                    JOptionPane.showMessageDialog(this, &quot;Account is Already Premium&quot;);</span>
+<span class="fc" id="L322">                    JOptionPane.showMessageDialog(this, &quot;Account is Already Premium&quot;);</span>
                 }
 <span class="nc" id="L324">            }catch(Exception e){</span>
 <span class="nc" id="L325">                JOptionPane.showMessageDialog(this, e);</span>
@@ -357,10 +357,10 @@ public class MainMenu extends javax.swing.JFrame {
 <span class="fc" id="L357">                St = Con.createStatement();</span>
 <span class="fc" id="L358">                Rs = St.executeQuery(QueryAcc);</span>
 <span class="pc bpc" id="L359" title="1 of 2 branches missed.">                if(Rs.next()){  </span>
-<span class="nc" id="L360">                    new TransferBalanceMenu(IdUser).setVisible(true);</span>
-<span class="nc" id="L361">                    this.dispose();</span>
+<span class="fc" id="L360">                    new TransferBalanceMenu(IdUser).setVisible(true);</span>
+<span class="fc" id="L361">                    this.dispose();</span>
                 } else {
-<span class="fc" id="L363">                    JOptionPane.showMessageDialog(this, &quot;Account is Not Premium&quot;);</span>
+<span class="nc" id="L363">                    JOptionPane.showMessageDialog(this, &quot;Account is Not Premium&quot;);</span>
                 }
 <span class="nc" id="L365">            }catch(Exception e){</span>
 <span class="nc" id="L366">                JOptionPane.showMessageDialog(this, e);</span>

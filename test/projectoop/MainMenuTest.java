@@ -20,7 +20,7 @@ public class MainMenuTest {
     @Before
     public void setUp() {
         // Initialize the MainMenu with sample data
-        mainMenu = new MainMenu(15, "Ojan", 0, "083288888888");
+        mainMenu = new MainMenu(15, "Ojan", 0.0, "083288888888");
         mainMenu.setVisible(true); 
     }
 

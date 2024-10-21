@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="DESKTOP-8VFRIA9" name="projectoop.AddMethodMenuTest" skipped="0" tests="7" time="1.747" timestamp="2024-10-21T13:11:58">
+<testsuite errors="1" failures="0" hostname="DESKTOP-8VFRIA9" name="projectoop.AddMethodMenuTest" skipped="0" tests="7" time="3.334" timestamp="2024-10-21T13:26:23">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -63,7 +63,7 @@
     <property name="libs.j2me_common_ant.maven-pom" value="" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner projectoop.AddMethodMenuTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\build\test\results\TEST-projectoop.AddMethodMenuTest.xml crashfile=C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\build\junitvmwatcher2538609014715019681.properties propsfile=C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\build\junit5238478082041997321.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner projectoop.AddMethodMenuTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\build\test\results\TEST-projectoop.AddMethodMenuTest.xml crashfile=C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\build\junitvmwatcher6321006236970714270.properties propsfile=C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\build\junit1654113651153217176.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="build.sysclasspath" value="ignore" />
@@ -400,7 +400,7 @@
     <property name="libs.spring-framework300.classpath" value="D:\NetBeans 8.2\ide\modules\org-apache-commons-logging.jar;D:\NetBeans 8.2\java\modules\ext\cglib-2.2.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-aop-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-aspects-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-beans-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-build-src-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-context-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-context-support-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-core-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-expression-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-framework-bom-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-instrument-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-jdbc-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-jms-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-orm-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-oxm-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-struts-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-test-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-tx-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-web-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-webmvc-3.2.7.RELEASE.jar;D:\NetBeans 8.2\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.2.7.RELEASE.jar" />
     <property name="libs.jsp-compiler.maven-pom" value="" />
     <property name="libs.hamcrest.src" value="" />
-    <property name="run.jvmargs" value="  -javaagent:&quot;C:\Users\Personal\AppData\Roaming\NetBeans\8.2\modules\ext\jacocoagent.jar&quot;=includes=projectoop.*:projectoop.icon.*,destfile=&quot;C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\jacoco.exec-26776055518900&quot;" />
+    <property name="run.jvmargs" value="  -javaagent:&quot;C:\Users\Personal\AppData\Roaming\NetBeans\8.2\modules\ext\jacocoagent.jar&quot;=includes=projectoop.*:projectoop.icon.*,destfile=&quot;C:\Users\Personal\Desktop\ProjectOOP_GUI\JUnit-Project\jacoco.exec-27722137119600&quot;" />
     <property name="libs.hibernate4-persistence.classpath" value="D:\NetBeans 8.2\java\modules\ext\hibernate4\antlr-2.7.7.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\c3p0-0.9.2.1.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-c3p0-4.3.1.Final.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\mchange-commons-java-0.2.3.4.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\dom4j-1.6.1.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\ehcache-core-2.4.3.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-ehcache-4.3.1.Final.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-core-4.3.1.Final.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\jboss-logging-3.1.3.GA.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-commons-annotations-4.0.4.Final.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-entitymanager-4.3.1.Final.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\javassist-3.18.1-GA.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\jboss-transaction-api_1.2_spec-1.0.0.Final.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\slf4j-api-1.6.1.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\slf4j-simple-1.6.1.jar;D:\NetBeans 8.2\java\modules\ext\hibernate4\hibernate-jpa-2.1-api-1.0.0.Final.jar" />
     <property name="libs.JAXB-ENDORSED.src" value="" />
     <property name="dist.archive.excludes" value="" />
@@ -426,13 +426,32 @@
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
     <property name="libs.javaee-web-api-7.0.javadoc" value="D:\NetBeans 8.2\enterprise\docs\javaee-doc-api.jar" />
   </properties>
-  <testcase classname="projectoop.AddMethodMenuTest" name="testValidAccountRetrieval" time="0.258" />
+  <testcase classname="projectoop.AddMethodMenuTest" name="testValidAccountRetrieval" time="0.278" />
   <testcase classname="projectoop.AddMethodMenuTest" name="testCashMenuButtonAction" time="0.372" />
-  <testcase classname="projectoop.AddMethodMenuTest" name="testMain" time="0.049" />
-  <testcase classname="projectoop.AddMethodMenuTest" name="testInvalidAccountRetrieval" time="0.042" />
-  <testcase classname="projectoop.AddMethodMenuTest" name="testBankMenuButtonAction" time="0.129" />
-  <testcase classname="projectoop.AddMethodMenuTest" name="testBackButton" time="0.837" />
-  <testcase classname="projectoop.AddMethodMenuTest" name="testInitialUserId" time="0.02" />
+  <testcase classname="projectoop.AddMethodMenuTest" name="testMain" time="0.047" />
+  <testcase classname="projectoop.AddMethodMenuTest" name="testInvalidAccountRetrieval" time="0.01">
+    <error message="javax.swing.plaf.nimbus.DerivedColor$UIResource cannot be cast to java.lang.Boolean" type="java.lang.ClassCastException">java.lang.ClassCastException: javax.swing.plaf.nimbus.DerivedColor$UIResource cannot be cast to java.lang.Boolean
+	at javax.swing.plaf.nimbus.NimbusStyle.isOpaque(NimbusStyle.java:614)
+	at javax.swing.plaf.synth.SynthStyle.installDefaults(SynthStyle.java:945)
+	at javax.swing.plaf.nimbus.NimbusStyle.installDefaults(NimbusStyle.java:231)
+	at javax.swing.plaf.synth.SynthStyle.installDefaults(SynthStyle.java:916)
+	at javax.swing.plaf.synth.SynthLookAndFeel.updateStyle(SynthLookAndFeel.java:265)
+	at javax.swing.plaf.synth.SynthLabelUI.updateStyle(SynthLabelUI.java:69)
+	at javax.swing.plaf.synth.SynthLabelUI.installDefaults(SynthLabelUI.java:64)
+	at javax.swing.plaf.basic.BasicLabelUI.installUI(BasicLabelUI.java:343)
+	at javax.swing.JComponent.setUI(JComponent.java:666)
+	at javax.swing.JLabel.setUI(JLabel.java:261)
+	at javax.swing.JLabel.updateUI(JLabel.java:275)
+	at javax.swing.JLabel.&lt;init&gt;(JLabel.java:164)
+	at javax.swing.JLabel.&lt;init&gt;(JLabel.java:235)
+	at projectoop.AddMethodMenu.initComponents(AddMethodMenu.java:57)
+	at projectoop.AddMethodMenu.&lt;init&gt;(AddMethodMenu.java:37)
+	at projectoop.AddMethodMenuTest.setUp(AddMethodMenuTest.java:16)
+</error>
+  </testcase>
+  <testcase classname="projectoop.AddMethodMenuTest" name="testBankMenuButtonAction" time="0.131" />
+  <testcase classname="projectoop.AddMethodMenuTest" name="testBackButton" time="2.439" />
+  <testcase classname="projectoop.AddMethodMenuTest" name="testInitialUserId" time="0.018" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
