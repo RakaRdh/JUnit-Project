@@ -24,6 +24,12 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
     public TransferBalanceMenu() {
         initComponents();
     }
+    
+    public TransferBalanceMenu(int Id_User) {
+        idUser = Id_User;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
 
     Connection Con = null;
     PreparedStatement pst = null;
@@ -41,11 +47,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
     int idUser;
     int RecepientIdAccount;
 
-    public TransferBalanceMenu(int Id_User) {
-        idUser = Id_User;
-        initComponents();
-        setLocationRelativeTo(null);
-    }
+
 
     private void GetSenderBalance() {
         String Query = "select * from account where id_account=" + idUser;

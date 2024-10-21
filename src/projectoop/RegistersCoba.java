@@ -14,10 +14,18 @@ import javax.swing.JOptionPane;
  */
 public class RegistersCoba extends javax.swing.JFrame {
 
+    private Connection Connection;
+
     /**
      * Creates new form RegistersCoba
      */
     public RegistersCoba() {
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public RegistersCoba(Connection connection) {
+        this.Connection = connection;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -207,9 +215,14 @@ public class RegistersCoba extends javax.swing.JFrame {
     }//GEN-LAST:event_backButton_RegisterMouseClicked
 
     private void registerButton_Register1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerButton_Register1MouseClicked
-        if (usernameTextField_Register.getText().isEmpty() || pnTextField_Register.getText().isEmpty() || passwordTextField_Register.getText().isEmpty() || cpTextField_Register.getText().isEmpty() || emailTextField_Register.getText().isEmpty()) {
+                                  
+    try {
+        // Validasi input form
+        if (usernameTextField_Register.getText().isEmpty() || pnTextField_Register.getText().isEmpty() ||
+            passwordTextField_Register.getText().isEmpty() || cpTextField_Register.getText().isEmpty() ||
+            emailTextField_Register.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Missing Information", "Message", JOptionPane.WARNING_MESSAGE);
-            return; // Stop further execution
+            return; // Hentikan eksekusi jika ada data kosong
         }
 
         String username = usernameTextField_Register.getText();
@@ -218,7 +231,7 @@ public class RegistersCoba extends javax.swing.JFrame {
         String password = passwordTextField_Register.getText();
         String confirmPassword = cpTextField_Register.getText();
 
-        // Validation checks
+        // Validasi inputan sebelum ke database
         if (!Validation.isValidEmail(email)) {
             JOptionPane.showMessageDialog(this, "Invalid email format", "Message", JOptionPane.WARNING_MESSAGE);
             return;
@@ -236,64 +249,65 @@ public class RegistersCoba extends javax.swing.JFrame {
             return;
         }
 
-        // Check if user, email, or phone number already exists
-        String query = "SELECT * FROM account a JOIN accountdetails ad ON a.id_account = ad.id_account WHERE a.username = ? OR ad.phonenumber = ? OR ad.email = ?";
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
-                PreparedStatement checkStmt = con.prepareStatement(query)) {
-            checkStmt.setString(1, username);
-            checkStmt.setString(2, phoneNumber);
-            checkStmt.setString(3, email);
+        // Koneksi database dan query untuk pengecekan username/email/phonenumber yang sama
+        String checkUserSQL = "SELECT * FROM account a JOIN accountdetails ad ON a.id_account = ad.id_account WHERE a.username = ? OR ad.phonenumber = ? OR ad.email = ?";
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
+        PreparedStatement checkStmt = con.prepareStatement(checkUserSQL);
+        checkStmt.setString(1, username);
+        checkStmt.setString(2, phoneNumber);
+        checkStmt.setString(3, email);
 
-            try (ResultSet rs = checkStmt.executeQuery()) {
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(this, "Username, phone number, or email already exists", "Message", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+        ResultSet rs = checkStmt.executeQuery();
+        if (rs.next()) {
+            // Jika user ditemukan dengan username, email, atau nomor telepon yang sama
+            JOptionPane.showMessageDialog(this, "Username, phone number, or email already exists", "Message", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Insert new user into the database
+        // Koneksi database dan perintah SQL untuk memasukkan user baru
         String insertAccountSQL = "INSERT INTO account (id_account, id_type, username, password, balance) VALUES (?, ?, ?, ?, ?)";
         String insertDetailsSQL = "INSERT INTO accountdetails (id_account, email, phonenumber, NIK) VALUES (?, ?, ?, ?)";
 
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
-                PreparedStatement addStmt = con.prepareStatement(insertAccountSQL, Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement detailsStmt = con.prepareStatement(insertDetailsSQL)) {
+        PreparedStatement addStmt = con.prepareStatement(insertAccountSQL, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement detailsStmt = con.prepareStatement(insertDetailsSQL);
 
-            addStmt.setNull(1, Types.INTEGER); // Assuming ID is auto-incremented
-            addStmt.setInt(2, 1); // Assuming role_id is 1
-            addStmt.setString(3, username);
-            addStmt.setString(4, password);
-            addStmt.setDouble(5, 0);
+        addStmt.setNull(1, Types.INTEGER); // Asumsikan ID auto-increment
+        addStmt.setInt(2, 1); // Role_id asumsikan 1 (default role)
+        addStmt.setString(3, username);
+        addStmt.setString(4, password);
+        addStmt.setDouble(5, 0.0); // Balance awal = 0
 
-            int affectedRows = addStmt.executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Creating account failed, no rows affected.");
-            }
+        // Jalur sukses: akun ditambahkan
+        int affectedRows = addStmt.executeUpdate(); 
 
-            try (ResultSet generatedKeys = addStmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    int id_account = generatedKeys.getInt(1);
-                    detailsStmt.setInt(1, id_account);
-                    detailsStmt.setString(2, email);
-                    detailsStmt.setString(3, phoneNumber);
-                    detailsStmt.setString(4, "0"); // Placeholder for additional field
-                    detailsStmt.executeUpdate();
-                } else {
-                    throw new SQLException("Creating account failed, no ID obtained.");
-                }
-            }
+        // Ambil id_account yang baru di-generate
+        ResultSet generatedKeys = addStmt.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            int id_account = generatedKeys.getInt(1); // ID baru dari tabel account
 
-            JOptionPane.showMessageDialog(this, "Registration Successful");
-            ClearTXT();
-            new Login().setVisible(true);
-            this.dispose();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            // Menambahkan detail akun
+            detailsStmt.setInt(1, id_account);
+            detailsStmt.setString(2, email);
+            detailsStmt.setString(3, phoneNumber);
+            detailsStmt.setString(4, "0"); // Placeholder untuk NIK (atau field tambahan)
+            detailsStmt.executeUpdate();
         }
+
+        // Jalur sukses: pesan sukses dan reset form
+        JOptionPane.showMessageDialog(this, "Registration Successful");
+        ClearTXT();
+        new Login().setVisible(true);
+        this.dispose();
+
+    } catch (SQLException e) {
+        // Jalur error SQL atau masalah koneksi database
+        JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Message", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        // Jalur error umum
+        JOptionPane.showMessageDialog(this, "Unexpected error: " + e.getMessage(), "Message", JOptionPane.ERROR_MESSAGE);
+    }
+
+
     }//GEN-LAST:event_registerButton_Register1MouseClicked
 
     private void backButton_RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton_RegisterActionPerformed

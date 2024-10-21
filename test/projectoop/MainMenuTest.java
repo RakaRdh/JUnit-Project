@@ -15,12 +15,13 @@ import javax.swing.JButton;
 public class MainMenuTest {
 
     private MainMenu mainMenu;
+    private MainMenu mainMenuNonPremi;
 
     @Before
     public void setUp() {
         // Initialize the MainMenu with sample data
-        mainMenu = new MainMenu(16, "Dapa", 10000.0, "081275967546");
-        mainMenu.setVisible(true);  // Ensure the window is visible
+        mainMenu = new MainMenu(15, "Ojan", 0, "083288888888");
+        mainMenu.setVisible(true); 
     }
 
     /**
@@ -72,7 +73,6 @@ public class MainMenuTest {
         invokePrivateMethod("transferBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
         assertFalse(mainMenu.isVisible());
     }
-
     /**
      * Test the logout button MouseClicked functionality
      */

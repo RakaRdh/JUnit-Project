@@ -6,6 +6,7 @@ import java.sql.*;
 import javax.swing.*;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.mockito.*;
 
 public class RegistersCobaTest {
@@ -15,14 +16,21 @@ public class RegistersCobaTest {
     private PreparedStatement mockAddStmt;
     private PreparedStatement mockDetailsStmt;
     private ResultSet mockGeneratedKeys;
+    private Connection realConnection;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         registersCoba = new RegistersCoba();
         mockConnection = mock(Connection.class);
         mockAddStmt = mock(PreparedStatement.class);
         mockDetailsStmt = mock(PreparedStatement.class);
         mockGeneratedKeys = mock(ResultSet.class);
+
+        // Use the real database connection via DriverManager
+        realConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
+
+        // Inject the real connection into the RegistersCoba instance
+        registersCoba = new RegistersCoba(realConnection);
     }
 
     @Test
@@ -46,35 +54,34 @@ public class RegistersCobaTest {
     }
 
     @Test
-    public void testRegisterButtonClick_Valid() throws SQLException, Exception {
-        // Mock the database connection and prepared statement
-        when(mockConnection.prepareStatement(anyString(), anyInt())).thenReturn(mockAddStmt);
-        when(mockConnection.prepareStatement(anyString())).thenReturn(mockDetailsStmt);
-        when(mockAddStmt.getGeneratedKeys()).thenReturn(mockGeneratedKeys);
-        when(mockGeneratedKeys.next()).thenReturn(true);
-        when(mockGeneratedKeys.getInt(1)).thenReturn(1); // Simulate generated ID
+    public void testRegisterSuccess() throws Exception {
+        // Simulate form inputs
+        registersCoba.usernameTextField_Register.setText("TestUserSuccess");
+        registersCoba.pnTextField_Register.setText("081234564688");
+        registersCoba.passwordTextField_Register.setText("Password123_");
+        registersCoba.emailTextField_Register.setText("testusersuccess@example.com");
+        registersCoba.cpTextField_Register.setText("Password123_");
 
-        // Set valid form inputs
-        registersCoba.usernameTextField_Register.setText("MasAmba");
-        registersCoba.pnTextField_Register.setText("081243518275");
-        registersCoba.passwordTextField_Register.setText("Masamba123_");
-        registersCoba.emailTextField_Register.setText("Ambasing@example.com");
-        registersCoba.cpTextField_Register.setText("Masamba123_");
+        // Delete any existing entries for the test user
+        cleanUpTestUser("TestUserSuccess");
 
-        // Call the method for button click
+        // Trigger the registration method (simulate button click)
         Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
         registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        registerButtonClickMethod.invoke(registersCoba, (Object) null);
 
-//        NANTI TOLONG COBA COBAIN INI WAN, NTAH KENAPA KALO GW TAMBAHIN LINE DI BAWAH MALAH ERROR
-        
-//        // Verify that both statements were executed correctly
-//        verify(mockAddStmt, times(1)).executeUpdate();
-//        verify(mockDetailsStmt, times(1)).executeUpdate();
-//        verify(mockAddStmt, times(1)).getGeneratedKeys();
+        // Check if the account was inserted by querying the database
+        String checkUserSQL = "SELECT * FROM account WHERE username = ?";
+        PreparedStatement stmt = realConnection.prepareStatement(checkUserSQL);
+        stmt.setString(1, "TestUserSuccess");
+        ResultSet rs = stmt.executeQuery();
 
-        // Assert successful registration message (Mock JOptionPane)
-        assertEquals("Registration Successful", "Registration Successful");
+        // Assert that a result was found (i.e., the account was successfully inserted)
+        assertTrue(rs.next());
+        assertEquals("TestUserSuccess", rs.getString("username"));
+
+        // Clean up: Remove the test entry from account and accountdetails
+        cleanUpTestUser("TestUserSuccess");
     }
 
     @Test
@@ -154,7 +161,7 @@ public class RegistersCobaTest {
         assertEquals("Invalid email format", "Invalid email format");
 
     }
-    
+
     @Test
     public void testRegisterButtonClick_InvalidPhoneNumberFormat() throws SQLException, Exception {
         // Simulate form inputs with invalid email format
@@ -173,7 +180,7 @@ public class RegistersCobaTest {
         assertEquals("Invalid phone number format", "Invalid phone number format");
 
     }
-    
+
     @Test
     public void testRegisterButtonClick_InvalidPasswordFormat() throws SQLException, Exception {
         // Simulate form inputs with invalid email format
@@ -205,6 +212,20 @@ public class RegistersCobaTest {
 
 //        // Verify that the Login frame was opened and the current frame was disposed
 //        verify(spyRegisterCoba, times(1)).dispose();
+    }
+
+    private void cleanUpTestUser(String username) throws SQLException {
+        // First, delete the account details for the user
+        String deleteDetailsSQL = "DELETE FROM accountdetails WHERE id_account IN (SELECT id_account FROM account WHERE username = ?)";
+        PreparedStatement deleteDetailsStmt = realConnection.prepareStatement(deleteDetailsSQL);
+        deleteDetailsStmt.setString(1, username);
+        deleteDetailsStmt.executeUpdate();
+
+        // Then, delete the account itself
+        String deleteAccountSQL = "DELETE FROM account WHERE username = ?";
+        PreparedStatement deleteAccountStmt = realConnection.prepareStatement(deleteAccountSQL);
+        deleteAccountStmt.setString(1, username);
+        deleteAccountStmt.executeUpdate();
     }
 
     @After

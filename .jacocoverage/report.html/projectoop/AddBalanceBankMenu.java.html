@@ -78,10 +78,10 @@ public class AddBalanceBankMenu extends javax.swing.JFrame {
 
 <span class="pc bpc" id="L79" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="fc" id="L81">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="fc" id="L82">                    this.dispose();</span>
+<span class="nc" id="L81">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="nc" id="L82">                    this.dispose();</span>
                 } else {
-<span class="nc" id="L84">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+<span class="fc" id="L84">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
 <span class="fc" id="L86">            } else {</span>
 <span class="nc" id="L87">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
