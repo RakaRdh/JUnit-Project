@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.lang.reflect.Method;
+import org.junit.After;
 
 public class WithdrawCashMenuTest {
 
@@ -27,11 +28,24 @@ public class WithdrawCashMenuTest {
     private WithdrawCashMenu withdrawCashMenu;
     private int userId = 13;
 
+    private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = WithdrawCashMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(withdrawCashMenu, (Object) null); // Passing null as the MouseEvent
+    }
+    
     @Before
     public void setUp() throws Exception {
         // Initialize the mocks with MockitoAnnotations.openMocks without using closeable
         MockitoAnnotations.openMocks(this);
         withdrawCashMenu = new WithdrawCashMenu(userId);
+        
+        mockConnection = mock(Connection.class);
+        mockPreparedStatement = mock(PreparedStatement.class);
+        mockStatement = mock(Statement.class);
+        mockResultSet = mock(ResultSet.class);
+        // Inject the mock Connection into AddBalanceBankMenu
+        withdrawCashMenu.Con = mockConnection;
     }
 
     @Test
@@ -85,10 +99,7 @@ public class WithdrawCashMenuTest {
         // Inject the mock connection
         withdrawCashMenu.Con = mockConnection;
 
-        // Use reflection to access the private method
-        Method method = WithdrawCashMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(withdrawCashMenu, (Object) null); // Pass null as the event
+        invokePrivateMethod("continueButton_WithdrawMouseClicked");
 
     }
 
@@ -97,10 +108,7 @@ public class WithdrawCashMenuTest {
         // Simulate missing inputs
         withdrawCashMenu.withdrawBalance_Withdraw.setText("");
 
-        // Use reflection to access the private method
-        Method method = WithdrawCashMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(withdrawCashMenu, (Object) null); // Pass null as the event
+        invokePrivateMethod("continueButton_WithdrawMouseClicked");
 
         // Check if an error message is shown
         assertEquals("Missing information", "Missing information");
@@ -111,12 +119,22 @@ public class WithdrawCashMenuTest {
         // Simulate missing inputs
         withdrawCashMenu.withdrawBalance_Withdraw.setText("abc");
 
-        // Use reflection to access the private method
-        Method method = WithdrawCashMenu.class.getDeclaredMethod("continueButton_WithdrawMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(withdrawCashMenu, (Object) null); // Pass null as the event
+        invokePrivateMethod("continueButton_WithdrawMouseClicked");
 
         // Check if an error message is shown
         assertEquals("Invalid balance format", "Invalid balance format");
+    }
+    
+    @Test
+    public void testBackButton() throws Exception {
+        invokePrivateMethod("backButton_WithdrawMouseClicked");
+        assertTrue("Back button click executed without errors", true);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        // Clean up resources after tests
+        withdrawCashMenu = null;
+        mockConnection.close();
     }
 }

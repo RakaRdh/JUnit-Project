@@ -110,8 +110,8 @@ public class WDMethodMenu extends javax.swing.JFrame {
         });
 <span class="fc" id="L111">        Bank_MenuDP.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L113">                Bank_MenuDPActionPerformed(evt);</span>
-<span class="fc" id="L114">            }</span>
+<span class="nc" id="L113">                Bank_MenuDPActionPerformed(evt);</span>
+<span class="nc" id="L114">            }</span>
         });
 <span class="fc" id="L116">        jPanel1.add(Bank_MenuDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 390, 100));</span>
 
@@ -144,8 +144,8 @@ public class WDMethodMenu extends javax.swing.JFrame {
         });
 <span class="fc" id="L145">        BackButton_MenuDPWD.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L147">                BackButton_MenuDPWDActionPerformed(evt);</span>
-<span class="fc" id="L148">            }</span>
+<span class="nc" id="L147">                BackButton_MenuDPWDActionPerformed(evt);</span>
+<span class="nc" id="L148">            }</span>
         });
 <span class="fc" id="L150">        jPanel1.add(BackButton_MenuDPWD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 500, 70));</span>
 
@@ -168,43 +168,43 @@ public class WDMethodMenu extends javax.swing.JFrame {
 
     private void Bank_MenuDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bank_MenuDPActionPerformed
         // TODO add your handling code here:
-<span class="fc" id="L171">    }//GEN-LAST:event_Bank_MenuDPActionPerformed</span>
+<span class="nc" id="L171">    }//GEN-LAST:event_Bank_MenuDPActionPerformed</span>
 
     private void BackButton_MenuDPWDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButton_MenuDPWDActionPerformed
         // TODO add your handling code here:
-<span class="fc" id="L175">    }//GEN-LAST:event_BackButton_MenuDPWDActionPerformed</span>
+<span class="nc" id="L175">    }//GEN-LAST:event_BackButton_MenuDPWDActionPerformed</span>
 
     private void BackButton_MenuDPWDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButton_MenuDPWDMouseClicked
-<span class="nc" id="L178">       String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+<span class="fc" id="L178">       String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
 
         try {
-<span class="nc" id="L181">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L182">            St = Con.createStatement();</span>
-<span class="nc" id="L183">            Rs = St.executeQuery(Query);</span>
+<span class="fc" id="L181">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L182">            St = Con.createStatement();</span>
+<span class="fc" id="L183">            Rs = St.executeQuery(Query);</span>
 
             // Move the cursor to the first row and check if there are results
-<span class="nc bnc" id="L186" title="All 2 branches missed.">            if (Rs.next()) {</span>
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
 
-<span class="nc" id="L188">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
-<span class="nc" id="L189">                St2 = Con.createStatement();</span>
-<span class="nc" id="L190">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L188">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L189">                St2 = Con.createStatement();</span>
+<span class="fc" id="L190">                Rs2 = St2.executeQuery(Query2);</span>
 
-<span class="nc bnc" id="L192" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L194">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L195">                    this.dispose();</span>
+<span class="fc" id="L194">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L195">                    this.dispose();</span>
                 } else {
 <span class="nc" id="L197">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
-<span class="nc" id="L199">            } else {</span>
+<span class="fc" id="L199">            } else {</span>
 <span class="nc" id="L200">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
             }
 
 <span class="nc" id="L203">        } catch (Exception e) {</span>
 <span class="nc" id="L204">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L205">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L206">        }</span>
-<span class="nc" id="L207">    }//GEN-LAST:event_BackButton_MenuDPWDMouseClicked</span>
+<span class="fc" id="L206">        }</span>
+<span class="fc" id="L207">    }//GEN-LAST:event_BackButton_MenuDPWDMouseClicked</span>
 
     private void Cash_MenuDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cash_MenuDPActionPerformed
 <span class="fc" id="L210">        new WithdrawCashMenu(idUser).setVisible(true);</span>
@@ -212,9 +212,9 @@ public class WDMethodMenu extends javax.swing.JFrame {
 <span class="fc" id="L212">    }//GEN-LAST:event_Cash_MenuDPActionPerformed</span>
 
     private void Bank_MenuDPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bank_MenuDPMouseClicked
-<span class="nc" id="L215">        new WithdrawBankMenu(idUser).setVisible(true);</span>
-<span class="nc" id="L216">        this.dispose();</span>
-<span class="nc" id="L217">    }//GEN-LAST:event_Bank_MenuDPMouseClicked</span>
+<span class="fc" id="L215">        new WithdrawBankMenu(idUser).setVisible(true);</span>
+<span class="fc" id="L216">        this.dispose();</span>
+<span class="fc" id="L217">    }//GEN-LAST:event_Bank_MenuDPMouseClicked</span>
 
     /**
      * @param args the command line arguments

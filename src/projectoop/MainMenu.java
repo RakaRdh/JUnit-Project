@@ -232,6 +232,11 @@ public class MainMenu extends javax.swing.JFrame {
         utpButton_Menu.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         utpButton_Menu.setToolTipText("");
         utpButton_Menu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        utpButton_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                utpButton_MenuMouseClicked(evt);
+            }
+        });
         utpButton_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 utpButton_MenuActionPerformed(evt);
@@ -250,6 +255,11 @@ public class MainMenu extends javax.swing.JFrame {
         showTransactionButton_Menu.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
         showTransactionButton_Menu.setToolTipText("");
         showTransactionButton_Menu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        showTransactionButton_Menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                showTransactionButton_MenuMouseClicked(evt);
+            }
+        });
         showTransactionButton_Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showTransactionButton_MenuActionPerformed(evt);
@@ -371,6 +381,14 @@ public class MainMenu extends javax.swing.JFrame {
         new ShowTransaction(IdUser).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_showTransactionButton_MenuActionPerformed
+
+    private void utpButton_MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_utpButton_MenuMouseClicked
+        
+    }//GEN-LAST:event_utpButton_MenuMouseClicked
+
+    private void showTransactionButton_MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showTransactionButton_MenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showTransactionButton_MenuMouseClicked
 
     /**
      * @param args the command line arguments

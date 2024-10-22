@@ -150,6 +150,11 @@ public class WithdrawBankMenu extends javax.swing.JFrame {
                 backButton_WithdrawMouseClicked(evt);
             }
         });
+        backButton_Withdraw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButton_WithdrawActionPerformed(evt);
+            }
+        });
         jPanel1.add(backButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 185, 45));
 
         jPanel2.setBackground(new java.awt.Color(247, 247, 247));
@@ -266,6 +271,10 @@ public class WithdrawBankMenu extends javax.swing.JFrame {
     private void continueButton_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton_WithdrawActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_continueButton_WithdrawActionPerformed
+
+    private void backButton_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton_WithdrawActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backButton_WithdrawActionPerformed
 
     /**
      * @param args the command line arguments

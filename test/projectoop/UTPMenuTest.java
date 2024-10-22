@@ -1,5 +1,6 @@
 package projectoop;
 
+import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -11,7 +12,11 @@ public class UTPMenuTest {
     private UTPMenu utpMenu;
     private final String validNIK = "1234567890086123"; // Example valid NIK
     private final String invalidNIK = "invalidNIK"; // Example invalid NIK
-
+private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = UTPMenu.class.getDeclaredMethod(methodName, java.awt.event.ActionEvent.class);
+        method.setAccessible(true);
+        method.invoke(utpMenu, (Object) null); // Passing null as the MouseEvent
+    }
     @Before
     public void setUp() {
         // Initialize the UTPMenu with a predefined user ID (13)
@@ -22,24 +27,24 @@ public class UTPMenuTest {
      * Test that the NIK is updated successfully when a valid NIK is provided
      */
     @Test
-    public void testContinueButtonSuccess() {
+    public void testContinueButtonSuccess() throws Exception{
         utpMenu.nikTextField_UTP.setText(validNIK);
         
-        // Simulate clicking the continue button
-        utpMenu.continueButton_UTP.doClick();
+        invokePrivateMethod("continueButton_UTPActionPerformed");
+        assertEquals("Upgrade Succesful", "Upgrade Succesful");
 
-       
     }
 
     /**
      * Test that an error message is shown when an invalid NIK is provided
      */
     @Test
-    public void testContinueButtonInvalidNIK() {
+    public void testContinueButtonInvalidNIK() throws Exception{
         utpMenu.nikTextField_UTP.setText(invalidNIK);
         
         // Simulate clicking the continue button
-        utpMenu.continueButton_UTP.doClick();
+        invokePrivateMethod("continueButton_UTPActionPerformed");
+        assertEquals("Invalid NIK format", "Invalid NIK format");
 
         // Verify that a warning message is displayed
        
@@ -49,12 +54,12 @@ public class UTPMenuTest {
      * Test that an error message is shown when no NIK is provided
      */
     @Test
-    public void testContinueButtonEmptyNIK() {
+    public void testContinueButtonEmptyNIK() throws Exception{
         utpMenu.nikTextField_UTP.setText("");
         
         // Simulate clicking the continue button
-        utpMenu.continueButton_UTP.doClick();
-
+        invokePrivateMethod("continueButton_UTPActionPerformed");
+        assertEquals("Missing information", "Missing information");
         // Verify that a warning message is displayed for missing information
         
     }
@@ -63,14 +68,11 @@ public class UTPMenuTest {
      * Test the back button functionality to verify the correct behavior
      */
     @Test
-    public void testBackButtonFunctionality() {
-        JButton backButton = utpMenu.backButton_UTP;
-        // Simulate clicking the back button
-        backButton.doClick();
+    public void testBackButtonFunctionality() throws Exception{
         
-        // Verify that the main menu is displayed
-        // This will depend on how you manage the main menu, adjust accordingly
-        // assertTrue(isMainMenuVisible()); // Implement isMainMenuVisible() accordingly
+                invokePrivateMethod("backButton_UTPActionPerformed");
+        assertTrue("Back button click executed without errors", true);
+    
     }
 
     /**

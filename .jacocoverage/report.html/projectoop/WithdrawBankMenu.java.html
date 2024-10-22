@@ -74,10 +74,10 @@ public class WithdrawBankMenu extends javax.swing.JFrame {
 
 <span class="pc bpc" id="L75" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L77">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L78">                    this.dispose();</span>
+<span class="fc" id="L77">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L78">                    this.dispose();</span>
                 } else {
-<span class="fc" id="L80">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+<span class="nc" id="L80">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
 <span class="fc" id="L82">            } else {</span>
 <span class="nc" id="L83">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
@@ -150,122 +150,131 @@ public class WithdrawBankMenu extends javax.swing.JFrame {
 <span class="nc" id="L150">                backButton_WithdrawMouseClicked(evt);</span>
 <span class="nc" id="L151">            }</span>
         });
-<span class="fc" id="L153">        jPanel1.add(backButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 185, 45));</span>
-
-<span class="fc" id="L155">        jPanel2.setBackground(new java.awt.Color(247, 247, 247));</span>
-<span class="fc" id="L156">        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
-
-<span class="fc" id="L158">        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 4 copy 3.png&quot;))); // NOI18N</span>
-<span class="fc" id="L159">        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));</span>
-
-<span class="fc" id="L161">        jLabel2.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
-<span class="fc" id="L162">        jLabel2.setForeground(new java.awt.Color(0, 102, 153));</span>
-<span class="fc" id="L163">        jLabel2.setText(&quot;Withdraw Balance&quot;);</span>
-<span class="fc" id="L164">        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 24));</span>
-
-<span class="fc" id="L166">        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 85));</span>
-
-<span class="fc" id="L168">        jLabel3.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
-<span class="fc" id="L169">        jLabel3.setForeground(new java.awt.Color(255, 255, 255));</span>
-<span class="fc" id="L170">        jLabel3.setText(&quot;Enter Nominal to Withdraw&quot;);</span>
-<span class="fc" id="L171">        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));</span>
-
-<span class="fc" id="L173">        continueButton_Withdraw.setBackground(new java.awt.Color(0, 204, 255));</span>
-<span class="fc" id="L174">        continueButton_Withdraw.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 13)); // NOI18N</span>
-<span class="fc" id="L175">        continueButton_Withdraw.setText(&quot;Continue&quot;);</span>
-<span class="fc" id="L176">        continueButton_Withdraw.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));</span>
-<span class="fc" id="L177">        continueButton_Withdraw.addMouseListener(new java.awt.event.MouseAdapter() {</span>
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-<span class="nc" id="L179">                continueButton_WithdrawMouseClicked(evt);</span>
-<span class="nc" id="L180">            }</span>
-        });
-<span class="fc" id="L182">        continueButton_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L153">        backButton_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L184">                continueButton_WithdrawActionPerformed(evt);</span>
+<span class="nc" id="L155">                backButton_WithdrawActionPerformed(evt);</span>
+<span class="nc" id="L156">            }</span>
+        });
+<span class="fc" id="L158">        jPanel1.add(backButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 185, 45));</span>
+
+<span class="fc" id="L160">        jPanel2.setBackground(new java.awt.Color(247, 247, 247));</span>
+<span class="fc" id="L161">        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
+
+<span class="fc" id="L163">        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 4 copy 3.png&quot;))); // NOI18N</span>
+<span class="fc" id="L164">        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));</span>
+
+<span class="fc" id="L166">        jLabel2.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L167">        jLabel2.setForeground(new java.awt.Color(0, 102, 153));</span>
+<span class="fc" id="L168">        jLabel2.setText(&quot;Withdraw Balance&quot;);</span>
+<span class="fc" id="L169">        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 24));</span>
+
+<span class="fc" id="L171">        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 85));</span>
+
+<span class="fc" id="L173">        jLabel3.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L174">        jLabel3.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L175">        jLabel3.setText(&quot;Enter Nominal to Withdraw&quot;);</span>
+<span class="fc" id="L176">        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));</span>
+
+<span class="fc" id="L178">        continueButton_Withdraw.setBackground(new java.awt.Color(0, 204, 255));</span>
+<span class="fc" id="L179">        continueButton_Withdraw.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 13)); // NOI18N</span>
+<span class="fc" id="L180">        continueButton_Withdraw.setText(&quot;Continue&quot;);</span>
+<span class="fc" id="L181">        continueButton_Withdraw.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));</span>
+<span class="fc" id="L182">        continueButton_Withdraw.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+<span class="nc" id="L184">                continueButton_WithdrawMouseClicked(evt);</span>
 <span class="nc" id="L185">            }</span>
         });
-<span class="fc" id="L187">        jPanel1.add(continueButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 185, 45));</span>
-
-<span class="fc" id="L189">        withdrawBalance_Withdraw1.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L187">        continueButton_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L191">                withdrawBalance_Withdraw1ActionPerformed(evt);</span>
-<span class="nc" id="L192">            }</span>
+<span class="nc" id="L189">                continueButton_WithdrawActionPerformed(evt);</span>
+<span class="nc" id="L190">            }</span>
         });
-<span class="fc" id="L194">        jPanel1.add(withdrawBalance_Withdraw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 425, 30));</span>
+<span class="fc" id="L192">        jPanel1.add(continueButton_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 185, 45));</span>
 
-<span class="fc" id="L196">        jLabel4.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
-<span class="fc" id="L197">        jLabel4.setForeground(new java.awt.Color(255, 255, 255));</span>
-<span class="fc" id="L198">        jLabel4.setText(&quot;Enter Your Bank Account Number&quot;);</span>
-<span class="fc" id="L199">        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));</span>
-
-<span class="fc" id="L201">        withdrawBalance_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L194">        withdrawBalance_Withdraw1.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="nc" id="L203">                withdrawBalance_WithdrawActionPerformed(evt);</span>
-<span class="nc" id="L204">            }</span>
+<span class="nc" id="L196">                withdrawBalance_Withdraw1ActionPerformed(evt);</span>
+<span class="nc" id="L197">            }</span>
         });
-<span class="fc" id="L206">        jPanel1.add(withdrawBalance_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 425, 30));</span>
+<span class="fc" id="L199">        jPanel1.add(withdrawBalance_Withdraw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 425, 30));</span>
 
-<span class="fc" id="L208">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy.png&quot;))); // NOI18N</span>
-<span class="fc" id="L209">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));</span>
+<span class="fc" id="L201">        jLabel4.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L202">        jLabel4.setForeground(new java.awt.Color(255, 255, 255));</span>
+<span class="fc" id="L203">        jLabel4.setText(&quot;Enter Your Bank Account Number&quot;);</span>
+<span class="fc" id="L204">        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));</span>
 
-<span class="fc" id="L211">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
-<span class="fc" id="L212">        getContentPane().setLayout(layout);</span>
-<span class="fc" id="L213">        layout.setHorizontalGroup(</span>
-<span class="fc" id="L214">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L215">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L206">        withdrawBalance_Withdraw.addActionListener(new java.awt.event.ActionListener() {</span>
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+<span class="nc" id="L208">                withdrawBalance_WithdrawActionPerformed(evt);</span>
+<span class="nc" id="L209">            }</span>
+        });
+<span class="fc" id="L211">        jPanel1.add(withdrawBalance_Withdraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 425, 30));</span>
+
+<span class="fc" id="L213">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy.png&quot;))); // NOI18N</span>
+<span class="fc" id="L214">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));</span>
+
+<span class="fc" id="L216">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="fc" id="L217">        getContentPane().setLayout(layout);</span>
+<span class="fc" id="L218">        layout.setHorizontalGroup(</span>
+<span class="fc" id="L219">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L220">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
-<span class="fc" id="L217">        layout.setVerticalGroup(</span>
-<span class="fc" id="L218">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L219">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L222">        layout.setVerticalGroup(</span>
+<span class="fc" id="L223">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L224">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
 
-<span class="fc" id="L222">        pack();</span>
-<span class="fc" id="L223">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+<span class="fc" id="L227">        pack();</span>
+<span class="fc" id="L228">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
 
     private void withdrawBalance_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawBalance_WithdrawActionPerformed
         // TODO add your handling code here:
-<span class="nc" id="L227">    }//GEN-LAST:event_withdrawBalance_WithdrawActionPerformed</span>
+<span class="nc" id="L232">    }//GEN-LAST:event_withdrawBalance_WithdrawActionPerformed</span>
 
     private void withdrawBalance_Withdraw1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawBalance_Withdraw1ActionPerformed
         // TODO add your handling code here:
-<span class="nc" id="L231">    }//GEN-LAST:event_withdrawBalance_Withdraw1ActionPerformed</span>
+<span class="nc" id="L236">    }//GEN-LAST:event_withdrawBalance_Withdraw1ActionPerformed</span>
 
     private void continueButton_WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continueButton_WithdrawMouseClicked
-<span class="pc bpc" id="L234" title="1 of 4 branches missed.">        if(withdrawBalance_Withdraw1.getText().isEmpty() || withdrawBalance_Withdraw.getText().isEmpty()){</span>
-<span class="fc" id="L235">        JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="fc bfc" id="L236" title="All 2 branches covered.">    } else if (!Validation.isValidBalance(withdrawBalance_Withdraw.getText())){</span>
-<span class="fc" id="L237">        JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="fc bfc" id="L238" title="All 2 branches covered.">    } else if (!Validation.isValidBalance(withdrawBalance_Withdraw1.getText())){</span>
-<span class="fc" id="L239">        JOptionPane.showMessageDialog(this, &quot;Invalid bank number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="pc bpc" id="L239" title="1 of 4 branches missed.">        if(withdrawBalance_Withdraw1.getText().isEmpty() || withdrawBalance_Withdraw.getText().isEmpty()){</span>
+<span class="fc" id="L240">        JOptionPane.showMessageDialog(this, &quot;Missing information&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L241" title="All 2 branches covered.">    } else if (!Validation.isValidBalance(withdrawBalance_Withdraw.getText())){</span>
+<span class="fc" id="L242">        JOptionPane.showMessageDialog(this, &quot;Invalid balance format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">    } else if (!Validation.isValidBalance(withdrawBalance_Withdraw1.getText())){</span>
+<span class="fc" id="L244">        JOptionPane.showMessageDialog(this, &quot;Invalid bank number format&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
     } else {
-<span class="fc" id="L241">            GetBalance();</span>
+<span class="fc" id="L246">            GetBalance();</span>
             try{
-<span class="fc" id="L243">                String Query = &quot;Update account set balance=? where id_account=?&quot;;</span>
-<span class="fc" id="L244">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
-<span class="fc" id="L245">                PreparedStatement ps = Con.prepareStatement(Query);</span>
-<span class="fc" id="L246">                ps.setDouble(1, OldBalance-Double.valueOf(withdrawBalance_Withdraw.getText()));</span>
-<span class="fc" id="L247">                ps.setInt(2, idUser);</span>
-<span class="pc bpc" id="L248" title="1 of 2 branches missed.">                if(ps.executeUpdate()==1){</span>
-<span class="fc" id="L249">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Succesful&quot;);</span>
-<span class="fc" id="L250">                    SaveTransaction();</span>
-<span class="fc" id="L251">                    backMenu();</span>
+<span class="fc" id="L248">                String Query = &quot;Update account set balance=? where id_account=?&quot;;</span>
+<span class="fc" id="L249">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
+<span class="fc" id="L250">                PreparedStatement ps = Con.prepareStatement(Query);</span>
+<span class="fc" id="L251">                ps.setDouble(1, OldBalance-Double.valueOf(withdrawBalance_Withdraw.getText()));</span>
+<span class="fc" id="L252">                ps.setInt(2, idUser);</span>
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">                if(ps.executeUpdate()==1){</span>
+<span class="fc" id="L254">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Succesful&quot;);</span>
+<span class="fc" id="L255">                    SaveTransaction();</span>
+<span class="fc" id="L256">                    backMenu();</span>
                 } else {
-<span class="nc" id="L253">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Failed&quot;);</span>
+<span class="nc" id="L258">                    JOptionPane.showMessageDialog(this, &quot;Withdraw Failed&quot;);</span>
                 }
-<span class="nc" id="L255">            }catch(Exception e){</span>
-<span class="nc" id="L256">                JOptionPane.showMessageDialog(this, e);</span>
-<span class="fc" id="L257">            }</span>
+<span class="nc" id="L260">            }catch(Exception e){</span>
+<span class="nc" id="L261">                JOptionPane.showMessageDialog(this, e);</span>
+<span class="fc" id="L262">            }</span>
         }
-<span class="fc" id="L259">    }//GEN-LAST:event_continueButton_WithdrawMouseClicked</span>
+<span class="fc" id="L264">    }//GEN-LAST:event_continueButton_WithdrawMouseClicked</span>
 
     private void backButton_WithdrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButton_WithdrawMouseClicked
-<span class="nc" id="L262">        new AddMethodMenu(idUser).setVisible(true);</span>
-<span class="nc" id="L263">        this.dispose();</span>
-<span class="nc" id="L264">    }//GEN-LAST:event_backButton_WithdrawMouseClicked</span>
+<span class="fc" id="L267">        new AddMethodMenu(idUser).setVisible(true);</span>
+<span class="fc" id="L268">        this.dispose();</span>
+<span class="fc" id="L269">    }//GEN-LAST:event_backButton_WithdrawMouseClicked</span>
 
     private void continueButton_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton_WithdrawActionPerformed
         // TODO add your handling code here:
-<span class="nc" id="L268">    }//GEN-LAST:event_continueButton_WithdrawActionPerformed</span>
+<span class="nc" id="L273">    }//GEN-LAST:event_continueButton_WithdrawActionPerformed</span>
+
+    private void backButton_WithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton_WithdrawActionPerformed
+        // TODO add your handling code here:
+<span class="nc" id="L277">    }//GEN-LAST:event_backButton_WithdrawActionPerformed</span>
 
     /**
      * @param args the command line arguments
@@ -277,21 +286,21 @@ public class WithdrawBankMenu extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L280" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L281" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L282">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L283">                    break;</span>
+<span class="nc bnc" id="L289" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="nc" id="L291">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="nc" id="L292">                    break;</span>
                 }
             }
-<span class="nc" id="L286">        } catch (ClassNotFoundException ex) {</span>
-<span class="nc" id="L287">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L288">        } catch (InstantiationException ex) {</span>
-<span class="nc" id="L289">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L290">        } catch (IllegalAccessException ex) {</span>
-<span class="nc" id="L291">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L292">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
-<span class="nc" id="L293">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L294">        }</span>
+<span class="nc" id="L295">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L296">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L297">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L298">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L299">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L300">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L301">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L302">            java.util.logging.Logger.getLogger(WithdrawBankMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L303">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
@@ -302,12 +311,12 @@ public class WithdrawBankMenu extends javax.swing.JFrame {
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L305">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="nc" id="L314">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L307">                new WithdrawBankMenu().setVisible(true);</span>
-<span class="nc" id="L308">            }</span>
+<span class="nc" id="L316">                new WithdrawBankMenu().setVisible(true);</span>
+<span class="nc" id="L317">            }</span>
         });
-<span class="nc" id="L310">    }</span>
+<span class="nc" id="L319">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backButton_Withdraw;

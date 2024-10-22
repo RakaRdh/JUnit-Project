@@ -49,7 +49,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 
 
 
-    private void GetSenderBalance() {
+    public void GetSenderBalance() {
 <span class="fc" id="L53">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
         try {
 <span class="fc" id="L55">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
@@ -67,7 +67,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 <span class="fc" id="L67">        }</span>
 <span class="fc" id="L68">    }</span>
 
-    private void GetRecepientBalance() {
+    public void GetRecepientBalance() {
 <span class="fc" id="L71">        RecepientPhoneNumber = phoneNumberTextField_Transfer.getText();</span>
 <span class="fc" id="L72">        String Query = &quot;select * from accountdetails where phonenumber='&quot; + RecepientPhoneNumber + &quot;'&quot;;</span>
         try {
@@ -95,7 +95,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 <span class="fc" id="L95">        }</span>
 <span class="fc" id="L96">    }</span>
     
-    private void SaveTransaction(){
+    public void SaveTransaction(){
 <span class="fc" id="L99">        String QueryAddSender = &quot;insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)&quot;;</span>
     try { 
 <span class="fc" id="L101">             Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
@@ -293,10 +293,10 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 
 <span class="pc bpc" id="L294" title="1 of 2 branches missed.">                                if (Rs2.next()) {</span>
                                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L296">                                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L297">                                    this.dispose();</span>
+<span class="fc" id="L296">                                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L297">                                    this.dispose();</span>
                                 } else {
-<span class="fc" id="L299">                                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+<span class="nc" id="L299">                                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                                 }
 <span class="fc" id="L301">                            } else {</span>
 <span class="nc" id="L302">                                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
@@ -317,36 +317,36 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 <span class="fc" id="L317">    }//GEN-LAST:event_continueButton_TransferMouseClicked</span>
 
     private void backButton_TransferMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButton_TransferMouseClicked
-<span class="nc" id="L320">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+<span class="fc" id="L320">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
 
         try {
-<span class="nc" id="L323">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L324">            St = Con.createStatement();</span>
-<span class="nc" id="L325">            Rs = St.executeQuery(Query);</span>
+<span class="fc" id="L323">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L324">            St = Con.createStatement();</span>
+<span class="fc" id="L325">            Rs = St.executeQuery(Query);</span>
 
             // Move the cursor to the first row and check if there are results
-<span class="nc bnc" id="L328" title="All 2 branches missed.">            if (Rs.next()) {</span>
+<span class="pc bpc" id="L328" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
 
-<span class="nc" id="L330">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
-<span class="nc" id="L331">                St2 = Con.createStatement();</span>
-<span class="nc" id="L332">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L330">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L331">                St2 = Con.createStatement();</span>
+<span class="fc" id="L332">                Rs2 = St2.executeQuery(Query2);</span>
 
-<span class="nc bnc" id="L334" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L334" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L336">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L337">                    this.dispose();</span>
+<span class="fc" id="L336">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L337">                    this.dispose();</span>
                 } else {
 <span class="nc" id="L339">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
-<span class="nc" id="L341">            } else {</span>
+<span class="fc" id="L341">            } else {</span>
 <span class="nc" id="L342">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
             }
 
 <span class="nc" id="L345">        } catch (Exception e) {</span>
 <span class="nc" id="L346">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L347">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L348">        }</span>
-<span class="nc" id="L349">    }//GEN-LAST:event_backButton_TransferMouseClicked</span>
+<span class="fc" id="L348">        }</span>
+<span class="fc" id="L349">    }//GEN-LAST:event_backButton_TransferMouseClicked</span>
 
     private void continueButton_TransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButton_TransferActionPerformed
         // TODO add your handling code here:

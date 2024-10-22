@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.lang.reflect.Method;
+import org.junit.After;
 
 public class AddBalanceCashMenuTest {
 
@@ -27,15 +28,28 @@ public class AddBalanceCashMenuTest {
     private AddBalanceCashMenu addBalanceCashMenu;
     private int userId = 13;
 
+    // Helper method to invoke private methods using reflection
+    private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = AddBalanceCashMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(addBalanceCashMenu, (Object) null); // Passing null as the MouseEvent
+    }
+
     @Before
     public void setUp() throws Exception {
         // Initialize the mocks with MockitoAnnotations.openMocks without using closeable
         MockitoAnnotations.openMocks(this);
         addBalanceCashMenu = new AddBalanceCashMenu(userId);
-                addBalanceCashMenu.setVisible(true);  // Ensure the window is visible
-
+        addBalanceCashMenu.setVisible(true);  // Ensure the window is visible
+// Set up mock objects explicitly as per request
+        mockConnection = mock(Connection.class);
+        mockPreparedStatement = mock(PreparedStatement.class);
+        mockStatement = mock(Statement.class);
+        mockResultSet = mock(ResultSet.class);
+        // Inject the mock Connection into AddBalanceBankMenu
+        addBalanceCashMenu.Con = mockConnection;
     }
-    
+
     @Test
     public void testMain() {
         String[] args = null;
@@ -95,9 +109,7 @@ public class AddBalanceCashMenuTest {
         addBalanceCashMenu.Con = mockConnection;
 
         // Use reflection to access the private method
-        Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
+        invokePrivateMethod("continueButton_AddBalanceCashMouseClicked");
 
     }
 
@@ -106,41 +118,32 @@ public class AddBalanceCashMenuTest {
         // Simulate missing inputs
         addBalanceCashMenu.depoTextField_AddBalance.setText("");
 
-        // Use reflection to access the private method
-        Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
+        invokePrivateMethod("continueButton_AddBalanceCashMouseClicked");
 
         // Check if an error message is shown
         assertEquals("Missing information", "Missing information");
     }
-    
+
     @Test
     public void testContinueButtonWithInvalidBalanceFormat() throws Exception {
         // Simulate missing inputs
         addBalanceCashMenu.depoTextField_AddBalance.setText("abc");
-
-        // Use reflection to access the private method
-        Method method = AddBalanceCashMenu.class.getDeclaredMethod("continueButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
+        invokePrivateMethod("continueButton_AddBalanceCashMouseClicked");
 
         // Check if an error message is shown
         assertEquals("Invalid balance format", "Invalid balance format");
     }
-    
+
     @Test
     public void testBackButton() throws Exception {
-        // Use reflection to access the private back button method
-        Method method = AddBalanceCashMenu.class.getDeclaredMethod("backButton_AddBalanceCashMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-
-        // Simulate clicking the back button by invoking the method
-        method.invoke(addBalanceCashMenu, (Object) null); // Pass null as the event
-
-        // Verify if the back button behavior is triggered, like opening AddMethodMenu
-        // (Since it's GUI behavior, you might not be able to test the GUI change directly.
-        // Instead, ensure no exceptions were thrown and the method executed successfully)
+        invokePrivateMethod("backButton_AddBalanceCashMouseClicked");
         assertTrue("Back button click executed without errors", true);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        // Clean up resources after tests
+        addBalanceCashMenu = null;
+        mockConnection.close();
     }
 }

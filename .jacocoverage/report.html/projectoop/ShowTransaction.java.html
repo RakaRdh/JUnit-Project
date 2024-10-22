@@ -26,16 +26,16 @@ import projectoop.*;
  */
 public class ShowTransaction extends javax.swing.JFrame {
     
-<span class="pc" id="L29">    Connection Con = null;</span>
-<span class="pc" id="L30">    PreparedStatement pst = null;</span>
-<span class="pc" id="L31">    ResultSet Rs = null;</span>
-<span class="pc" id="L32">    Statement St = null;</span>
+<span class="fc" id="L29">    Connection Con = null;</span>
+<span class="fc" id="L30">    PreparedStatement pst = null;</span>
+<span class="fc" id="L31">    ResultSet Rs = null;</span>
+<span class="fc" id="L32">    Statement St = null;</span>
     
-<span class="nc" id="L34">    public ShowTransaction() {</span>
-<span class="nc" id="L35">        DisplayTr();</span>
-<span class="nc" id="L36">        initComponents();</span>
+<span class="fc" id="L34">    public ShowTransaction() {</span>
+<span class="fc" id="L35">        DisplayTr();</span>
+<span class="fc" id="L36">        initComponents();</span>
 
-<span class="nc" id="L38">    }</span>
+<span class="fc" id="L38">    }</span>
    
     int idUser;
     Statement St2;
@@ -66,39 +66,38 @@ public class ShowTransaction extends javax.swing.JFrame {
 <span class="fc" id="L66">        jScrollPane1 = new javax.swing.JScrollPane();</span>
 <span class="fc" id="L67">        TransactionTable_Transaction = new javax.swing.JTable();</span>
 <span class="fc" id="L68">        BackButton_Transaction = new javax.swing.JButton();</span>
-<span class="fc" id="L69">        ShowHistoryButton_History = new javax.swing.JButton();</span>
-<span class="fc" id="L70">        jLabel1 = new javax.swing.JLabel();</span>
+<span class="fc" id="L69">        jLabel1 = new javax.swing.JLabel();</span>
 
-<span class="fc" id="L72">        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);</span>
-<span class="fc" id="L73">        jLayeredPane1.setLayout(jLayeredPane1Layout);</span>
-<span class="fc" id="L74">        jLayeredPane1Layout.setHorizontalGroup(</span>
-<span class="fc" id="L75">            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L76">            .addGap(0, 100, Short.MAX_VALUE)</span>
+<span class="fc" id="L71">        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);</span>
+<span class="fc" id="L72">        jLayeredPane1.setLayout(jLayeredPane1Layout);</span>
+<span class="fc" id="L73">        jLayeredPane1Layout.setHorizontalGroup(</span>
+<span class="fc" id="L74">            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L75">            .addGap(0, 100, Short.MAX_VALUE)</span>
         );
-<span class="fc" id="L78">        jLayeredPane1Layout.setVerticalGroup(</span>
-<span class="fc" id="L79">            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L80">            .addGap(0, 100, Short.MAX_VALUE)</span>
+<span class="fc" id="L77">        jLayeredPane1Layout.setVerticalGroup(</span>
+<span class="fc" id="L78">            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L79">            .addGap(0, 100, Short.MAX_VALUE)</span>
         );
 
-<span class="fc" id="L83">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
+<span class="fc" id="L82">        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);</span>
 
-<span class="fc" id="L85">        jPanel1.setBackground(new java.awt.Color(0, 102, 153));</span>
-<span class="fc" id="L86">        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
+<span class="fc" id="L84">        jPanel1.setBackground(new java.awt.Color(0, 102, 153));</span>
+<span class="fc" id="L85">        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
 
-<span class="fc" id="L88">        jPanel2.setBackground(new java.awt.Color(247, 247, 247));</span>
-<span class="fc" id="L89">        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
+<span class="fc" id="L87">        jPanel2.setBackground(new java.awt.Color(247, 247, 247));</span>
+<span class="fc" id="L88">        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());</span>
 
-<span class="fc" id="L91">        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/6.png&quot;))); // NOI18N</span>
-<span class="fc" id="L92">        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));</span>
+<span class="fc" id="L90">        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/6.png&quot;))); // NOI18N</span>
+<span class="fc" id="L91">        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));</span>
 
-<span class="fc" id="L94">        jLabel3.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
-<span class="fc" id="L95">        jLabel3.setForeground(new java.awt.Color(0, 102, 153));</span>
-<span class="fc" id="L96">        jLabel3.setText(&quot;Transaction History&quot;);</span>
-<span class="fc" id="L97">        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 24));</span>
+<span class="fc" id="L93">        jLabel3.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 18)); // NOI18N</span>
+<span class="fc" id="L94">        jLabel3.setForeground(new java.awt.Color(0, 102, 153));</span>
+<span class="fc" id="L95">        jLabel3.setText(&quot;Transaction History&quot;);</span>
+<span class="fc" id="L96">        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 24));</span>
 
-<span class="fc" id="L99">        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 85));</span>
+<span class="fc" id="L98">        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 85));</span>
 
-<span class="fc" id="L101">        TransactionTable_Transaction.setModel(new javax.swing.table.DefaultTableModel(</span>
+<span class="fc" id="L100">        TransactionTable_Transaction.setModel(new javax.swing.table.DefaultTableModel(</span>
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -130,113 +129,100 @@ public class ShowTransaction extends javax.swing.JFrame {
                 &quot;Transaction ID&quot;, &quot;Username ID&quot;, &quot;Transaction&quot;, &quot;Amount&quot;
             }
         ));
-<span class="fc" id="L133">        jScrollPane1.setViewportView(TransactionTable_Transaction);</span>
+<span class="fc" id="L132">        jScrollPane1.setViewportView(TransactionTable_Transaction);</span>
 
-<span class="fc" id="L135">        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 480, 440));</span>
+<span class="fc" id="L134">        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 480, 440));</span>
 
-<span class="fc" id="L137">        BackButton_Transaction.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 13)); // NOI18N</span>
-<span class="fc" id="L138">        BackButton_Transaction.setText(&quot;Back&quot;);</span>
-<span class="fc" id="L139">        BackButton_Transaction.addMouseListener(new java.awt.event.MouseAdapter() {</span>
+<span class="fc" id="L136">        BackButton_Transaction.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 13)); // NOI18N</span>
+<span class="fc" id="L137">        BackButton_Transaction.setText(&quot;Back&quot;);</span>
+<span class="fc" id="L138">        BackButton_Transaction.addMouseListener(new java.awt.event.MouseAdapter() {</span>
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-<span class="nc" id="L141">                BackButton_TransactionMouseClicked(evt);</span>
-<span class="nc" id="L142">            }</span>
+<span class="nc" id="L140">                BackButton_TransactionMouseClicked(evt);</span>
+<span class="nc" id="L141">            }</span>
         });
-<span class="fc" id="L144">        jPanel1.add(BackButton_Transaction, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 580, 185, 45));</span>
-
-<span class="fc" id="L146">        ShowHistoryButton_History.setFont(new java.awt.Font(&quot;Yu Gothic&quot;, 1, 13)); // NOI18N</span>
-<span class="fc" id="L147">        ShowHistoryButton_History.setText(&quot;Show History&quot;);</span>
-<span class="fc" id="L148">        ShowHistoryButton_History.addMouseListener(new java.awt.event.MouseAdapter() {</span>
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-<span class="nc" id="L150">                ShowHistoryButton_HistoryMouseClicked(evt);</span>
-<span class="nc" id="L151">            }</span>
-        });
-<span class="fc" id="L153">        ShowHistoryButton_History.addActionListener(new java.awt.event.ActionListener() {</span>
+<span class="fc" id="L143">        BackButton_Transaction.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L155">                ShowHistoryButton_HistoryActionPerformed(evt);</span>
-<span class="fc" id="L156">            }</span>
+<span class="nc" id="L145">                BackButton_TransactionActionPerformed(evt);</span>
+<span class="nc" id="L146">            }</span>
         });
-<span class="fc" id="L158">        jPanel1.add(ShowHistoryButton_History, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 185, 45));</span>
+<span class="fc" id="L148">        jPanel1.add(BackButton_Transaction, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 580, 470, 45));</span>
 
-<span class="fc" id="L160">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy 2.png&quot;))); // NOI18N</span>
-<span class="fc" id="L161">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));</span>
+<span class="fc" id="L150">        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/projectoop/icon/Artboard 1 copy 2.png&quot;))); // NOI18N</span>
+<span class="fc" id="L151">        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));</span>
 
-<span class="fc" id="L163">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
-<span class="fc" id="L164">        getContentPane().setLayout(layout);</span>
-<span class="fc" id="L165">        layout.setHorizontalGroup(</span>
-<span class="fc" id="L166">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L167">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L153">        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());</span>
+<span class="fc" id="L154">        getContentPane().setLayout(layout);</span>
+<span class="fc" id="L155">        layout.setHorizontalGroup(</span>
+<span class="fc" id="L156">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L157">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
-<span class="fc" id="L169">        layout.setVerticalGroup(</span>
-<span class="fc" id="L170">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
-<span class="fc" id="L171">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
+<span class="fc" id="L159">        layout.setVerticalGroup(</span>
+<span class="fc" id="L160">            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)</span>
+<span class="fc" id="L161">            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)</span>
         );
 
-<span class="fc" id="L174">        pack();</span>
-<span class="fc" id="L175">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
+<span class="fc" id="L164">        pack();</span>
+<span class="fc" id="L165">    }// &lt;/editor-fold&gt;//GEN-END:initComponents</span>
 
     public void DisplayTr(){
-<span class="fc" id="L178">    String QueryDis = &quot;select * from transaction where id_account=&quot; + idUser;</span>
+<span class="fc" id="L168">    String QueryDis = &quot;select * from transaction where id_account=&quot; + idUser;</span>
     try {
-<span class="fc" id="L180">        Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="fc" id="L181">        St = Con.createStatement();</span>
-<span class="fc" id="L182">        Rs = St.executeQuery(QueryDis);</span>
+<span class="fc" id="L170">        Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L171">        St = Con.createStatement();</span>
+<span class="fc" id="L172">        Rs = St.executeQuery(QueryDis);</span>
 
         // Ubah model tabel menggunakan DbUtils dan simpan modelnya ke variabel
-<span class="fc" id="L185">        DefaultTableModel model = (DefaultTableModel) DbUtils.resultSetToTableModel(Rs);</span>
+<span class="fc" id="L175">        DefaultTableModel model = (DefaultTableModel) DbUtils.resultSetToTableModel(Rs);</span>
 
         // Ubah nama kolom di tabel model
-<span class="fc" id="L188">        String[] columnNames = {&quot;Transaction ID&quot;, &quot;Account ID&quot;, &quot;Transaction Type&quot;, &quot;Amount&quot;};</span>
-<span class="fc" id="L189">        model.setColumnIdentifiers(columnNames);</span>
+<span class="fc" id="L178">        String[] columnNames = {&quot;Transaction ID&quot;, &quot;Account ID&quot;, &quot;Transaction Type&quot;, &quot;Amount&quot;};</span>
+<span class="fc" id="L179">        model.setColumnIdentifiers(columnNames);</span>
 
         // Set model yang telah diubah ke JTable
-<span class="fc" id="L192">        TransactionTable_Transaction.setModel(model);</span>
+<span class="fc" id="L182">        TransactionTable_Transaction.setModel(model);</span>
         
-<span class="nc" id="L194">    } catch (Exception e) {</span>
-<span class="nc" id="L195">        e.printStackTrace();</span>
-<span class="fc" id="L196">    }</span>
-<span class="fc" id="L197">}</span>
+<span class="fc" id="L184">    } catch (Exception e) {</span>
+<span class="fc" id="L185">        e.printStackTrace();</span>
+<span class="fc" id="L186">    }</span>
+<span class="fc" id="L187">}</span>
 
     
     
     private void BackButton_TransactionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BackButton_TransactionMouseClicked
-<span class="nc" id="L202">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+<span class="fc" id="L192">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
 
         try {
-<span class="nc" id="L205">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L206">            St = Con.createStatement();</span>
-<span class="nc" id="L207">            Rs = St.executeQuery(Query);</span>
+<span class="fc" id="L195">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L196">            St = Con.createStatement();</span>
+<span class="fc" id="L197">            Rs = St.executeQuery(Query);</span>
 
             // Move the cursor to the first row and check if there are results
-<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (Rs.next()) {</span>
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
 
-<span class="nc" id="L212">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
-<span class="nc" id="L213">                St2 = Con.createStatement();</span>
-<span class="nc" id="L214">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L202">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L203">                St2 = Con.createStatement();</span>
+<span class="fc" id="L204">                Rs2 = St2.executeQuery(Query2);</span>
 
-<span class="nc bnc" id="L216" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L206" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L218">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L219">                    this.dispose();</span>
+<span class="fc" id="L208">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L209">                    this.dispose();</span>
                 } else {
-<span class="nc" id="L221">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+<span class="nc" id="L211">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
-<span class="nc" id="L223">            } else {</span>
-<span class="nc" id="L224">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
+<span class="fc" id="L213">            } else {</span>
+<span class="nc" id="L214">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
             }
 
-<span class="nc" id="L227">        } catch (Exception e) {</span>
-<span class="nc" id="L228">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
-<span class="nc" id="L229">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L230">        }</span>
-<span class="nc" id="L231">    }//GEN-LAST:event_BackButton_TransactionMouseClicked</span>
+<span class="nc" id="L217">        } catch (Exception e) {</span>
+<span class="nc" id="L218">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
+<span class="nc" id="L219">            System.out.println(e.getMessage());</span>
+<span class="fc" id="L220">        }</span>
+<span class="fc" id="L221">    }//GEN-LAST:event_BackButton_TransactionMouseClicked</span>
 
-    private void ShowHistoryButton_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowHistoryButton_HistoryActionPerformed
+    private void BackButton_TransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButton_TransactionActionPerformed
         // TODO add your handling code here:
-<span class="fc" id="L235">    }//GEN-LAST:event_ShowHistoryButton_HistoryActionPerformed</span>
-
-    private void ShowHistoryButton_HistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShowHistoryButton_HistoryMouseClicked
-<span class="nc" id="L238">DisplayTr();</span>
-<span class="nc" id="L239">    }//GEN-LAST:event_ShowHistoryButton_HistoryMouseClicked</span>
+<span class="nc" id="L225">    }//GEN-LAST:event_BackButton_TransactionActionPerformed</span>
     
     
     /**
@@ -249,21 +235,21 @@ public class ShowTransaction extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L252" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L253" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L254">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L255">                    break;</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L239" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="fc" id="L240">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L241">                    break;</span>
                 }
             }
-<span class="nc" id="L258">        } catch (ClassNotFoundException ex) {</span>
-<span class="nc" id="L259">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L260">        } catch (InstantiationException ex) {</span>
-<span class="nc" id="L261">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L262">        } catch (IllegalAccessException ex) {</span>
-<span class="nc" id="L263">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L264">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
-<span class="nc" id="L265">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L266">        }</span>
+<span class="nc" id="L244">        } catch (ClassNotFoundException ex) {</span>
+<span class="nc" id="L245">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L246">        } catch (InstantiationException ex) {</span>
+<span class="nc" id="L247">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L248">        } catch (IllegalAccessException ex) {</span>
+<span class="nc" id="L249">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="nc" id="L250">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
+<span class="nc" id="L251">            java.util.logging.Logger.getLogger(ShowTransaction.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
+<span class="pc" id="L252">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
@@ -298,16 +284,15 @@ public class ShowTransaction extends javax.swing.JFrame {
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L301">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="fc" id="L287">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L303">                new ShowTransaction().setVisible(true);</span>
-<span class="nc" id="L304">            }</span>
+<span class="fc" id="L289">                new ShowTransaction().setVisible(true);</span>
+<span class="fc" id="L290">            }</span>
         });
-<span class="nc" id="L306">    }</span>
+<span class="fc" id="L292">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BackButton_Transaction;
-    public javax.swing.JButton ShowHistoryButton_History;
     public javax.swing.JTable TransactionTable_Transaction;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel3;

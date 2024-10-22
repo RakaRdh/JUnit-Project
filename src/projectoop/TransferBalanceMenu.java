@@ -49,7 +49,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
 
 
 
-    private void GetSenderBalance() {
+    public void GetSenderBalance() {
         String Query = "select * from account where id_account=" + idUser;
         try {
             Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");
@@ -67,7 +67,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
         }
     }
 
-    private void GetRecepientBalance() {
+    public void GetRecepientBalance() {
         RecepientPhoneNumber = phoneNumberTextField_Transfer.getText();
         String Query = "select * from accountdetails where phonenumber='" + RecepientPhoneNumber + "'";
         try {
@@ -95,7 +95,7 @@ public class TransferBalanceMenu extends javax.swing.JFrame {
         }
     }
     
-    private void SaveTransaction(){
+    public void SaveTransaction(){
         String QueryAddSender = "insert into transaction(id_transaction, id_account, transaction, amount) values(?,?,?,?)";
     try { 
              Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test","root","");

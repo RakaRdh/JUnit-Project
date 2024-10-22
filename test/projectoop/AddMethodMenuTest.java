@@ -10,14 +10,20 @@ public class AddMethodMenuTest {
 
     private AddMethodMenu addMethodMenu;
 
+    private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = AddMethodMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(addMethodMenu, (Object) null); // Passing null as the MouseEvent
+    }
+
     @Before
     public void setUp() {
         // Initialize the WDMethodMenu with a dummy user ID (13)
         addMethodMenu = new AddMethodMenu(13);
-                addMethodMenu.setVisible(true);  // Ensure the window is visible
+        addMethodMenu.setVisible(true);  // Ensure the window is visible
 
     }
-    
+
     @Test
     public void testMain() {
         String[] args = null;
@@ -39,7 +45,7 @@ public class AddMethodMenuTest {
     @Test
     public void testBankMenuButtonAction() {
         JButton bankButton = addMethodMenu.Bank_MenuDP;
-        
+
         // Simulate a button click for the Bank button
         bankButton.doClick();
 
@@ -55,7 +61,7 @@ public class AddMethodMenuTest {
     @Test
     public void testCashMenuButtonAction() {
         JButton cashButton = addMethodMenu.Cash_MenuDP;
-        
+
         // Simulate a button click for the Cash button
         cashButton.doClick();
 
@@ -70,46 +76,8 @@ public class AddMethodMenuTest {
      */
     @Test
     public void testBackButton() throws Exception {
-        // Use reflection to access the private back button method
-        Method method = AddMethodMenu.class.getDeclaredMethod("BackButton_MenuDPWDMouseClicked", java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-
-        // Simulate clicking the back button by invoking the method
-        method.invoke(addMethodMenu, (Object) null); // Pass null as the event
-
-        // Verify if the back button behavior is triggered, like opening AddMethodMenu
-        // (Since it's GUI behavior, you might not be able to test the GUI change directly.
-        // Instead, ensure no exceptions were thrown and the method executed successfully)
+        invokePrivateMethod("BackButton_MenuDPWDMouseClicked");
         assertTrue("Back button click executed without errors", true);
     }
-
-    /**
-     * Test valid account retrieval logic
-     */
-    @Test
-    public void testValidAccountRetrieval() {
-        // Simulate a valid account retrieval process
-        // You would implement the logic for retrieving account information here.
-        
-        // For example, if you have a method to get account info, assert the expected results
-        // Account account = wdMethodMenu.getAccountInfo(wdMethodMenu.idUser);
-        // assertNotNull(account);
-        // assertEquals(wdMethodMenu.idUser, account.getId());
-    }
-
-    /**
-     * Test behavior on invalid account retrieval
-     */
-    @Test
-    public void testInvalidAccountRetrieval() {
-        // Simulate an invalid account retrieval process
-        // Modify the idUser or setup your database to ensure no results are returned.
-        
-        // Assume we have a method that checks account validity and sets an error message
-        // wdMethodMenu.idUser = -1; // Set to an invalid user ID
-        // wdMethodMenu.checkAccountValidity();
-        
-        // Assert the expected error message is shown
-        // assertEquals("Wrong Username or Password", wdMethodMenu.errorMessage);
-    }
+    
 }

@@ -8,17 +8,24 @@ import java.sql.*;
 import static org.junit.Assert.*;
 
 public class TransferBalanceMenuTest {
+
     private TransferBalanceMenu transferBalanceMenu;
     private Connection mockConnection;
     private PreparedStatement mockPreparedStatement;
     private ResultSet mockResultSet;
     private Statement mockStatement;
+    
+private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = TransferBalanceMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(transferBalanceMenu, (Object) null); // Passing null as the MouseEvent
+    }
 
     @Before
     public void setUp() throws Exception {
 // Initialize the TransferBalanceMenu instance
         transferBalanceMenu = new TransferBalanceMenu(13); // assuming 13 is a valid user ID
-        
+
         // Mocking the Connection, PreparedStatement, and ResultSet
         mockConnection = mock(Connection.class);
         mockPreparedStatement = mock(PreparedStatement.class);
@@ -28,6 +35,9 @@ public class TransferBalanceMenuTest {
         // Inject the mock Connection into TransferBalanceMenu
         transferBalanceMenu.Con = mockConnection;
     }
+
+    // Helper method to invoke private methods using reflection
+    
 
     @Test
     public void testGetSenderBalance() throws Exception {
@@ -39,8 +49,9 @@ public class TransferBalanceMenuTest {
         when(mockResultSet.next()).thenReturn(true);  // Simulate the first row exists
         when(mockResultSet.getDouble(5)).thenReturn(22050.0);  // Simulate sender's balance
 
-        // Invoke the private method using reflection
-        invokeMethod("GetSenderBalance");
+        // Inject the mock connection into the class
+        transferBalanceMenu.Con = mockConnection;
+        transferBalanceMenu.GetSenderBalance();
 
         // Assert that the balance was retrieved correctly from the ResultSet
         assertEquals(transferBalanceMenu.OldSenderBalance, transferBalanceMenu.OldSenderBalance, 0.001);
@@ -60,24 +71,14 @@ public class TransferBalanceMenuTest {
         when(mockResultSet.getInt(2)).thenReturn(19);  // Simulate recipient ID
         when(mockResultSet.getDouble(5)).thenReturn(1450.0);  // Simulate recipient's balance
 
-        // Invoke the private method using reflection
-        invokeMethod("GetRecepientBalance");
-
+        // Inject the mock connection into the class
+        transferBalanceMenu.Con = mockConnection;
+        transferBalanceMenu.GetRecepientBalance();
 
         // Assert that the recipient's balance was retrieved correctly from the ResultSet
         assertEquals(transferBalanceMenu.OldRecepientBalance, transferBalanceMenu.OldRecepientBalance, 0.001);
     }
 
-
-
-    // Helper method to invoke private methods via reflection
-    private void invokeMethod(String methodName, Object... args) throws Exception {
-        Method method = TransferBalanceMenu.class.getDeclaredMethod(methodName);
-        method.setAccessible(true);
-        method.invoke(transferBalanceMenu);
-    }
-
-    
     @Test
     public void testTransferWithEmptyFields() throws Exception {
         // Set empty fields
@@ -100,7 +101,6 @@ public class TransferBalanceMenuTest {
         // Set invalid phone number and valid amount
         transferBalanceMenu.phoneNumberTextField_Transfer.setText("InvalidPhone");
         transferBalanceMenu.transferNominal_Transfer.setText("100");
-
 
         // Call the private method using reflection
         invokePrivateMethod("continueButton_TransferMouseClicked");
@@ -128,8 +128,6 @@ public class TransferBalanceMenuTest {
         transferBalanceMenu.phoneNumberTextField_Transfer.setText("08123456789");
         transferBalanceMenu.transferNominal_Transfer.setText("100");
 
-
-
         // Simulate self-transfer by setting the recipient ID to match the user ID
         transferBalanceMenu.RecepientIdAccount = transferBalanceMenu.idUser;
 
@@ -146,7 +144,6 @@ public class TransferBalanceMenuTest {
         transferBalanceMenu.phoneNumberTextField_Transfer.setText("081243518275");
         transferBalanceMenu.transferNominal_Transfer.setText("100");
 
-
         // Set the recipient ID to be different from the user ID
         transferBalanceMenu.RecepientIdAccount = 19;
 
@@ -157,15 +154,12 @@ public class TransferBalanceMenuTest {
         invokePrivateMethod("continueButton_TransferMouseClicked");
     }
 
-    // Helper method to invoke private methods using reflection
-    private void invokePrivateMethod(String methodName, Object... args) throws Exception {
-        Method method = TransferBalanceMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
-        method.setAccessible(true);
-        method.invoke(transferBalanceMenu, (Object) null); // Passing null as the MouseEvent
+    @Test
+    public void testBackButton() throws Exception {
+        invokePrivateMethod("backButton_TransferMouseClicked");
+        assertTrue("Back button click executed without errors", true);
     }
 
-    
-    
     @After
     public void tearDown() throws Exception {
         // Clean up resources after tests

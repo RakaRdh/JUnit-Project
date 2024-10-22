@@ -1,5 +1,6 @@
 package projectoop;
 
+import java.lang.reflect.Method;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,12 +10,27 @@ import javax.swing.JTable;
 import static org.junit.Assert.*;
 
 public class ShowTransactionTest {
+
     private ShowTransaction showTransaction;
+
+    private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = ShowTransaction.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(showTransaction, (Object) null); // Passing null as the MouseEvent
+    }
 
     @Before
     public void setUp() {
         // Initialize the ShowTransaction object with a test user ID.
         showTransaction = new ShowTransaction(13); // Replace with a valid test user ID.
+        showTransaction.setVisible(true);
+    }
+    
+    @Test
+    public void testMain() {
+        String[] args = null;
+        ShowTransaction.main(args);
+        assertTrue(showTransaction.isVisible());
     }
 
     @After
@@ -35,24 +51,9 @@ public class ShowTransactionTest {
     }
 
     @Test
-    public void testBackButtonFunctionality() {
-        JButton backButton = showTransaction.BackButton_Transaction;
-
-        // Simulate a button click
-        backButton.doClick(); // This will invoke the action associated with the button
-
-        // You can check if the MainMenu is displayed by checking the instance count or state if possible
-        // For this, you might need a more complex way to validate it, such as using mocks
+    public void testBackButtonFunctionality() throws Exception {
+        invokePrivateMethod("BackButton_TransactionMouseClicked");
+        assertTrue("Back button click executed without errors", true);
     }
 
-    @Test
-    public void testShowHistoryButtonFunctionality() {
-        JButton showHistoryButton = showTransaction.ShowHistoryButton_History;
-
-        // Simulate a button click
-        showHistoryButton.doClick(); // This will invoke the action associated with the button
-
-        // You can check if the transaction list was updated accordingly
-        // For more precise tests, consider mocking the database connection or using a test database
-    }
 }

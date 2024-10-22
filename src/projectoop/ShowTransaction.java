@@ -66,7 +66,6 @@ public class ShowTransaction extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TransactionTable_Transaction = new javax.swing.JTable();
         BackButton_Transaction = new javax.swing.JButton();
-        ShowHistoryButton_History = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -141,21 +140,12 @@ public class ShowTransaction extends javax.swing.JFrame {
                 BackButton_TransactionMouseClicked(evt);
             }
         });
-        jPanel1.add(BackButton_Transaction, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 580, 185, 45));
-
-        ShowHistoryButton_History.setFont(new java.awt.Font("Yu Gothic", 1, 13)); // NOI18N
-        ShowHistoryButton_History.setText("Show History");
-        ShowHistoryButton_History.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ShowHistoryButton_HistoryMouseClicked(evt);
-            }
-        });
-        ShowHistoryButton_History.addActionListener(new java.awt.event.ActionListener() {
+        BackButton_Transaction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ShowHistoryButton_HistoryActionPerformed(evt);
+                BackButton_TransactionActionPerformed(evt);
             }
         });
-        jPanel1.add(ShowHistoryButton_History, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 185, 45));
+        jPanel1.add(BackButton_Transaction, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 580, 470, 45));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectoop/icon/Artboard 1 copy 2.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -230,13 +220,9 @@ public class ShowTransaction extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BackButton_TransactionMouseClicked
 
-    private void ShowHistoryButton_HistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowHistoryButton_HistoryActionPerformed
+    private void BackButton_TransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButton_TransactionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ShowHistoryButton_HistoryActionPerformed
-
-    private void ShowHistoryButton_HistoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ShowHistoryButton_HistoryMouseClicked
-DisplayTr();
-    }//GEN-LAST:event_ShowHistoryButton_HistoryMouseClicked
+    }//GEN-LAST:event_BackButton_TransactionActionPerformed
     
     
     /**
@@ -307,7 +293,6 @@ DisplayTr();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BackButton_Transaction;
-    public javax.swing.JButton ShowHistoryButton_History;
     public javax.swing.JTable TransactionTable_Transaction;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel3;

@@ -83,8 +83,8 @@ public class UTPMenu extends javax.swing.JFrame {
 <span class="fc" id="L83">        backButton_UTP.setText(&quot;Back&quot;);</span>
 <span class="fc" id="L84">        backButton_UTP.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L86">                backButton_UTPActionPerformed(evt);</span>
-<span class="fc" id="L87">            }</span>
+<span class="nc" id="L86">                backButton_UTPActionPerformed(evt);</span>
+<span class="nc" id="L87">            }</span>
         });
 <span class="fc" id="L89">        jPanel1.add(backButton_UTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 259, 185, 45));</span>
 
@@ -112,8 +112,8 @@ public class UTPMenu extends javax.swing.JFrame {
 <span class="fc" id="L112">        continueButton_UTP.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));</span>
 <span class="fc" id="L113">        continueButton_UTP.addActionListener(new java.awt.event.ActionListener() {</span>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-<span class="fc" id="L115">                continueButton_UTPActionPerformed(evt);</span>
-<span class="fc" id="L116">            }</span>
+<span class="nc" id="L115">                continueButton_UTPActionPerformed(evt);</span>
+<span class="nc" id="L116">            }</span>
         });
 <span class="fc" id="L118">        jPanel1.add(continueButton_UTP, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 259, 185, 45));</span>
 
@@ -162,33 +162,33 @@ public class UTPMenu extends javax.swing.JFrame {
 <span class="fc" id="L162">                    checkStmt.setString(1, nikTextField_UTP.getText());</span>
 <span class="fc" id="L163">                    ResultSet rs = checkStmt.executeQuery();</span>
 <span class="pc bpc" id="L164" title="1 of 2 branches missed.">                    if (rs.next()) {</span>
-<span class="nc" id="L165">                        JOptionPane.showMessageDialog(this, &quot;NIK already exists&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
-<span class="nc" id="L166">                        return; // Stop further execution</span>
+<span class="fc" id="L165">                        JOptionPane.showMessageDialog(this, &quot;NIK already exists&quot;, &quot;Message&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="fc" id="L166">                        return; // Stop further execution</span>
                     }
-<span class="fc" id="L168">                    Con.close();</span>
+<span class="nc" id="L168">                    Con.close();</span>
 <span class="nc" id="L169">                } catch (SQLException e) {</span>
 <span class="nc" id="L170">                    JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L171">                    return; // Stop further execution</span>
-<span class="fc" id="L172">                }</span>
+<span class="nc" id="L172">                }</span>
                 
-<span class="fc" id="L174">                String Query = &quot;Update accountdetails set NIK=? where id_account=?&quot;;</span>
-<span class="fc" id="L175">                String Query2 = &quot;Update account set id_type=? where id_account=?&quot;;</span>
-<span class="fc" id="L176">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
-<span class="fc" id="L177">                PreparedStatement ps = Con.prepareStatement(Query);</span>
-<span class="fc" id="L178">                PreparedStatement ps2 = Con.prepareStatement(Query2);</span>
-<span class="fc" id="L179">                ps.setString(1, nikTextField_UTP.getText());</span>
-<span class="fc" id="L180">                ps.setInt(2, idUser);</span>
-<span class="fc" id="L181">                ps2.setInt(1, 2);</span>
-<span class="fc" id="L182">                ps2.setInt(2, idUser);</span>
-<span class="pc bpc" id="L183" title="3 of 4 branches missed.">                if(ps.executeUpdate()==1 &amp;&amp; ps2.executeUpdate()==1){</span>
+<span class="nc" id="L174">                String Query = &quot;Update accountdetails set NIK=? where id_account=?&quot;;</span>
+<span class="nc" id="L175">                String Query2 = &quot;Update account set id_type=? where id_account=?&quot;;</span>
+<span class="nc" id="L176">                Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;,&quot;root&quot;,&quot;&quot;);</span>
+<span class="nc" id="L177">                PreparedStatement ps = Con.prepareStatement(Query);</span>
+<span class="nc" id="L178">                PreparedStatement ps2 = Con.prepareStatement(Query2);</span>
+<span class="nc" id="L179">                ps.setString(1, nikTextField_UTP.getText());</span>
+<span class="nc" id="L180">                ps.setInt(2, idUser);</span>
+<span class="nc" id="L181">                ps2.setInt(1, 2);</span>
+<span class="nc" id="L182">                ps2.setInt(2, idUser);</span>
+<span class="nc bnc" id="L183" title="All 4 branches missed.">                if(ps.executeUpdate()==1 &amp;&amp; ps2.executeUpdate()==1){</span>
 <span class="nc" id="L184">                    JOptionPane.showMessageDialog(this, &quot;Upgrade Succesful&quot;);</span>
 <span class="nc" id="L185">                    Con.close();</span>
                 } else {
-<span class="fc" id="L187">                    JOptionPane.showMessageDialog(this, &quot;Upgrade Failed&quot;, &quot;Message&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L187">                    JOptionPane.showMessageDialog(this, &quot;Upgrade Failed&quot;, &quot;Message&quot;, JOptionPane.ERROR_MESSAGE);</span>
                 }
 <span class="nc" id="L189">            }catch(Exception e){</span>
 <span class="nc" id="L190">                JOptionPane.showMessageDialog(this, e);</span>
-<span class="fc" id="L191">            }</span>
+<span class="nc" id="L191">            }</span>
         }
 <span class="fc" id="L193">    }//GEN-LAST:event_continueButton_UTPActionPerformed</span>
 
@@ -209,10 +209,10 @@ public class UTPMenu extends javax.swing.JFrame {
 
 <span class="pc bpc" id="L210" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L212">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L213">                    this.dispose();</span>
+<span class="fc" id="L212">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L213">                    this.dispose();</span>
                 } else {
-<span class="fc" id="L215">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
+<span class="nc" id="L215">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
 <span class="fc" id="L217">            } else {</span>
 <span class="nc" id="L218">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>

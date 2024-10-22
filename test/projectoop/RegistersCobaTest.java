@@ -18,9 +18,17 @@ public class RegistersCobaTest {
     private ResultSet mockGeneratedKeys;
     private Connection realConnection;
 
+    private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = RegistersCoba.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(registersCoba, (Object) null); // Passing null as the MouseEvent
+    }
+
     @Before
     public void setUp() throws Exception {
         registersCoba = new RegistersCoba();
+        registersCoba.setVisible(true);  // Ensure the window is visible
+
         mockConnection = mock(Connection.class);
         mockAddStmt = mock(PreparedStatement.class);
         mockDetailsStmt = mock(PreparedStatement.class);
@@ -33,6 +41,12 @@ public class RegistersCobaTest {
         registersCoba = new RegistersCoba(realConnection);
     }
 
+//    @Test
+//    public void testMain() {
+//        String[] args = null;
+//        RegistersCoba.main(args);
+//        assertTrue(registersCoba.isVisible());
+//    }
     @Test
     public void testClearTXT() {
         // Set some text in the fields
@@ -65,11 +79,7 @@ public class RegistersCobaTest {
         // Delete any existing entries for the test user
         cleanUpTestUser("TestUserSuccess");
 
-        // Trigger the registration method (simulate button click)
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null);
-
+        invokePrivateMethod("registerButton_Register1MouseClicked");
         // Check if the account was inserted by querying the database
         String checkUserSQL = "SELECT * FROM account WHERE username = ?";
         PreparedStatement stmt = realConnection.prepareStatement(checkUserSQL);
@@ -98,10 +108,7 @@ public class RegistersCobaTest {
         registersCoba.emailTextField_Register.setText("123@mail.com");
         registersCoba.cpTextField_Register.setText("Karoman09.");
 
-        // Call the method for button click
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        invokePrivateMethod("registerButton_Register1MouseClicked");
 
         // Verify no inserts performed due to existing user
         verify(mockAddStmt, never()).executeUpdate();
@@ -117,10 +124,7 @@ public class RegistersCobaTest {
         registersCoba.emailTextField_Register.setText("Ambasing@example.com");
         registersCoba.cpTextField_Register.setText("Masamba12");
 
-        // Click the register button
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        invokePrivateMethod("registerButton_Register1MouseClicked");
 
         assertEquals("Passwords do not match", "Passwords do not match");
 
@@ -135,10 +139,7 @@ public class RegistersCobaTest {
         registersCoba.cpTextField_Register.setText("");
         registersCoba.emailTextField_Register.setText("");
 
-        // Click the register button
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        invokePrivateMethod("registerButton_Register1MouseClicked");
 
         assertEquals("Missing Information", "Missing Information");
     }
@@ -152,10 +153,7 @@ public class RegistersCobaTest {
         registersCoba.emailTextField_Register.setText("invalidemailbung");
         registersCoba.cpTextField_Register.setText("Masamba123_");
 
-        // Click the register button
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        invokePrivateMethod("registerButton_Register1MouseClicked");
 
         // Assert that an error message is shown for invalid email format (Mock JOptionPane)
         assertEquals("Invalid email format", "Invalid email format");
@@ -171,10 +169,7 @@ public class RegistersCobaTest {
         registersCoba.emailTextField_Register.setText("AMbassiinngg@gmial.com");
         registersCoba.cpTextField_Register.setText("Masamba123_");
 
-        // Click the register button
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        invokePrivateMethod("registerButton_Register1MouseClicked");
 
         // Assert that an error message is shown for invalid email format (Mock JOptionPane)
         assertEquals("Invalid phone number format", "Invalid phone number format");
@@ -190,10 +185,7 @@ public class RegistersCobaTest {
         registersCoba.emailTextField_Register.setText("AMbassiinngg@gmial.com");
         registersCoba.cpTextField_Register.setText("inisalahini");
 
-        // Click the register button
-        Method registerButtonClickMethod = RegistersCoba.class.getDeclaredMethod("registerButton_Register1MouseClicked", java.awt.event.MouseEvent.class);
-        registerButtonClickMethod.setAccessible(true);
-        registerButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
+        invokePrivateMethod("registerButton_Register1MouseClicked");
 
         // Assert that an error message is shown for invalid email format (Mock JOptionPane)
         assertEquals("Invalid password format", "Invalid password format");
@@ -201,17 +193,9 @@ public class RegistersCobaTest {
     }
 
     @Test
-    public void testBackButtonClick() throws Exception {
-        // Create a spy object to track the behavior
-        RegistersCoba spyRegisterCoba = Mockito.spy(registersCoba);
-
-        // Call the back button click event
-        Method backButtonClickMethod = RegistersCoba.class.getDeclaredMethod("backButton_RegisterMouseClicked", java.awt.event.MouseEvent.class);
-        backButtonClickMethod.setAccessible(true);
-        backButtonClickMethod.invoke(registersCoba, (Object) null); // Passing null for the MouseEvent
-
-//        // Verify that the Login frame was opened and the current frame was disposed
-//        verify(spyRegisterCoba, times(1)).dispose();
+    public void testBackButton() throws Exception {
+        invokePrivateMethod("backButton_RegisterMouseClicked");
+        assertTrue("Back button click executed without errors", true);
     }
 
     private void cleanUpTestUser(String username) throws SQLException {

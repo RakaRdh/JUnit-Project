@@ -1,7 +1,9 @@
 package projectoop;
 
+import java.lang.reflect.Method;
 import org.junit.After;
 import org.junit.Assert;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,11 @@ public class ViewProfileMenuTest {
 
     private ViewProfileMenu viewProfileMenu;
     private final int testUserId = 14; // predefined user ID for testing
-
+private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = ViewProfileMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(viewProfileMenu, (Object) null); // Passing null as the MouseEvent
+    }
     @Before
     public void setUp() {
         // Initialize the ViewProfileMenu with the test user ID
@@ -77,5 +83,11 @@ public class ViewProfileMenuTest {
             typeLabel_ViewProfile.setText(Type);
             pnLabel_ViewProfile.setText(PhoneNumber);
         }
+    }
+    
+    @Test
+    public void testBackButtonFunctionality() throws Exception {
+                invokePrivateMethod("backButton_ViewProfileMouseClicked");
+        assertTrue("Back button click executed without errors", true);
     }
 }

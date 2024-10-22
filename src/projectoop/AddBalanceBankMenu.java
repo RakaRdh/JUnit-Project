@@ -202,6 +202,11 @@ public class AddBalanceBankMenu extends javax.swing.JFrame {
                 backButton_AddBalanceMouseClicked(evt);
             }
         });
+        backButton_AddBalance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButton_AddBalanceActionPerformed(evt);
+            }
+        });
         jPanel1.add(backButton_AddBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 185, 45));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/projectoop/icon/Artboard 1 copy.png"))); // NOI18N
@@ -262,6 +267,10 @@ public class AddBalanceBankMenu extends javax.swing.JFrame {
     private void BankNumberTextField_AddBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BankNumberTextField_AddBalanceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BankNumberTextField_AddBalanceActionPerformed
+
+    private void backButton_AddBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButton_AddBalanceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_backButton_AddBalanceActionPerformed
 
     /**
      * @param args the command line arguments

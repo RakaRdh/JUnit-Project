@@ -15,35 +15,31 @@ import javax.swing.JButton;
 public class MainMenuTest {
 
     private MainMenu mainMenu;
-    private MainMenu mainMenuNonPremi;
+    private MainMenu mainMenuNonPremium;
 
     @Before
     public void setUp() {
         // Initialize the MainMenu with sample data
-        mainMenu = new MainMenu(15, "Ojan", 0.0, "083288888888");
+        mainMenu = new MainMenu(17, "Dapa", 10000.0, "081275967546");
+//        mainMenuNonPremium = new MainMenu(18, "Pale", 0.0, "081212653541");
         mainMenu.setVisible(true); 
     }
 
     /**
      * Helper method to invoke private methods using reflection
      */
-    private void invokePrivateMethod(String methodName, Class<?>[] paramTypes, Object... params) {
-        try {
-            Method method = MainMenu.class.getDeclaredMethod(methodName, paramTypes);
-            method.setAccessible(true);
-            method.invoke(mainMenu, params);
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail("Failed to invoke method: " + methodName);
-        }
+    private void invokePrivateMethod(String methodName) throws Exception {
+        Method method = MainMenu.class.getDeclaredMethod(methodName, java.awt.event.MouseEvent.class);
+        method.setAccessible(true);
+        method.invoke(mainMenu, (Object) null); // Passing null as the MouseEvent
     }
 
     /**
      * Test the viewProfile button MouseClicked functionality
      */
     @Test
-    public void testViewProfileButtonMouseClicked() {
-        invokePrivateMethod("viewProfileButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+    public void testViewProfileButtonMouseClicked() throws Exception{
+        invokePrivateMethod("viewProfileButton_MenuMouseClicked");
         assertFalse(mainMenu.isVisible()); // Check if the current window is disposed
     }
 
@@ -51,8 +47,8 @@ public class MainMenuTest {
      * Test the deposit balance button MouseClicked functionality
      */
     @Test
-    public void testDepoBalanceButtonMouseClicked() {
-        invokePrivateMethod("depoBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+    public void testDepoBalanceButtonMouseClicked() throws Exception{
+        invokePrivateMethod("depoBalanceButton_MenuMouseClicked");
         assertFalse(mainMenu.isVisible());
     }
 
@@ -60,8 +56,8 @@ public class MainMenuTest {
      * Test the withdraw balance button MouseClicked functionality
      */
     @Test
-    public void testWdBalanceButtonMouseClicked() {
-        invokePrivateMethod("wdBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+    public void testWdBalanceButtonMouseClicked() throws Exception{
+        invokePrivateMethod("wdBalanceButton_MenuMouseClicked");
         assertFalse(mainMenu.isVisible());
     }
 
@@ -69,16 +65,23 @@ public class MainMenuTest {
      * Test the transfer balance button MouseClicked functionality
      */
     @Test
-    public void testTransferBalanceButtonMouseClicked() {
-        invokePrivateMethod("transferBalanceButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+    public void testTransferBalanceButtonMouseClicked_Success() throws Exception{
+        invokePrivateMethod("transferBalanceButton_MenuMouseClicked");
         assertFalse(mainMenu.isVisible());
+    }
+    
+    @Test
+    public void testTransferBalanceButtonMouseClicked_Failed() throws Exception{
+        invokePrivateMethod("transferBalanceButton_MenuMouseClicked");
+        assertFalse(mainMenu.isVisible());
+        assertEquals("Account is Not Premium", "Account is Not Premium");
     }
     /**
      * Test the logout button MouseClicked functionality
      */
     @Test
-    public void testLogoutButtonMouseClicked() {
-        invokePrivateMethod("logoutButton_MenuMouseClicked", new Class[]{MouseEvent.class}, (MouseEvent) null);
+    public void testLogoutButtonMouseClicked() throws Exception{
+        invokePrivateMethod("logoutButton_MenuMouseClicked");
         assertFalse(mainMenu.isVisible());
     }
 

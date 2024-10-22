@@ -220,36 +220,36 @@ public class ViewProfileMenu extends javax.swing.JFrame {
 <span class="nc" id="L220">    }//GEN-LAST:event_backButton_ViewProfileActionPerformed</span>
 
     private void backButton_ViewProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButton_ViewProfileMouseClicked
-<span class="nc" id="L223">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
+<span class="fc" id="L223">        String Query = &quot;select * from account where id_account=&quot; + idUser;</span>
 
         try {
-<span class="nc" id="L226">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
-<span class="nc" id="L227">            St = Con.createStatement();</span>
-<span class="nc" id="L228">            Rs = St.executeQuery(Query);</span>
+<span class="fc" id="L226">            Con = DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/primodb-test&quot;, &quot;root&quot;, &quot;&quot;);</span>
+<span class="fc" id="L227">            St = Con.createStatement();</span>
+<span class="fc" id="L228">            Rs = St.executeQuery(Query);</span>
 
             // Move the cursor to the first row and check if there are results
-<span class="nc bnc" id="L231" title="All 2 branches missed.">            if (Rs.next()) {</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">            if (Rs.next()) {</span>
 
-<span class="nc" id="L233">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
-<span class="nc" id="L234">                St2 = Con.createStatement();</span>
-<span class="nc" id="L235">                Rs2 = St2.executeQuery(Query2);</span>
+<span class="fc" id="L233">                String Query2 = &quot;select * from accountdetails where id_account=&quot; + idUser;</span>
+<span class="fc" id="L234">                St2 = Con.createStatement();</span>
+<span class="fc" id="L235">                Rs2 = St2.executeQuery(Query2);</span>
 
-<span class="nc bnc" id="L237" title="All 2 branches missed.">                if (Rs2.next()) {</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">                if (Rs2.next()) {</span>
                     // Now, launch the main menu with the relevant data
-<span class="nc" id="L239">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
-<span class="nc" id="L240">                    this.dispose();</span>
+<span class="fc" id="L239">                    new MainMenu(Rs.getInt(1), Rs.getString(3), Rs.getDouble(5), Rs2.getString(4)).setVisible(true);</span>
+<span class="fc" id="L240">                    this.dispose();</span>
                 } else {
 <span class="nc" id="L242">                    JOptionPane.showMessageDialog(this, &quot;Account details not found.&quot;);</span>
                 }
-<span class="nc" id="L244">            } else {</span>
+<span class="fc" id="L244">            } else {</span>
 <span class="nc" id="L245">                JOptionPane.showMessageDialog(this, &quot;Wrong Username or Password&quot;);</span>
             }
 
 <span class="nc" id="L248">        } catch (Exception e) {</span>
 <span class="nc" id="L249">            JOptionPane.showMessageDialog(this, e.getMessage());</span>
 <span class="nc" id="L250">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L251">        }</span>
-<span class="nc" id="L252">    }//GEN-LAST:event_backButton_ViewProfileMouseClicked</span>
+<span class="fc" id="L251">        }</span>
+<span class="fc" id="L252">    }//GEN-LAST:event_backButton_ViewProfileMouseClicked</span>
 
     /**
      * @param args the command line arguments
