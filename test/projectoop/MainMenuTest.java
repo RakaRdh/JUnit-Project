@@ -37,6 +37,8 @@ public class MainMenuTest {
     /**
      * Test the viewProfile button MouseClicked functionality
      */
+    
+    
     @Test
     public void testViewProfileButtonMouseClicked() throws Exception{
         invokePrivateMethod("viewProfileButton_MenuMouseClicked");

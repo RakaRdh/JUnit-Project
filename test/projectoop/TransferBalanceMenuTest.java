@@ -38,7 +38,33 @@ private void invokePrivateMethod(String methodName) throws Exception {
 
     // Helper method to invoke private methods using reflection
     
+    @Test
+    public void testMain() {
+        // Clear any existing frames before starting the test
+        for (java.awt.Window window : java.awt.Window.getWindows()) {
+            window.dispose();
+        }
 
+        // Invoke the main method
+        String[] args = null;
+        TransferBalanceMenu.main(args);
+
+        // Get the currently active JFrame (TransferBalanceMenu instance)
+        java.awt.Frame[] frames = java.awt.Frame.getFrames();
+        TransferBalanceMenu frame = null;
+
+        for (java.awt.Frame f : frames) {
+            if (f instanceof TransferBalanceMenu) {
+                frame = (TransferBalanceMenu) f;
+                break;
+            }
+        }
+
+        // Assert that the frame was created and is visible
+        assertNotNull("TransferBalanceMenu frame should have been created", frame);
+    }
+    
+    
     @Test
     public void testGetSenderBalance() throws Exception {
         // Mock database interaction

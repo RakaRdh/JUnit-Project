@@ -21,16 +21,16 @@ import projectoop.*;
  */
 public class UTPMenu extends javax.swing.JFrame {
     
-<span class="pc" id="L24">    Connection Con = null;</span>
-<span class="pc" id="L25">    PreparedStatement pst = null;</span>
-<span class="pc" id="L26">    ResultSet Rs = null;</span>
-<span class="pc" id="L27">    Statement St = null;</span>
-<span class="pc" id="L28">    ResultSet Rs2 = null;</span>
-<span class="pc" id="L29">    Statement St2 = null;</span>
+<span class="fc" id="L24">    Connection Con = null;</span>
+<span class="fc" id="L25">    PreparedStatement pst = null;</span>
+<span class="fc" id="L26">    ResultSet Rs = null;</span>
+<span class="fc" id="L27">    Statement St = null;</span>
+<span class="fc" id="L28">    ResultSet Rs2 = null;</span>
+<span class="fc" id="L29">    Statement St2 = null;</span>
     
-<span class="nc" id="L31">    public UTPMenu() {</span>
-<span class="nc" id="L32">        initComponents();</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L31">    public UTPMenu() {</span>
+<span class="fc" id="L32">        initComponents();</span>
+<span class="fc" id="L33">    }</span>
     
     String PhoneNumber;
     int idUser;
@@ -234,10 +234,10 @@ public class UTPMenu extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L237" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L238" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L239">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L240">                    break;</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L238" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="fc" id="L239">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L240">                    break;</span>
                 }
             }
 <span class="nc" id="L243">        } catch (ClassNotFoundException ex) {</span>
@@ -248,7 +248,7 @@ public class UTPMenu extends javax.swing.JFrame {
 <span class="nc" id="L248">            java.util.logging.Logger.getLogger(UTPMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
 <span class="nc" id="L249">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
 <span class="nc" id="L250">            java.util.logging.Logger.getLogger(UTPMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L251">        }</span>
+<span class="pc" id="L251">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
@@ -267,12 +267,12 @@ public class UTPMenu extends javax.swing.JFrame {
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L270">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="fc" id="L270">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L272">                new UTPMenu().setVisible(true);</span>
-<span class="nc" id="L273">            }</span>
+<span class="fc" id="L272">                new UTPMenu().setVisible(true);</span>
+<span class="fc" id="L273">            }</span>
         });
-<span class="nc" id="L275">    }</span>
+<span class="fc" id="L275">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backButton_UTP;

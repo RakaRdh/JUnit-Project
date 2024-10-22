@@ -37,10 +37,10 @@ public class ShowTransactionTest {
     public void tearDown() {
         showTransaction.dispose(); // Close the JFrame after each test.
     }
-
-    @Test
-    public void testDisplayTr() {
-        showTransaction.DisplayTr();
+    
+        @Test
+    public void testDisplayTrBisa() {
+        showTransaction.DisplayTr(13);
 
         // Assuming the table is filled with data, check if the table model is not empty
         JTable transactionTable = showTransaction.TransactionTable_Transaction;

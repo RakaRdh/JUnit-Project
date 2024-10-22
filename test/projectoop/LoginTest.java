@@ -31,7 +31,7 @@ public class LoginTest {
     @Test
     public void testMain() {
         String[] args = null;
-        Login.main(args);
+        login.main(args);
         assertTrue(login.isVisible());
     }
 

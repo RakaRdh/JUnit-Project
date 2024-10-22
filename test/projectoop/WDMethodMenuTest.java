@@ -20,8 +20,16 @@ public class WDMethodMenuTest {
     public void setUp() {
         // Initialize the WDMethodMenu with a dummy user ID (13)
         wdMethodMenu = new WDMethodMenu(13);
+        wdMethodMenu.setVisible(true);
     }
 
+    @Test
+    public void testMain() {
+        String[] args = null;
+        WDMethodMenu.main(args);
+        assertTrue(wdMethodMenu.isVisible());
+    }
+    
     /**
      * Test that the initial user ID is set correctly
      */

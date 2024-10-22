@@ -328,10 +328,10 @@ public class RegistersCoba extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L331" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L332" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L333">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L334">                    break;</span>
+<span class="pc bpc" id="L331" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L332" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="fc" id="L333">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L334">                    break;</span>
                 }
             }
 <span class="nc" id="L337">        } catch (ClassNotFoundException ex) {</span>
@@ -342,16 +342,16 @@ public class RegistersCoba extends javax.swing.JFrame {
 <span class="nc" id="L342">            java.util.logging.Logger.getLogger(RegistersCoba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
 <span class="nc" id="L343">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
 <span class="nc" id="L344">            java.util.logging.Logger.getLogger(RegistersCoba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L345">        }</span>
+<span class="pc" id="L345">        }</span>
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L349">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="fc" id="L349">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L351">                new RegistersCoba().setVisible(true);</span>
-<span class="nc" id="L352">            }</span>
+<span class="fc" id="L351">                new RegistersCoba().setVisible(true);</span>
+<span class="fc" id="L352">            }</span>
         });
-<span class="nc" id="L354">    }</span>
+<span class="fc" id="L354">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backButton_Register;

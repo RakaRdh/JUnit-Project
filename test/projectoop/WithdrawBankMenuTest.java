@@ -46,6 +46,14 @@ public class WithdrawBankMenuTest {
         mockResultSet = mock(ResultSet.class);
         // Inject the mock Connection into AddBalanceBankMenu
         withdrawBankMenu.Con = mockConnection;
+        withdrawBankMenu.setVisible(true);
+    }
+    
+        @Test
+    public void testMain() {
+        String[] args = null;
+        WithdrawBankMenu.main(args);
+        assertTrue(withdrawBankMenu.isVisible());
     }
 
     @Test

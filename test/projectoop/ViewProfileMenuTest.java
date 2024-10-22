@@ -20,6 +20,14 @@ private void invokePrivateMethod(String methodName) throws Exception {
     public void setUp() {
         // Initialize the ViewProfileMenu with the test user ID
         viewProfileMenu = new MockViewProfileMenu(testUserId);
+        viewProfileMenu.setVisible(true);
+    }
+    
+        @Test
+    public void testMain() {
+        String[] args = null;
+        ViewProfileMenu.main(args);
+        assertTrue(viewProfileMenu.isVisible());
     }
 
     @Test

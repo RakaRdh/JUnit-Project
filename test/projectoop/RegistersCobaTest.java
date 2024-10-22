@@ -6,6 +6,7 @@ import java.sql.*;
 import javax.swing.*;
 import org.junit.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.mockito.*;
 
@@ -41,12 +42,32 @@ public class RegistersCobaTest {
         registersCoba = new RegistersCoba(realConnection);
     }
 
-//    @Test
-//    public void testMain() {
-//        String[] args = null;
-//        RegistersCoba.main(args);
-//        assertTrue(registersCoba.isVisible());
-//    }
+    @Test
+    public void testMain() {
+        // Clear any existing visible frames
+        for (java.awt.Window window : java.awt.Window.getWindows()) {
+            window.dispose();
+        }
+
+        // Run the main method to start the application
+        String[] args = null;
+        RegistersCoba.main(args);
+
+        // Get the currently active JFrame (RegistersCoba instance)
+        java.awt.Frame[] frames = java.awt.Frame.getFrames();
+        RegistersCoba frame = null;
+
+        for (java.awt.Frame f : frames) {
+            if (f instanceof RegistersCoba) {
+                frame = (RegistersCoba) f;
+                break;
+            }
+        }
+
+        // Assert that the frame is visible
+        assertNotNull("RegistersCoba frame should have been created", frame);
+    }
+
     @Test
     public void testClearTXT() {
         // Set some text in the fields

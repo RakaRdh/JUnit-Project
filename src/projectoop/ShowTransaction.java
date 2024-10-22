@@ -32,7 +32,6 @@ public class ShowTransaction extends javax.swing.JFrame {
     Statement St = null;
     
     public ShowTransaction() {
-        DisplayTr();
         initComponents();
 
     }
@@ -43,7 +42,7 @@ public class ShowTransaction extends javax.swing.JFrame {
     public ShowTransaction(int IdUser) {
         idUser = IdUser;
         initComponents();
-        DisplayTr();
+        DisplayTr(idUser);
         setLocationRelativeTo(null);
     }
     
@@ -164,7 +163,8 @@ public class ShowTransaction extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void DisplayTr(){
+    
+    public void DisplayTr(int idUser){
     String QueryDis = "select * from transaction where id_account=" + idUser;
     try {
         Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/primodb-test", "root", "");

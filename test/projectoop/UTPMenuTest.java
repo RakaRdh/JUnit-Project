@@ -20,12 +20,20 @@ private void invokePrivateMethod(String methodName) throws Exception {
     @Before
     public void setUp() {
         // Initialize the UTPMenu with a predefined user ID (13)
-        utpMenu = new UTPMenu(13);
+        utpMenu = new UTPMenu(22);
     }
 
     /**
      * Test that the NIK is updated successfully when a valid NIK is provided
      */
+    
+        @Test
+    public void testMain() {
+        String[] args = null;
+        UTPMenu.main(args);
+        assertFalse(utpMenu.isVisible());
+    }
+    
     @Test
     public void testContinueButtonSuccess() throws Exception{
         utpMenu.nikTextField_UTP.setText(validNIK);

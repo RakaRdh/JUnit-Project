@@ -18,18 +18,18 @@ import javax.swing.JOptionPane;
  * @author Personal
  */
 public class WithdrawCashMenu extends javax.swing.JFrame {
-<span class="pc" id="L21">    Connection Con = null;</span>
-<span class="pc" id="L22">    PreparedStatement pst = null;</span>
-<span class="pc" id="L23">    ResultSet Rs = null;</span>
-<span class="pc" id="L24">    Statement St = null;</span>
-<span class="pc" id="L25">        ResultSet Rs2 = null;</span>
-<span class="pc" id="L26">    Statement St2 = null;</span>
+<span class="fc" id="L21">    Connection Con = null;</span>
+<span class="fc" id="L22">    PreparedStatement pst = null;</span>
+<span class="fc" id="L23">    ResultSet Rs = null;</span>
+<span class="fc" id="L24">    Statement St = null;</span>
+<span class="fc" id="L25">        ResultSet Rs2 = null;</span>
+<span class="fc" id="L26">    Statement St2 = null;</span>
     /**
      * Creates new form RegistersCoba
      */
-<span class="nc" id="L30">    public WithdrawCashMenu() {</span>
-<span class="nc" id="L31">        initComponents();</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L30">    public WithdrawCashMenu() {</span>
+<span class="fc" id="L31">        initComponents();</span>
+<span class="fc" id="L32">    }</span>
     
     String PhoneNumber;
     double OldBalance;
@@ -256,10 +256,10 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L259" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L260" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L261">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L262">                    break;</span>
+<span class="pc bpc" id="L259" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="fc" id="L261">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L262">                    break;</span>
                 }
             }
 <span class="nc" id="L265">        } catch (ClassNotFoundException ex) {</span>
@@ -270,7 +270,7 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
 <span class="nc" id="L270">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
 <span class="nc" id="L271">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
 <span class="nc" id="L272">            java.util.logging.Logger.getLogger(WithdrawCashMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L273">        }</span>
+<span class="pc" id="L273">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
@@ -281,12 +281,12 @@ public class WithdrawCashMenu extends javax.swing.JFrame {
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L284">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="fc" id="L284">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L286">                new WithdrawCashMenu().setVisible(true);</span>
-<span class="nc" id="L287">            }</span>
+<span class="fc" id="L286">                new WithdrawCashMenu().setVisible(true);</span>
+<span class="fc" id="L287">            }</span>
         });
-<span class="nc" id="L289">    }</span>
+<span class="fc" id="L289">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backButton_Withdraw;

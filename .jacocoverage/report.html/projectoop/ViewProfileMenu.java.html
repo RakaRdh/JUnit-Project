@@ -18,19 +18,19 @@ import javax.swing.JOptionPane;
  */
 public class ViewProfileMenu extends javax.swing.JFrame {
 
-<span class="pc" id="L21">    Connection Con = null;</span>
-<span class="pc" id="L22">    PreparedStatement pst = null;</span>
-<span class="pc" id="L23">    ResultSet Rs = null;</span>
-<span class="pc" id="L24">    Statement St = null;</span>
-<span class="pc" id="L25">    ResultSet Rs2 = null;</span>
-<span class="pc" id="L26">    Statement St2 = null;</span>
+<span class="fc" id="L21">    Connection Con = null;</span>
+<span class="fc" id="L22">    PreparedStatement pst = null;</span>
+<span class="fc" id="L23">    ResultSet Rs = null;</span>
+<span class="fc" id="L24">    Statement St = null;</span>
+<span class="fc" id="L25">    ResultSet Rs2 = null;</span>
+<span class="fc" id="L26">    Statement St2 = null;</span>
 
     /**
      * Creates new form RegistersCoba
      */
-<span class="nc" id="L31">    public ViewProfileMenu() {</span>
-<span class="nc" id="L32">        initComponents();</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L31">    public ViewProfileMenu() {</span>
+<span class="fc" id="L32">        initComponents();</span>
+<span class="fc" id="L33">    }</span>
 
     String PhoneNumber;
     String uName;
@@ -261,10 +261,10 @@ public class ViewProfileMenu extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-<span class="nc bnc" id="L264" title="All 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
-<span class="nc bnc" id="L265" title="All 2 branches missed.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
-<span class="nc" id="L266">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
-<span class="nc" id="L267">                    break;</span>
+<span class="pc bpc" id="L264" title="1 of 2 branches missed.">            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {</span>
+<span class="fc bfc" id="L265" title="All 2 branches covered.">                if (&quot;Nimbus&quot;.equals(info.getName())) {</span>
+<span class="fc" id="L266">                    javax.swing.UIManager.setLookAndFeel(info.getClassName());</span>
+<span class="fc" id="L267">                    break;</span>
                 }
             }
 <span class="nc" id="L270">        } catch (ClassNotFoundException ex) {</span>
@@ -275,19 +275,19 @@ public class ViewProfileMenu extends javax.swing.JFrame {
 <span class="nc" id="L275">            java.util.logging.Logger.getLogger(ViewProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
 <span class="nc" id="L276">        } catch (javax.swing.UnsupportedLookAndFeelException ex) {</span>
 <span class="nc" id="L277">            java.util.logging.Logger.getLogger(ViewProfileMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);</span>
-<span class="nc" id="L278">        }</span>
+<span class="pc" id="L278">        }</span>
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
         //&lt;/editor-fold&gt;
 
         /* Create and display the form */
-<span class="nc" id="L285">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
+<span class="fc" id="L285">        java.awt.EventQueue.invokeLater(new Runnable() {</span>
             public void run() {
-<span class="nc" id="L287">                new ViewProfileMenu().setVisible(true);</span>
-<span class="nc" id="L288">            }</span>
+<span class="fc" id="L287">                new ViewProfileMenu().setVisible(true);</span>
+<span class="fc" id="L288">            }</span>
         });
-<span class="nc" id="L290">    }</span>
+<span class="fc" id="L290">    }</span>
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton backButton_ViewProfile;
